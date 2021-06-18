@@ -16,4 +16,4 @@ Symbole zum copy&pasten
 | Path | Description |
 |--- |--- |
 | /machines/ | Contains folders corresponding to (virtual) machines with the respective DNS entry.  
-| /scripts/ | Contains self-documenting utility scripts that can be used and shared across the whole infrastructure setup.  
+| /scripts/ | Contains self-documenting utility scripts that can be used and shared across the infrastructure.  
