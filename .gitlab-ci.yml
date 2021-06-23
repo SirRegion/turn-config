@@ -5,7 +5,7 @@ zip_MdctecMaintanance_module:
   stage: build
   script:
     - cd scripts
-    - zip -r MdctecMaintanance.zip MdctecMaintanance
+    - zip -r MdctecMaintanance.zip ./MdctecMaintainance
   tags:
     - stage.mdctec.com
   artifacts:
