@@ -10,8 +10,12 @@ $steps = @(
 #        Command = 'docker run --pull always -p 3333:3333 --name cb-app_backend complianceBaseContainerRegistry.azurecr.io/cb-app/backend/windows:demo_2021.0.1'
 #    },
     [pscustomobject]@{
+        Description = 'Pull the latest version of the frontend application. (This can take some time)'
+        Command = 'docker pull complianceBaseContainerRegistry.azurecr.io/cb-app/frontend/windows:demo_2021.0.1'
+    }
+    [pscustomobject]@{
         Description = 'Launch the complianceBase frontend'
-        Command = 'docker run --pull always -p 80:80 --name cb-app_frontend complianceBaseContainerRegistry.azurecr.io/cb-app/frontend/windows:demo_2021.0.1'
+        Command = 'docker run -p 80:80 --name cb-app_frontend complianceBaseContainerRegistry.azurecr.io/cb-app/frontend/windows:demo_2021.0.1'
     }
 )
 
