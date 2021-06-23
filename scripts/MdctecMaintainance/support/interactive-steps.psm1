@@ -11,19 +11,6 @@ Function Interactive-Steps
     .DESCRIPTION
         Execute the specified commands step by step, allowing the user to interupt or modify the workflow after each step.
 
-    .EXAMPLE
-        $fruits = @(
-            [PSCustomObject]@{
-                Name  = 'banana'; Color = 'yellow'; Shape = 'long'
-            }
-            [PSCustomObject]@{
-                Name  = 'kiwi'; Color = 'green'; Shape = 'oval'
-            }
-            [PSCustomObject]@{
-                Name  = 'apples'; Color = 'red'; Shape = 'round'
-            }
-        )
-
     #>
 
     [CmdLetBinding()]
@@ -33,15 +20,23 @@ Function Interactive-Steps
         $TaskName
     )
 
-    $currentI = 1
+    $currentI = 0
+
+    "Steps: $Steps"
 
     #region Display the menu
     do
     {
+        if ($currentI -ge $Steps.count ){
+            Write-Host (" All steps of the task `"{0}`" are completed! " -f $TaskName) -BackgroundColor Green -ForegroundColor Black
+            Write-Host "."
+            return
+        }
+
         $currentStep = $Steps[$currentI]
 
         Write-Host "`n=============================================================================================="
-        Write-Host ("You are about to execute step {0}) of the task `"{1}`"" -f $currentI, $TaskName)
+        Write-Host ("You are about to execute step {0}/{1}) of the task `"{2}`"" -f ($currentI + 1), $Steps.count, $TaskName)
 
         Write-Host "`nThe step is described with:"
 
@@ -77,7 +72,7 @@ Function Interactive-Steps
                 "Sorry! I do not know what to do here :("
             }
         }
-    } until ( ($selected -eq $null) -or ($currentI -gt $Items.Length) )
+    } until ( ($selected -eq $null) )
     #endregion
 
 

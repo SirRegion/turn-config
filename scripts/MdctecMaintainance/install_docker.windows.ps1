@@ -5,16 +5,15 @@ Import-Module MdctecMaintainance\support\interactive-steps.psm1 -DisableNameChec
 #Enable-WindowsOptionalFeature -Online -FeatureName $("Microsoft-Hyper-V", "Containers") -All -NoRestart
 
 $steps = @(
-    [pscustomobject]
-    @{
+    [pscustomobject]@{
         Description = 'Enable "Hyper-V" and "Containers" Features'
         Command     = 'Enable-WindowsOptionalFeature -Online -FeatureName $("Microsoft-Hyper-V", "Containers") -All -NoRestart'
     },
-    @{
+    [pscustomobject]@{
         Description = "Setup Docker Repository"
         Command     = 'Install-Module -Name DockerMsftProvider -Repository PSGallery -Force'
     },
-    @{
+    [pscustomobject]@{
         Description = "Install the Docker Package"
         Command     = 'Install-Package docker -ProviderName DockerMsftProvider -Force'
     }
