@@ -10,4 +10,4 @@ zip_MdctecMaintainance_module:
     - stage.mdctec.com
   artifacts:
     paths:
-      - scripts/MdctecMaintainance.zip
+      - scripts/MdctecMaintainance/MdctecMaintainance.zip
