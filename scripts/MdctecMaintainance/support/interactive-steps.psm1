@@ -22,8 +22,6 @@ Function Interactive-Steps
 
     $currentI = 0
 
-    "Steps: $Steps"
-
     #region Display the menu
     do
     {
