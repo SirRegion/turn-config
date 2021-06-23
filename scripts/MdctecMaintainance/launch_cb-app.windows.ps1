@@ -15,7 +15,7 @@ $steps = @(
     }
     [pscustomobject]@{
         Description = 'Launch the complianceBase frontend'
-        Command = 'docker run -p 80:80 --name cb-app_frontend complianceBaseContainerRegistry.azurecr.io/cb-app/frontend/windows:demo_2021.0.1'
+        Command = 'docker run --name cb-app_frontend -p 80:80 --rm complianceBaseContainerRegistry.azurecr.io/cb-app/frontend/windows:demo_2021.0.1'
     }
 )
 
