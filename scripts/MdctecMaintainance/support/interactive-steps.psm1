@@ -28,8 +28,9 @@ Function Interactive-Steps
     do
     {
         if ($currentI -ge $Steps.count ){
+            Write-Host ""
             Write-Host (" All steps of the task `"{0}`" are completed! " -f $TaskName) -BackgroundColor Green -ForegroundColor Black
-            Write-Host "."
+
             return
         }
 

@@ -1,7 +1,9 @@
 stages:
   - build
 
-zip_MdctecMaintainance_module:
+# download link:
+# http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/scripts/MdctecMaintainance/MdctecMaintainance.zip?job=zip_MdctecMaintainance_module
+zip_MdctecMaintanance_module:
   stage: build
   script:
     - cd scripts/MdctecMaintainance
