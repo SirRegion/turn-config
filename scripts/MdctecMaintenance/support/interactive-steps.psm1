@@ -1,6 +1,6 @@
 # Code based on https://github.com/DarkLite1/Toolbox.General/blob/master/Toolbox.General.psm1
 
-Import-Module MdctecMaintainance\support\show-menu.psm1 -DisableNameChecking
+Import-Module MdctecMaintenance\support\show-menu.psm1 -DisableNameChecking
 
 Function Interactive-Steps
 {

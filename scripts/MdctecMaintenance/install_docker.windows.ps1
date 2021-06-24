@@ -1,4 +1,4 @@
-Import-Module MdctecMaintainance\support\interactive-steps.psm1 -DisableNameChecking
+Import-Module MdctecMaintenance\support\interactive-steps.psm1 -DisableNameChecking
 
 # Enable Hyper-V and Containers Windows Features
 # (may require a manual reboot afterwards! Watch the console output to see if this is required)

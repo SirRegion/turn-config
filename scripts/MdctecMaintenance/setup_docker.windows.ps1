@@ -1,4 +1,4 @@
-Import-Module MdctecMaintainance\support\interactive-steps.psm1 -DisableNameChecking
+Import-Module MdctecMaintenance\support\interactive-steps.psm1 -DisableNameChecking
 
 $steps = @(
     [pscustomobject]@{

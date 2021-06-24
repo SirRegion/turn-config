@@ -1,7 +1,7 @@
-Import-Module MdctecMaintainance\support\show-menu -DisableNameChecking
+Import-Module MdctecMaintenance\support\show-menu -DisableNameChecking
 
 Function Menu {
-    Write-Host " Welcome to the MDCTec Maintainance Menu! " -BackgroundColor White -ForegroundColor Black
+    Write-Host " Welcome to the MDCTec Maintenance Menu! " -BackgroundColor White -ForegroundColor Black
 
     ""
 
