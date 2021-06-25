@@ -5,8 +5,8 @@ We should seriously consider the ["Infrastructure as Code"][1] convention and th
 
 [1]: https://en.wikipedia.org/wiki/Infrastructure_as_code
 ## Artifacts available to download
-### MdctecMaintenance powershell Module
-http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/scripts/MdctecMaintenance/MdctecMaintenance.zip?job=zip_MdctecMaintenance_module
+### [MdctecMaintenance powershell Module](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/scripts/MdctecMaintenance/MdctecMaintenance.zip?job=zip_MdctecMaintenance_module)
+
 
 ## Repository Contents
 <!---

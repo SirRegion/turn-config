@@ -1,5 +1,16 @@
 Import-Module MdctecMaintenance\support\interactive-steps.psm1 -DisableNameChecking
 
+"Checking current system environment..."
+
+$v = $(docker -v)
+
+if ($v -eq $null) {
+    Write-Host "Make sure docker is installed and executable!" -ForegroundColor "red"
+    return
+} else {
+    Write-Host $v -ForegroundColor "cyan"
+}
+
 $steps = @(
 #    [pscustomobject]@{
 #        Description = 'Launch the complianceBase database'

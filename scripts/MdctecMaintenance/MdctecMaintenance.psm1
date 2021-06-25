@@ -8,7 +8,7 @@ Function Menu {
     $selection = Show-Menu -Items @(
         'Install Docker Service',
         'Setup Docker Environment',
-        'Install and Launch complianceBase app on this machine',
+        'Install ComplianceBase with Docker',
         'Reset this machine and start from scratch'
     )
 
@@ -17,13 +17,13 @@ Function Menu {
     switch ($selection)
     {
         '1' {
-            invoke-expression -Command "$PSScriptRoot\install_docker.windows.ps1"
+            invoke-expression -Command "$PSScriptRoot\install_docker.ws2019.ps1"
         } '2' {
-            invoke-expression -Command "$PSScriptRoot\setup_docker.windows.ps1"
+            invoke-expression -Command "$PSScriptRoot\setup_docker_environment.ws2019.ps1"
         } '3' {
-            invoke-expression -Command "$PSScriptRoot\launch_cb-app.windows.ps1"
-        } '4'{
-            invoke-expression -Command "$PSScriptRoot\reset.windows.ps1"
+            invoke-expression -Command "$PSScriptRoot\setup_cb-app.ws2019.ps1"
+        } '4' {
+            invoke-expression -Command "$PSScriptRoot\reset.ws2019.ps1"
         } 'q' {
             return
         }
