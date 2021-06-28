@@ -6,7 +6,7 @@ Import-Module MdctecMaintenance\support\interactive-steps.psm1 -DisableNameCheck
 
 $steps = @(
     [pscustomobject]@{
-        Description = "Ìnstall the Docker-Microsoft PackageManagement Provider"
+        Description = "Install the Docker-Microsoft PackageManagement Provider"
         Command     = 'Install-Module -Name DockerMsftProvider -Repository PSGallery -Force'
     }
     [pscustomobject]@{
