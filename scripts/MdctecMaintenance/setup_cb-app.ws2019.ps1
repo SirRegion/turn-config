@@ -5,28 +5,25 @@ Import-Module MdctecMaintenance\support\interactive-steps.psm1 -DisableNameCheck
 $v = $(docker -v)
 
 if ($v -eq $null) {
-    Write-Host "Make sure docker is installed and executable!" -ForegroundColor "red"
+    Write-Host "could not find any version of docker!" -ForegroundColor "red"
+    Write-Host "Make sure that docker is installed and executable!" -ForegroundColor "red"
     return
 } else {
     Write-Host $v -ForegroundColor "cyan"
 }
 
 $steps = @(
-#    [pscustomobject]@{
-#        Description = 'Launch the complianceBase database'
-#        Command = 'docker run --pull always -p 3306:3306 --name cb-app_db complianceBaseContainerRegistry.azurecr.io/cb-app/db/windows:demo_2021.0.1'
-#    },
-#    [pscustomobject]@{
-#        Description = 'Launch the complianceBase backend'
-#        Command = 'docker run --pull always -p 3333:3333 --name cb-app_backend complianceBaseContainerRegistry.azurecr.io/cb-app/backend/windows:demo_2021.0.1'
-#    },
     [pscustomobject]@{
-        Description = 'Pull the latest version of the frontend application. (This can take some time)'
-        Command = 'docker pull complianceBaseContainerRegistry.azurecr.io/cb-app/frontend/windows:demo_2021.0.1'
+        Description = 'Pull the Windows-Server Core base image. (This may take a little longer)'
+        Command = 'docker pull mcr.microsoft.com/windows/servercore:ltsc2019'
+    },
+    [pscustomobject]@{
+        Description = 'Pull the latest version of the complianceBase application container.'
+        Command = 'docker pull complianceBaseContainerRegistry.azurecr.io/cb-app/stand-alone/windows:demo_2021.0.1'
     }
     [pscustomobject]@{
         Description = 'Launch the complianceBase frontend'
-        Command = 'docker run --name cb-app_frontend -p 80:80 --rm complianceBaseContainerRegistry.azurecr.io/cb-app/frontend/windows:demo_2021.0.1'
+        Command = 'docker run --name cb-app_stand-alone --rm complianceBaseContainerRegistry.azurecr.io/cb-app/stand-alone/windows:demo_2021.0.1'
     }
 )
 

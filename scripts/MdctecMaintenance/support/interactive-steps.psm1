@@ -25,9 +25,11 @@ Function Interactive-Steps
     #region Display the menu
     do
     {
-        if ($currentI -ge $Steps.count ){
+        if ($currentI -ge $Steps.count)
+        {
             Write-Host ""
-            Write-Host (" All steps of the task `"{0}`" are completed! " -f $TaskName) -BackgroundColor Green -ForegroundColor Black
+            Write-Host (" There are no further steps steps in the task `"{0}`"! " -f $TaskName) -BackgroundColor Green -ForegroundColor Black
+            Write-Host (" The MdctecMaintenance Menu is now closed. You can reopen it by executing `"Menu`"!" -f $TaskName)
 
             return
         }
@@ -40,7 +42,7 @@ Function Interactive-Steps
         Write-Host "`nThe step is described with:"
 
         Write-Host `
-            -Object ("`"{0}`"" -f $currentStep.Description ) `
+            -Object ("`"{0}`"" -f $currentStep.Description) `
             -ForegroundColor 'Green'
 
         Write-Host "`nThe command to be executed is:"
@@ -77,7 +79,8 @@ Function Interactive-Steps
 
 }
 
-Function Execute-Step{
+Function Execute-Step
+{
     Param (
         [Parameter(Mandatory, ValueFromPipeline)]
         $currentStep,
@@ -85,19 +88,28 @@ Function Execute-Step{
         $currentI
     )
     Write-Host "________________________________________________________________________________________"
-    Write-Host ("> executing step {0}) {1}. Watch what happens ..." -f $currentI,$currentStep.Description)
+    Write-Host ("> executing step {0}) `"{1}`". Watch what happens ..." -f ($currentI + 1), $currentStep.Description)
 
+    do
+    {
+        Write-Host $currentStep.Command -ForegroundColor 'Red'
+        invoke-expression -Command $currentStep.Command
 
-    Write-Host $currentStep.Command -ForegroundColor 'Red'
-    invoke-expression -Command $currentStep.Command
+        Write-Host ("`n> done with step {0}) `"{1}`"" -f ($currentI + 1), $currentStep.Description)
 
-    Write-Host ("`n> done with step {0}) {1}" -f $currentI,$currentStep.Description)
-
-    $selected = & Show-Menu `
+        $selected = & Show-Menu `
                     -Items @('yes, looks allright, continue with the next step', 'no, something is wrong here, retry this step') `
                     -Question "  Check the log messages above for errors and tell me whether to continue."
 
-    return $selected -eq '1'
+        if ($selected -eq '1')
+        {
+            return $true
+        }
+        elseif ($selected -eq 'q')
+        {
+            return $false
+        }
+    } while ($true)
 }
 
 Export-ModuleMember -Function Interactive-Steps
