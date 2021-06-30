@@ -6,10 +6,10 @@ Function Interactive-Steps
 {
     <#
     .SYNOPSIS
-        Execute some commands in "interactive" mode.
+        Execute some commands in "interactively".
  
     .DESCRIPTION
-        Execute the specified commands step by step, allowing the user to interupt or modify the workflow after each step.
+        Execute the specified commands step by step, allowing the user to control the workflow after each step.
 
     #>
 
