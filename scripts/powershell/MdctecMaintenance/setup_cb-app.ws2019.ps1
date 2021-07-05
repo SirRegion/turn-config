@@ -22,7 +22,11 @@ $steps = @(
         Command = 'docker pull complianceBaseContainerRegistry.azurecr.io/cb-app/stand-alone/windows:demo_2021.0.1'
     }
     [pscustomobject]@{
-        Description = 'Launch the complianceBase frontend'
+        Description = 'Stop any existing instances'
+        Command = 'docker rm -f cb-app_stand-alone'
+    }
+    [pscustomobject]@{
+        Description = 'Launch the complianceBase frontend container'
         Command = 'docker run -p 80:80 --name cb-app_stand-alone complianceBaseContainerRegistry.azurecr.io/cb-app/stand-alone/windows:demo_2021.0.1'
     }
 )
