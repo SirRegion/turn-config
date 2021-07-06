@@ -4,4 +4,4 @@ This is a Windows PowerShell script module providing a console-based menu to exe
 
 ## Downloads
 
-To download the latest version visit [this link](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/scripts/MdctecMaintenance/MdctecMaintenance.zip?job=zip_MdctecMaintenance_module)
+To download the latest version visit [this link](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/scripts/powershell/MdctecMaintenance/MdctecMaintenance.zip?job=zip_MdctecMaintenance_module)
