@@ -3,7 +3,8 @@ Import-Module MdctecMaintenance\support\show-menu -DisableNameChecking
 
 Function Menu {
     Write-Host " Welcome to the MDCTec Maintenance Menu! " -BackgroundColor White -ForegroundColor Black
-    "Version: $(Get-Content $PSScriptRoot\.version)"
+    "Version: $(Get-Content $PSScriptRoot\.meta\version)"
+    "Modified at: $(Get-Content $PSScriptRoot\.meta\timestamp)"
     ""
 
     $selection = Show-Menu -Items @(
