@@ -10,7 +10,7 @@ zip_MdctecMaintenance_module:
   stage: build
   script:
     - cd scripts/powershell/MdctecMaintenance
-    - powershell ./update-version.ps1
+    - powershell ./update-meta.ps1
     - zip -r MdctecMaintenance.zip . --exclude @exclude.lst
   tags:
     - stage.mdctec.com
