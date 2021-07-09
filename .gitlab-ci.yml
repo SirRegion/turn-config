@@ -9,7 +9,7 @@ stages:
 zip_MdctecMaintenance_module:
   stage: artifacts
   before_script:
-    - cd scripts/powershell/MdctecMainenance
+    - cd scripts/powershell/MdctecMaintenance
   script:
     - make MdctecMaintencance.zip
   tags:
