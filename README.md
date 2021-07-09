@@ -27,7 +27,7 @@ A PowerShell module providing a console-based menu to execute several maintenanc
 
 > Download latest version: [link](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/scripts/MdctecMaintenance/MdctecMaintenance.zip?job=zip_MdctecMaintenance_module)
 
-### bash scripts with a full machine setup:
-| Path | Description | Download |
+### bash scripts for a full machine setup:
+| Script File | Description | Download |
 |--- |--- |--- |
 | `machines/dev.mdctec.com/full-install.sh` | TODO | [link](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/machines/dev.mdctec.com/full-install.sh?job=artifacts)

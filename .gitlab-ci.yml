@@ -17,10 +17,11 @@ stages:
 
 artifacts:
   stage: artifacts
-  script: [echo Hi!]
+  script: [echo "preparing artifacts..."]
   artifacts:
     paths:
       - machines/**/*.sh
+      - scripts/bash/*.sh
 
 
 include:
