@@ -11,7 +11,7 @@ $steps = @(
     }
     [pscustomobject]@{
         Description = "Install the Docker Package"
-        Command     = 'Install-Package docker -ProviderName DockerMsftProvider -Force'
+        Command     = 'Install-Package docker -ProviderName DockerMsftProvider -Force -RequiredVersion 20.10.6'
     }
     [pscustomobject]@{
         Description = "Restart the Machine"

@@ -1,0 +1,15 @@
+current_file_root := $(lastword $(MAKEFILE_LIST))
+
+### Configure Powershell
+ifeq ($(OS),Windows_NT)
+# When running on windows, the executable path is different
+SHELL := pwsh.exe
+
+else
+# On all other systems, assume linux executable name
+SHELL := pwsh
+
+endif
+.SHELLFLAGS := -Command
+
+

@@ -1,2 +1,4 @@
 exclude.lst
 update-meta.ps1
+Makefile
+.gitlab-ci.yml
