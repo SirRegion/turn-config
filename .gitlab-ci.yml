@@ -6,17 +6,20 @@ stages:
 # Direct download:
 # http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/scripts/MdctecMaintenance/MdctecMaintenance.zip?job=zip_MdctecMaintenance_module
 
-zip_MdctecMaintenance_module:
-  stage: artifacts
-  before_script:
-    - cd scripts/powershell/MdctecMaintenance
-  script:
-    - make MdctecMaintencance.zip
-  tags:
-    - stage.mdctec.com
+#zip_MdctecMaintenance_module:
+#  stage: artifacts
+#  before_script:
+#    - cd scripts/powershell/MdctecMaintenance
+#  script:
+#    - make MdctecMaintencance.zip
+#  tags:
+#    - stage.mdctec.com
+
+artifacts:
+  script: []
   artifacts:
     paths:
-      - scripts/powershell/MdctecMaintenance/MdctecMaintenance.zip
+      - machines/**/*.sh
 
 
 include:
