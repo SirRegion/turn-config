@@ -1,8 +1,0 @@
-MdctecMaintenance_module:
-  stage: artifacts
-  script:
-    - echo done!
-  artifacts:
-    name: MdctecMaintenance
-    paths:
-      - MdctecMaintenance.psm1

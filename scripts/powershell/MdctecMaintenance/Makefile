@@ -1,5 +1,7 @@
 include ../../../Makefile.pwsh
 
+artifacts: MdctecMaintenance.zip
+
 MdctecMaintenance.zip: .meta
 	Get-ChildItem -Exclude $$(Get-Content ./exclude.lst ) | Compress-Archive -Force -DestinationPath ./MdctecMaintenance.zip
 
