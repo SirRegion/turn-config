@@ -17,6 +17,7 @@ stages:
 
 artifacts:
   stage: artifacts
+  public: true
   script: [echo "preparing artifacts..."]
   artifacts:
     paths:
