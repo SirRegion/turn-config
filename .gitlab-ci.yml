@@ -3,6 +3,8 @@ stages:
 
 artifacts:
   stage: artifacts
+  tags:
+    - stage.mdctec.com
   script:
     - make artifacts
   artifacts:
