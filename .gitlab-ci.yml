@@ -17,9 +17,9 @@ stages:
 
 artifacts:
   stage: artifacts
-  public: true
   script: [echo "preparing artifacts..."]
   artifacts:
+    public: true
     paths:
       - machines/**/*.sh
       - scripts/bash/*.sh
