@@ -16,7 +16,8 @@ stages:
 #    - stage.mdctec.com
 
 artifacts:
-  script: []
+  stage: artifacts
+  script: [echo Hi!]
   artifacts:
     paths:
       - machines/**/*.sh
