@@ -16,7 +16,9 @@ Function Interactive-Steps
     [CmdLetBinding()]
     Param (
         [Parameter(Mandatory, ValueFromPipeline)]
-        [Array]$Steps,
+        [Array]
+        $Steps,
+
         $TaskName
     )
 

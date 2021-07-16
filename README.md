@@ -5,15 +5,20 @@ We should seriously consider the ["Infrastructure as Code"][1] convention and th
 
 [1]: https://en.wikipedia.org/wiki/Infrastructure_as_code
 ## Artifacts available to download:
+
+| Artifact File | Description | Details |
+|---    |---  |--- 
+| [MdctecMaintenance.zip](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/scripts/powershell/MdctecMaintenance/MdctecMaintenance.zip?job=artifacts) | Powershell module providing the MdctecMaintenance Menu helping to deploy the ComplianceBase application | [README](scripts/powershell/MdctecMaintenance/README.md)
+| [dev.mdctec.com/full-install.sh](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/machines/dev.mdctec.com/full-install.sh?job=artifacts) | dev.mdctec.com |
+
+Go [here](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/browse?job=artifacts) to browse and see all available artifacts on Gitlab.
+
 ### MdctecMaintenance powershell Module
 A PowerShell module providing a console-based menu to execute several maintenance tasks related to the ComplianceBase™ setup and deployment.
 
 > Download latest version: [link](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/scripts/MdctecMaintenance/MdctecMaintenance.zip?job=zip_MdctecMaintenance_module)
 
-### bash scripts for a full machine setup:
-| Script File | Description | Download |
-|--- |--- |--- |
-| `.../dev.mdctec.com/full-install.sh` | TODO | [link](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/machines/dev.mdctec.com/full-install.sh?job=artifacts)
+### Bash scripts for a full machine setup:
 
 To execute a script directly with bash use the following commands:  
 ```bash

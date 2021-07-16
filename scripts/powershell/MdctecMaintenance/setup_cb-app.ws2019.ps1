@@ -14,7 +14,7 @@ if ($v -eq $null) {
 
 $steps = @(
     [pscustomobject]@{
-        Description = 'Pull the Windows-Server Core base image. (This may take a little longer)'
+        Description = 'Pull the Windows-Server Core base image. (This may take a quite some time)'
         Command = 'docker pull mcr.microsoft.com/windows/servercore:ltsc2019'
     },
     [pscustomobject]@{
