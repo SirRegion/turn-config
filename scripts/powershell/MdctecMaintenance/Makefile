@@ -3,11 +3,11 @@ include ../../../Makefile.pwsh
 artifacts: MdctecMaintenance.zip
 
 clean:
-	rm -ErrorAction:Ignore ./MdctecMaintenance.zip
-	rm -ErrorAction:Ignore -Recurse ./.meta
-
+	Remove-Item -ErrorAction:Ignore ./MdctecMaintenance.zip
+	Remove-Item -ErrorAction:Ignore -Recurse ./.meta
 
 MdctecMaintenance.zip: .meta
+	Get-ChildItem -Exclude $$(Get-Content ./exclude.lst )
 	Get-ChildItem -Exclude $$(Get-Content ./exclude.lst ) | Compress-Archive -Force -DestinationPath ./MdctecMaintenance.zip
 
 .meta:
