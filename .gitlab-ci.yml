@@ -3,7 +3,7 @@ stages:
 
 artifacts:
   stage: artifacts
-  tags: [ shell, stage ]
+  tags: [ shell, dev ]
   script:
     - make artifacts
   artifacts:
@@ -12,7 +12,3 @@ artifacts:
       - machines/**/*.sh
       - scripts/bash/*.sh
       - scripts/powershell/MdctecMaintenance/MdctecMaintenance.zip
-
-artifacts_dev:
-  extends: artifacts
-  tags: [ shell, dev ]
