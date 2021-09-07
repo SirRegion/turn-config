@@ -2,6 +2,11 @@ include ../../../Makefile.pwsh
 
 artifacts: MdctecMaintenance.zip
 
+clean:
+	rm -ErrorAction:Ignore ./MdctecMaintenance.zip
+	rm -ErrorAction:Ignore -Recurse ./.meta
+
+
 MdctecMaintenance.zip: .meta
 	Get-ChildItem -Exclude $$(Get-Content ./exclude.lst ) | Compress-Archive -Force -DestinationPath ./MdctecMaintenance.zip
 
@@ -11,6 +16,4 @@ MdctecMaintenance.zip: .meta
 	"$$(Get-Date -Format "dddd dd/MM/yyyy HH:mm K")" | Out-File .\.meta\timestamp -Force;
 
 
-clean:
-	rm -ErrorAction:Ignore ./MdctecMaintenance.zip
-	rm -ErrorAction:Ignore -Recurse ./.meta
+
