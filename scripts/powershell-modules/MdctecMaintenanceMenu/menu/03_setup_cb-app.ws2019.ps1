@@ -29,6 +29,10 @@ $steps = @(
         Description = 'Launch the complianceBase frontend container'
         Command = 'docker run -d -p 80:80 --name cb-app_stand-alone complianceBaseContainerRegistry.azurecr.io/cb-app/stand-alone/windows:demo_2021.0.1'
     }
+    [pscustomobject]@{
+        Description = 'Test http request. (This should return status StatusCode 200)'
+        Command = 'Invoke-WebRequest http://localhost'
+    }
 )
 
 Interactive-Steps $steps -TaskName "Install and Launch complianceBase app on this machine"
