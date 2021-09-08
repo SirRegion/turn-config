@@ -19,13 +19,13 @@ Function MdctecMaintenanceMenu {
     switch ($selection)
     {
         '1' {
-            invoke-expression -Command "$PSScriptRoot\install_docker.ws2019.ps1"
+            invoke-expression -Command "$PSScriptRoot\menu\01_install_docker.ws2019.ps1"
         } '2' {
-            invoke-expression -Command "$PSScriptRoot\setup_docker_environment.ws2019.ps1"
+            invoke-expression -Command "$PSScriptRoot\menu\02_setup_docker_environment.ws2019.ps1"
         } '3' {
-            invoke-expression -Command "$PSScriptRoot\setup_cb-app.ws2019.ps1"
+            invoke-expression -Command "$PSScriptRoot\menu\03_setup_cb-app.ws2019.ps1"
         } '4' {
-            invoke-expression -Command "$PSScriptRoot\reset.ws2019.ps1"
+            invoke-expression -Command "$PSScriptRoot\menu\04_reset.ws2019.ps1"
         } 'q' {
             return
         }
