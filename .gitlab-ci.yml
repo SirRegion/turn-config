@@ -11,4 +11,4 @@ artifacts:
     paths:
       - machines/**/*.sh
       - scripts/bash/*.sh
-      - scripts/powershell/MdctecMaintenance/MdctecMaintenance.zip
+      - scripts/powershell/MdctecMaintenanceMenu/MdctecMaintenanceMenu.zip

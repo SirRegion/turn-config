@@ -1,6 +1,6 @@
 exclude.lst
-update-meta.ps1
 Makefile
-MdctecMaintenance.zip
+MdctecMaintenanceMenu.zip
 .gitlab-ci.yml
 .gitignore
+install.ps1

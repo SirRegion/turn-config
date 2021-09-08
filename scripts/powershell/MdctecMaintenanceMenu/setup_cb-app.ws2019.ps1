@@ -1,4 +1,4 @@
-Import-Module MdctecMaintenance\support\interactive-steps.psm1 -DisableNameChecking
+Import-Module MdctecMaintenanceMenu\support\interactive-steps.psm1 -DisableNameChecking
 
 "Checking current system environment..."
 

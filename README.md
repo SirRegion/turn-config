@@ -10,15 +10,15 @@ We should seriously consider the ["Infrastructure as Code"][1] convention and th
 
 | Artifact File | Description | Details |
 |---    |---  |--- 
-| [MdctecMaintenance.zip](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/scripts/powershell/MdctecMaintenance/MdctecMaintenance.zip?job=artifacts) | Powershell module providing the MdctecMaintenance Menu helping to deploy the ComplianceBase application | [README](scripts/powershell/MdctecMaintenance/README.md)
+| [MdctecMaintenanceMenu.zip](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/scripts/powershell/MdctecMaintenanceMenu/MdctecMaintenanceMenu.zip?job=artifacts) | Powershell module providing the MdctecMaintenanceMenu helping to deploy the ComplianceBase application | [README](scripts/powershell/MdctecMaintenanceMenu/README.md)
 | [dev.mdctec.com/full-install.sh](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/machines/dev.mdctec.com/full-install.sh?job=artifacts) | dev.mdctec.com |
 
 Go [here](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/browse?job=artifacts) to browse and see all available artifacts on Gitlab.
 
-### MdctecMaintenance powershell Module
+### MdctecMaintenanceMenu powershell Module
 A PowerShell module providing a console-based menu to execute several maintenance tasks related to the ComplianceBase™ setup and deployment.
 
-> Download latest version: [link](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/scripts/MdctecMaintenance/MdctecMaintenance.zip?job=zip_MdctecMaintenance_module)
+> Download latest version: [link](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/scripts/MdctecMaintenanceMenu/MdctecMaintenanceMenu.zip?job=zip_MdctecMaintenanceMenu_module)
 
 ### Bash scripts for a full machine setup:
 
@@ -42,5 +42,5 @@ See the nested README.md files for further documentation
 | <pre style="padding:0"> machines/</pre> | Contains folders with scripts for a full machine setup. |    
 | <pre style="padding:0"> scripts/</pre> | Contains utility scripts that can be used and shared across the infrastructure.  |
 | <pre style="padding:0"> ├─ powershell/</pre> | Utility scripts for Microsoft powershell |
-| <pre style="padding:0"> │  └─ MdctecMaintenance</pre> | See this nested [README](scripts/powershell/MdctecMaintenance/README.md) |
+| <pre style="padding:0"> │  └─ MdctecMaintenanceMenu</pre> | See this nested [README](scripts/powershell/MdctecMaintenanceMenu/README.md) |
 

@@ -113,6 +113,9 @@ Function Show-Menu {
 
         $selected = Read-Host -Prompt $SelectionPrompt
 
+        if ($selected -eq $quitSelectorKey) {
+            return
+        }
     } until (
     ($hash.Keys -contains $selected) -or
             ($selected -eq $quitSelectorKey)

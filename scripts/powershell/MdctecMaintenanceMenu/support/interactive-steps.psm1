@@ -1,6 +1,6 @@
 # Code based on https://github.com/DarkLite1/Toolbox.General/blob/master/Toolbox.General.psm1
 
-Import-Module MdctecMaintenance\support\show-menu.psm1 -DisableNameChecking
+Import-Module MdctecMaintenanceMenu\support\show-menu.psm1 -DisableNameChecking
 
 Function Interactive-Steps
 {
@@ -31,7 +31,7 @@ Function Interactive-Steps
         {
             Write-Host ""
             Write-Host (" There are no further steps steps in the task `"{0}`"! " -f $TaskName) -BackgroundColor Green -ForegroundColor Black
-            Write-Host (" The MdctecMaintenance Menu is now closed. You can reopen it by executing `"Menu`"!" -f $TaskName)
+            Write-Host (" The Mdctec Maintenance Menu is now closed. You can reopen it by executing `"MMM`"!" -f $TaskName)
 
             return
         }

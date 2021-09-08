@@ -1,4 +1,4 @@
-Import-Module MdctecMaintenance\support\interactive-steps.psm1 -DisableNameChecking
+Import-Module MdctecMaintenanceMenu\support\interactive-steps.psm1 -DisableNameChecking
 
 $steps = @(
 [pscustomobject]@{
@@ -16,3 +16,4 @@ $steps = @(
 )
 
 Interactive-Steps $steps -TaskName "Setup Docker Environment"
+
