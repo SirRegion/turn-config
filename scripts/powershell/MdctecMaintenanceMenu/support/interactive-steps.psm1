@@ -13,6 +13,7 @@ Function Interactive-Steps
 
     #>
 
+    [CmdLetBinding()]
     Param (
         [Parameter(Mandatory, ValueFromPipeline)]
         [Array]

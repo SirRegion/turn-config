@@ -2,7 +2,8 @@ Import-Module MdctecMaintenanceMenu\support\show-menu -DisableNameChecking
 
 
 Function MdctecMaintenanceMenu {
-
+    [CmdLetBinding()]
+    param()
 
     Write-Host " Welcome to the MDCTec Maintenance Menu (alias: MMM)! " -BackgroundColor White -ForegroundColor Black
     "Version: $(Get-Content $PSScriptRoot\.meta\version)"

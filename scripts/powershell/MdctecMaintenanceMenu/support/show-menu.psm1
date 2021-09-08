@@ -52,7 +52,7 @@
     #>
 Function Show-Menu
 {
-
+    [CmdLetBinding()]
     Param (
         [Parameter(Mandatory, ValueFromPipeline)]
         [Array]$Items,
