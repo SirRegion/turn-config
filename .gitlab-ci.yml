@@ -1,18 +1,18 @@
 stages:
   - artifacts
 
-devcontainer:
-  rules:
-    - changes:
-        - .docker/devcontainer.Dockerfile
-  tags: [ shell, dev ]
-  script:
-    - docker-compose build devcontainer
+#devcontainer:
+#  stage: artifacts
+#  rules:
+#    - changes:
+#        - .docker/devcontainer.Dockerfile
+#  tags: [ shell, dev ]
+#  script:
+#    - docker-compose build devcontainer
 
 artifacts:
   stage: artifacts
-  image: infrastructure/devcontainer
-  tags: [ docker, dev ]
+  tags: [ shell, dev ]
   script:
     - make artifacts
   artifacts:
