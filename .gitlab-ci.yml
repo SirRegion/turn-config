@@ -20,4 +20,4 @@ artifacts:
     paths:
       - machines/**/*.sh
       - scripts/bash/*.sh
-      - scripts/powershell-modules/MdctecMaintenanceMenu.zip
+      - scripts/powershell-modules/powershell-modules.zip
