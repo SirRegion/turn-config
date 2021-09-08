@@ -1,16 +1,16 @@
 include ../../Makefile.pwsh
-.PHONY: MdctecMaintenanceMenu.zip
+.PHONY: powershell-modules.zip
 
-artifacts: MdctecMaintenanceMenu.zip
+artifacts: powershell-modules.zip
 
-MdctecMaintenanceMenu.zip:
+powershell-modules.zip:
 	$(MAKE) -C MdctecMaintenanceMenu/ meta
 	-Remove-Item -ea:Ignore -Recurse -Force .tmp
-	Copy-Item -Recurse MdctecMaintenanceMenu -Exclude $$(Get-Content ./MdctecMaintenanceMenu/exclude.lst ) .tmp/powershell-modules/MdctecMaintenanceMenu/
-	Copy-Item ./setup.ps1 .tmp/powershell-modules/
-	Get-ChildItem .tmp -Force | Compress-Archive -Force -DestinationPath ./MdctecMaintenanceMenu.zip
+	Copy-Item -Recurse MdctecMaintenanceMenu -Exclude $$(Get-Content ./MdctecMaintenanceMenu/exclude.lst ) .tmp/MdctecMaintenanceMenu/
+	Copy-Item ./setup.ps1 .tmp/
+	Get-ChildItem .tmp -Force | Compress-Archive -Force -DestinationPath ./powershell-modules.zip
 
-MdctecMaintenanceMenu.exe:
+powershell-modules.exe:
 	$(MAKE) -C MdctecMaintenanceMenu/ meta
 	-@Remove-Item -ea:Ignore MdctecMaintenanceMenu.exe
 

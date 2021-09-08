@@ -10,7 +10,7 @@ We should seriously consider the ["Infrastructure as Code"][1] convention and th
 
 | Artifact File | Description | Details |
 |---    |---  |--- 
-| [MdctecMaintenanceMenu.zip](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/scripts/powershell-modules/MdctecMaintenanceMenu.zip?job=artifacts) | Powershell module providing the MdctecMaintenanceMenu helping to deploy the ComplianceBase application | [README](scripts/powershell-modules/MdctecMaintenanceMenu/README.md)
+| [MdctecMaintenanceMenu.zip](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/scripts/powershell-modules/powershell-modules.zip?job=artifacts) | Powershell module providing the MdctecMaintenanceMenu helping to deploy the ComplianceBase application | [README](scripts/powershell-modules/MdctecMaintenanceMenu/README.md)
 | [dev.mdctec.com/full-install.sh](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/machines/dev.mdctec.com/full-install.sh?job=artifacts) | dev.mdctec.com |
 
 Go [here](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/browse?job=artifacts) to browse and see all available artifacts on Gitlab.

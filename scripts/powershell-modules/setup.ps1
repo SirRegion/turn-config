@@ -3,7 +3,9 @@ $DEST = $PSScriptRoot
 $CURRENT = [Environment]::GetEnvironmentVariable("MMM_HOME", "User")
 
 if ($CURRENT){
-    Write-Host "CURRENT: $CURRENT"
+    Write-Host "MMM_HOME= $CURRENT"
+    Write-Host "You already installed the powershellmodule. You don't have to call this everytime!"
+    exit
 }
 $env:MMM_HOME="$DEST"
 Write-Host "MMM_HOME=$DEST"
