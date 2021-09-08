@@ -31,7 +31,7 @@ Function Interactive-Steps
         {
             Write-Host ""
             Write-Host (" There are no further steps steps in the task `"{0}`"! " -f $TaskName) -BackgroundColor Green -ForegroundColor Black
-            Write-Host (" The Mdctec Maintenance Menu is now closed. You can reopen it by executing `"MMM`"!" -f $TaskName)
+            Write-Host (" The Mdctec Maintenance Menu is now closed. You can open it again by using the command alias 'MMM'!" -f $TaskName)
 
             return
         }
