@@ -1,9 +1,18 @@
 stages:
   - artifacts
 
+devcontainer:
+  rules:
+    - changes:
+        - .docker/devcontainer.Dockerfile
+  tags: [ shell, dev ]
+  script:
+    - docker-compose build devcontainer
+
 artifacts:
   stage: artifacts
-  tags: [ shell, dev ]
+  image: infrastructure/devcontainer
+  tags: [ docker, dev ]
   script:
     - make artifacts
   artifacts:
@@ -11,4 +20,4 @@ artifacts:
     paths:
       - machines/**/*.sh
       - scripts/bash/*.sh
-      - scripts/powershell/MdctecMaintenanceMenu/MdctecMaintenanceMenu.zip
+      - scripts/powershell-modules/MdctecMaintenanceMenu.zip

@@ -1,0 +1,7 @@
+version: "3.8"
+services:
+  devcontainer:
+    image: infrastructure/devcontainer
+    build:
+      context: .
+      dockerfile: .docker/devcontainer.Dockerfile

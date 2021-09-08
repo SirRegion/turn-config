@@ -10,7 +10,7 @@ We should seriously consider the ["Infrastructure as Code"][1] convention and th
 
 | Artifact File | Description | Details |
 |---    |---  |--- 
-| [MdctecMaintenanceMenu.zip](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/scripts/powershell/MdctecMaintenanceMenu/MdctecMaintenanceMenu.zip?job=artifacts) | Powershell module providing the MdctecMaintenanceMenu helping to deploy the ComplianceBase application | [README](scripts/powershell/MdctecMaintenanceMenu/README.md)
+| [MdctecMaintenanceMenu.zip](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/scripts/powershell-modules/MdctecMaintenanceMenu.zip?job=artifacts) | Powershell module providing the MdctecMaintenanceMenu helping to deploy the ComplianceBase application | [README](scripts/powershell-modules/MdctecMaintenanceMenu/README.md)
 | [dev.mdctec.com/full-install.sh](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/machines/dev.mdctec.com/full-install.sh?job=artifacts) | dev.mdctec.com |
 
 Go [here](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/browse?job=artifacts) to browse and see all available artifacts on Gitlab.
@@ -42,5 +42,5 @@ See the nested README.md files for further documentation
 | <pre style="padding:0"> machines/</pre> | Contains folders with scripts for a full machine setup. |    
 | <pre style="padding:0"> scripts/</pre> | Contains utility scripts that can be used and shared across the infrastructure.  |
 | <pre style="padding:0"> ├─ powershell/</pre> | Utility scripts for Microsoft powershell |
-| <pre style="padding:0"> │  └─ MdctecMaintenanceMenu</pre> | See this nested [README](scripts/powershell/MdctecMaintenanceMenu/README.md) |
+| <pre style="padding:0"> │  └─ MdctecMaintenanceMenu</pre> | See this nested [README](scripts/powershell-modules/MdctecMaintenanceMenu/README.md) |
 

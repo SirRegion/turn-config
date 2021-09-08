@@ -3,4 +3,3 @@ Makefile
 MdctecMaintenanceMenu.zip
 .gitlab-ci.yml
 .gitignore
-install.ps1
