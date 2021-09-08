@@ -6,8 +6,8 @@ Function MdctecMaintenanceMenu {
     param()
 
     Write-Host " Welcome to the MDCTec Maintenance Menu (alias: MMM)! " -BackgroundColor White -ForegroundColor Black
-    "Version: $(Get-Content $PSScriptRoot\.meta\version)"
-    "Last modified: $(Get-Content $PSScriptRoot\.meta\timestamp)"
+    "Version: $(Get-Content $PSScriptRoot\meta\version)"
+    "Last modified: $(Get-Content $PSScriptRoot\meta\timestamp)"
     ""
 
     $selection = Show-Menu -Items @(
