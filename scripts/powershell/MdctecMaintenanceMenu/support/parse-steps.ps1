@@ -1,5 +1,4 @@
-Function Split-Steps{
-    [CmdLetBinding()]
+Function Parse-Steps{
     Param (
         [Parameter(Mandatory, ValueFromPipeline)]
         [Array]
