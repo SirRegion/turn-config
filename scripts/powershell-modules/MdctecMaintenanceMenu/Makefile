@@ -9,7 +9,7 @@ clean:
 .meta: .meta/timestamp
 
 .meta/timestamp:
-	[System.TimeZoneInfo]::ConvertTimeBySystemTimeZoneId((Get-Date),'Central European Standard Time')|Out-File .\.meta\timestamp -Force;
+	"$$(Get-Date -Format "dddd dd/MM/yyyy HH:mm K")" | Out-File .\.meta\timestamp -Force;
 
 
 
