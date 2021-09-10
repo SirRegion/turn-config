@@ -5,7 +5,7 @@ stages:
 #  stage: artifacts
 #  rules:
 #    - changes:
-#        - .docker/devcontainer.Dockerfile
+#        - docker/Dockerfile
 #  tags: [ shell, dev ]
 #  script:
 #    - docker-compose build devcontainer

@@ -2,6 +2,10 @@ version: "3.8"
 services:
   devcontainer:
     image: infrastructure/devcontainer
+    build: docker/devcontainer
+
+  mdctec-maintenance:
+    image: infrastructure/mdctec-maintenance:latest
     build:
       context: .
-      dockerfile: .docker/devcontainer.Dockerfile
+      dockerfile: docker/mdctec-maintenance/Dockerfile
