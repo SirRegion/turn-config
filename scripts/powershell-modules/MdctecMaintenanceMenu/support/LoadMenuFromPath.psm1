@@ -9,7 +9,9 @@ Import-Module MdctecMaintenanceMenu\support\menu -DisableNameChecking
         Show a interactive Menu based on the content of the speciefied directory path.
 
     .DESCRIPTION
-
+        - Files become executable items
+        - Directories become submenus
+ #>
 
     .EXAMPLE
 
@@ -22,25 +24,30 @@ Function LoadMenuFromPath
         $Path
     )
 
-    Write-Verbose "LoadMenuFromPath ( Path = '$Path' )"
-
     $options = Get-ChildItem "$Path" | ForEach-Object {
         if (Test-Path "$_" -PathType Leaf)
         {
             @{
-                label=$_.Name
-                script=$_.FullName
+                Label=$(NormalizeBaseName)
+                Type="Script"
+                Source=$_.FullName
+                Script=$_.FullName
             }
-        }else{
+        }elseif (Test-Path "$_" -PathType Container){
             @{
-                label="> $($_.Name)"
-                script=$_.FullName
+                Label="[ $(NormalizeBaseName) ]"
+                Type="Submenu"
+                Source=$_.FullName
+                Script="LoadMenuFromPath $($_.FullName)"
             }
         }
-    }
+    } | Sort-Object -Property Source
 
     Menu $options
+}
 
+Function NormalizeBaseName{
+    $_.BaseName -Replace '^((\d+)_)?(?<Label>.*)','${Label}' -Replace '_',' '
 }
 
 Export-ModuleMember -Function LoadMenuFromPath

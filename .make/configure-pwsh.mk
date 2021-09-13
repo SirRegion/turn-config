@@ -1,3 +1,6 @@
+# directory of the current file:
+DIR_NAME := $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
+
 current_file_root := $(lastword $(MAKEFILE_LIST))
 
 ### Configure Powershell
@@ -13,3 +16,5 @@ endif
 .SHELLFLAGS := -Command
 
 
+include $(DIR_NAME)/utils.mk
+include $(dir $(DIR_NAME))/variables.mk

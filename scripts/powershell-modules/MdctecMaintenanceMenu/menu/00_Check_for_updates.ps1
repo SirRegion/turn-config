@@ -24,7 +24,21 @@ docker rm $id
 
 if (Test-Path .pending-migrations/powershell-modules)
 {
-    Write-Host applying update
-    Remove-Item -Recurse $Env:MMM_HOME
-    Copy-Item -Recurse .pending-migrations/powershell-modules $Env:MMM_HOME
+    $overwrite = Read-Host -Prompt "Overwrite $Env:MMM_HOME`? (y/n/t)";
+    if ($overwrite -eq 'y')
+    {
+        Remove-Item -Recurse $Env:MMM_HOME
+        Copy-Item -Recurse .pending-migrations/powershell-modules $Env:MMM_HOME
+        "Done!"
+    }
+    elseif ($overwrite -eq 't')
+    {
+        $DEST = Join-Path "$Env:MMM_HOME" ".update"
+        Copy-Item -Recurse .pending-migrations/powershell-modules $DEST
+        "Copied new files to $DEST"
+    }
+    else
+    {
+        "Aborted!"
+    }
 }

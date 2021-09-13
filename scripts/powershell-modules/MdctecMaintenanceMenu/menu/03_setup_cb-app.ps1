@@ -32,7 +32,7 @@ $steps = @(
     [pscustomobject]@{
         Description = 'Test http request. (This should return status StatusCode 200)'
         Command = 'Invoke-WebRequest http://localhost'
-    }
+    }1
 )
 
 Interactive-Steps $steps -TaskName "Install and Launch complianceBase app on this machine"

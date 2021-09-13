@@ -1,5 +1,7 @@
 stages:
-  - artifacts
+  - pre
+  - build
+  - post
 
 #devcontainer:
 #  stage: artifacts
@@ -10,14 +12,44 @@ stages:
 #  script:
 #    - docker-compose build devcontainer
 
+meta:
+  stage: pre
+  tags: [ shell, dev ]
+  script:
+    - make meta -B
+  artifacts:
+    paths:
+      - scripts/powershell-modules/MdctecMaintenanceMenu/meta
+
 artifacts:
-  stage: artifacts
+  stage: build
   tags: [ shell, dev ]
   script:
     - make artifacts
   artifacts:
     public: true
     paths:
-      - machines/**/*.sh
-      - scripts/bash/*.sh
       - scripts/powershell-modules/powershell-modules.zip
+      - scripts/powershell-modules/powershell-modules.zip.tmp
+  cache:
+    key: $CI_COMMIT_REF_SLUG
+    paths:
+      - scripts/powershell-modules/powershell-modules.zip.tmp
+
+mdctec-maintenance:
+  stage: build
+  tags: [ shell, dev ]
+  script:
+    - make -C docker/mdctec-maintenance build
+  artifacts:
+    paths:
+      - docker/mdctec-maintenance/build
+  cache:
+    key: $CI_COMMIT_REF_SLUG
+    paths:
+      - scripts/powershell-modules/powershell-modules.zip.tmp
+push:
+  stage: post
+  tags: [ shell, dev ]
+  script:
+    - make -C docker/mdctec-maintenance push

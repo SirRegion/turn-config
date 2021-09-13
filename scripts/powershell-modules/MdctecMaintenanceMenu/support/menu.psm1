@@ -1,61 +1,16 @@
+Import-Module MdctecMaintenanceMenu\support\LoadMenuFromPath -DisableNameChecking
 
 # Code based on https://github.com/DarkLite1/Toolbox.General/blob/master/Toolbox.General.psm1
 
 <#
     .SYNOPSIS
-        Show a selection menu in the console
-
-    .DESCRIPTION
-        Allow the user to select an option int he console and return the
-        selected value afterwards. When the parameter `-QuitSelector` is used
-        the user is also able to select nothing and just leave the menu with no
-        return value.
-
-    .EXAMPLE
-        Show-Menu -Items @('a', 'b', 'c') -QuitSelector @{ 'Q' = 'Quit' }
-
-        1) a
-        2) b
-        3) c
-        Q) Quit
-        Select an option:
-
-        Displays the menu with an option to select nothing by pressing `q`
-
-    .EXAMPLE
-        $fruits = @(
-            [PSCustomObject]@{
-                Name  = 'banana'; Color = 'yellow'; Shape = 'long'
-            }
-            [PSCustomObject]@{
-                Name  = 'kiwi'; Color = 'green'; Shape = 'oval'
-            }
-            [PSCustomObject]@{
-                Name  = 'apples'; Color = 'red'; Shape = 'round'
-            }
-        )
-
-        $params = @{
-            Items           = $fruits
-            QuitSelector    = $null
-            SelectionPrompt = 'Select a fruit you like:'
-        }
-        $myFavoriteFruit = Show-Menu @params
-
-        1) @{Name=banana; Color=yellow; Shape=long}
-        2) @{Name=kiwi; Color=green; Shape=oval}
-        3) @{Name=apples; Color=red; Shape=round}
-        'Select a fruit you like:'
-
-        Displays the menu where the user is forced to select one of the 3
-        options. When selected the result is stored in the variable
-        '$myFavoriteFruit'
-    #>
+        Show a menu in the console
+#>
 Function Menu
 {
     [CmdLetBinding()]
     Param (
-        [Parameter(Mandatory, Position=0)]
+        [Parameter(Mandatory, Position = 0)]
         [Array]
         $Items,
         $QuitSelector = @{ 'q' = 'Quit' },
@@ -68,7 +23,8 @@ Function Menu
     $hash = [Ordered]@{ }
 
     for ($i = 0; $i -lt $Items.Count; $i++) {
-        $key = "$( $i + 1 )"; $value = $Items[$i]
+        $key = "$( $i + 1 )";
+        $value = $Items[$i]
         $hash[$key] = $value
     }
     #endregion
@@ -103,12 +59,7 @@ Function Menu
         Write-Host $Question
         foreach ($item in $hash.getEnumerator())
         {
-            $params = @{
-                Object = $displayTemplate -f
-                $item.key, "$( $item.Value.Label )"
-                ForegroundColor = 'yellow'
-            }
-            Write-Host @params
+            RenderItem $item.Key $item.Value
         }
         if ($QuitSelector)
         {
@@ -132,14 +83,45 @@ Function Menu
     )
     #endregion
 
-    #region Return the selected value
-    if ($selected -ne $quitSelectorKey)
-    {
-        $returnValue = $selected
-        Write-Verbose "Selected: $selected) $returnValue"
-        $returnValue
-    }
+    #region Execute selected item
+    ExecItem $hash[$selected]
     #endregion
+}
+
+
+$defaults = @{
+    ForegroundColor = 'Yellow'
+    BackgroundColor = 'Black'
+}
+
+
+Function RenderItem
+{
+    $Key = $Args[0]
+    $Type = $Args[1].Type
+    $Label = $Args[1].Label
+
+    switch ($Type)
+    {
+        'Submenu' {
+            Write-Host @defaults "$Key) " -NoNewline
+            Write-Host $Label -BackgroundColor Yellow -ForegroundColor Black
+        }
+        'Script'{
+            Write-Host @defaults -Object $( '{0}) {1}' -f $Args[0], $( $Args[1].Label ) )
+        }
+    }
+
+
+}
+
+Function ExecItem
+{
+    $Type = $Args[0].Type
+    $Label = $Args[0].Label
+    $Script = $Args[0].Script
+
+    Invoke-Expression $Script
 }
 
 Export-ModuleMember -Function Menu

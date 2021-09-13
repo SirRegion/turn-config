@@ -1,5 +1,3 @@
 exclude.lst
 Makefile
-MdctecMaintenanceMenu.zip
-.gitlab-ci.yml
-.gitignore
+.*

@@ -1,6 +1,8 @@
 Import-Module MdctecMaintenanceMenu\support\show-menu -DisableNameChecking
 Import-Module MdctecMaintenanceMenu\support\LoadMenuFromPath -DisableNameChecking
 
+$OutputEncoding = [System.Text.Encoding]::UTF8
+
 Function MdctecMaintenanceMenu {
     [CmdLetBinding()]
     param()
@@ -16,31 +18,7 @@ Function MdctecMaintenanceMenu {
     }
     ""
 
-    $selection = Show-Menu -Items @(
-        'Check for updates'
-        'Install Docker Service',
-        'Setup Docker Environment',
-        'Install ComplianceBase with Docker',
-        '[Optional] Reset and Cleanup'
-    )
-
-    switch ( $selection )
-    {
-        '1' {
-            & "$PSScriptRoot\menu\Check for updates.ps1"
-        }
-        '2' {
-            invoke-expression -Command "$PSScriptRoot\menu\01_install_docker.ws2019.ps1"
-        } '3' {
-            invoke-expression -Command "$PSScriptRoot\menu\02_setup_docker_environment.ws2019.ps1"
-        } '4' {
-            invoke-expression -Command "$PSScriptRoot\menu\03_setup_cb-app.ws2019.ps1"
-        } '5' {
-            LoadMenuFromPath $(Join-Path "$PSScriptRoot" ‘menu\Reset and Cleanup’ )
-        } 'q' {
-            return
-        }
-    }
+    LoadMenuFromPath $(Join-Path "$PSScriptRoot" "menu" )
 }
 
 New-Alias -Name MMM -Value MdctecMaintenanceMenu

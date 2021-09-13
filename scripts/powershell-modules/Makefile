@@ -1,20 +1,36 @@
-include ../../Makefile.pwsh
-.PHONY: .tmp powershell-modules.zip
+include ../../.make/configure-pwsh.mk
 
-artifacts: powershell-modules.zip
+all: artifacts
 
-.tmp:
-	$(MAKE) -C MdctecMaintenanceMenu/ meta
-	-Remove-Item -ea:Ignore -Recurse -Force .tmp
-	Copy-Item -Recurse MdctecMaintenanceMenu -Exclude $$(Get-Content ./MdctecMaintenanceMenu/exclude.lst ) .tmp/MdctecMaintenanceMenu/
-	Copy-Item ./setup.ps1 .tmp/
-
-powershell-modules.zip: .tmp
-
-	Get-ChildItem .tmp -Force | Compress-Archive -Force -DestinationPath ./powershell-modules.zip
+clean:
+	-Remove-Item powershell-modules.zip
+	-Remove-Item powershell-modules.zip.tmp
 
 setup:
 	./setup.ps1
 
-clean:
-	-Remove-Item MdctecMaintenanceMenu.zip
+###############################################
+
+artifacts: powershell-modules.zip
+
+powershell-modules.zip: powershell-modules.zip.tmp
+	Get-ChildItem $@.tmp -Force | Compress-Archive -Force -DestinationPath ./$@
+
+ZIP_DEPS:=$(call rfindx, MdctecMaintenanceMenu,$(file < MdctecMaintenanceMenu/exclude.lst)) setup.ps1
+
+powershell-modules.zip.tmp: $(ZIP_DEPS)
+	@# Listing all Prerequisites:
+	@#"$^" -Split ' '
+	-Remove-Item -ErrorAction:Ignore -Recurse -Force $@
+	Copy-Item -Recurse MdctecMaintenanceMenu -Exclude $$(Get-Content ./MdctecMaintenanceMenu/exclude.lst ) $@/MdctecMaintenanceMenu/
+	Copy-Item ./setup.ps1 $@
+
+MdctecMaintenanceMenu/meta:
+	$(MAKE) -C $@
+
+ls:
+	"$(DEPS)" -Split ' '
+
+
+
+
