@@ -50,7 +50,7 @@
         options. When selected the result is stored in the variable
         '$myFavoriteFruit'
     #>
-Function Show-Menu
+Function RenderMenuItems
 {
     [CmdLetBinding()]
     Param (
@@ -140,4 +140,4 @@ Function Show-Menu
     #endregion
 }
 
-Export-ModuleMember -Function Show-Menu
+Export-ModuleMember -Function RenderMenuItems

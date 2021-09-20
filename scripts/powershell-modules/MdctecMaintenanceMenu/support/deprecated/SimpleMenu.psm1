@@ -1,4 +1,5 @@
-Import-Module MdctecMaintenanceMenu\support\LoadMenuFromPath -DisableNameChecking
+Import-Module MdctecMaintenanceMenu\support\LoadItemsFromPath -DisableNameChecking
+
 
 # Code based on https://github.com/DarkLite1/Toolbox.General/blob/master/Toolbox.General.psm1
 
@@ -6,11 +7,11 @@ Import-Module MdctecMaintenanceMenu\support\LoadMenuFromPath -DisableNameCheckin
     .SYNOPSIS
         Show a menu in the console
 #>
-Function Menu
+Function SimpleMenu
 {
     [CmdLetBinding()]
     Param (
-        [Parameter(Mandatory, Position = 0)]
+        [Parameter(Mandatory, Position=0)]
         [Array]
         $Items,
         $QuitSelector = @{ 'q' = 'Quit' },
@@ -18,7 +19,8 @@ Function Menu
         $Question = "Your options are:",
         $SelectionPrompt = "Select an option"
     )
-
+    Write-Verbose "SimpleMenu:"
+    $($Items | Format-List)
     #region Build hash table with selector and value
     $hash = [Ordered]@{ }
 
@@ -108,7 +110,10 @@ Function RenderItem
             Write-Host $Label -BackgroundColor Yellow -ForegroundColor Black
         }
         'Script'{
-            Write-Host @defaults -Object $( '{0}) {1}' -f $Args[0], $( $Args[1].Label ) )
+            Write-Host @defaults -Object $( '{0}) {1}' -f $Key, $Label )
+        }
+        default {
+            Write-Host @defaults -Object $( '{0}) {1}' -f $Key, $Label )
         }
     }
 
@@ -124,4 +129,4 @@ Function ExecItem
     Invoke-Expression $Script
 }
 
-Export-ModuleMember -Function Menu
+Export-ModuleMember -Function SimpleMenu

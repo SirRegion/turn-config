@@ -8,7 +8,5 @@ artifacts:
 meta:
 	$(MAKE) -C scripts/powershell-modules/MdctecMaintenanceMenu/meta -B
 
-
 clean:
 	$(MAKE) -C scripts/powershell-modules/ clean
-

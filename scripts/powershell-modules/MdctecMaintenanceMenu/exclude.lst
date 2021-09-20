@@ -1,3 +1,4 @@
 exclude.lst
 Makefile
 .*
+assets

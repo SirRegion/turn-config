@@ -1,24 +1,24 @@
-Import-Module MdctecMaintenanceMenu\support\show-menu -DisableNameChecking
-Import-Module MdctecMaintenanceMenu\support\LoadMenuFromPath -DisableNameChecking
-
 $OutputEncoding = [System.Text.Encoding]::UTF8
 
-Function MdctecMaintenanceMenu {
+Function MdctecMaintenanceMenu
+{
     [CmdLetBinding()]
-    param()
+    param(
+        [Alias('r')]
+        [switch]
+        $ResetState = $False
+    )
+    $RootPath = $( Join-Path "$PSScriptRoot" "menu" )
 
-    Write-Host " Welcome to the MDCTec Maintenance Menu (alias: MMM)! " -BackgroundColor White -ForegroundColor Black
-    if (Test-Path "$PSScriptRoot\meta\version"){
-        "Version: $(Get-Content $PSScriptRoot\meta\version)"
-    }
-
-    if (Test-Path "$PSScriptRoot\meta\timestamp")
+    if ($ResetState)
     {
-        "Last modified: $( Get-Content $PSScriptRoot\meta\timestamp )"
+        Import-Module MdctecMaintenanceMenu/support/FancyMenu -DisableNameChecking -Force;
     }
-    ""
-
-    LoadMenuFromPath $(Join-Path "$PSScriptRoot" "menu" )
+    else
+    {
+        Import-Module MdctecMaintenanceMenu/support/FancyMenu -DisableNameChecking;
+    }
+    FancyMenu $RootPath $ResetState
 }
 
 New-Alias -Name MMM -Value MdctecMaintenanceMenu

@@ -18,21 +18,17 @@ $steps = @(
         Command = 'docker pull mcr.microsoft.com/windows/servercore:ltsc2019'
     },
     [pscustomobject]@{
-        Description = 'Pull the latest version of the complianceBase application container.'
+        Description = 'Pull_the_latest_version_of_the_cb-app_container.'
         Command = 'docker pull complianceBaseContainerRegistry.azurecr.io/cb-app/stand-alone/windows:demo_2021.0.1'
     }
     [pscustomobject]@{
-        Description = 'Stop any existing instances'
-        Command = 'docker rm -f cb-app_stand-alone'
+        Description = 'Stop_any_existing_instances'
+        Command = 'docker rm -f cb-app'
     }
     [pscustomobject]@{
-        Description = 'Launch the complianceBase frontend container'
-        Command = 'docker run -d -p 80:80 --name cb-app_stand-alone complianceBaseContainerRegistry.azurecr.io/cb-app/stand-alone/windows:demo_2021.0.1'
+        Description = 'Launch_the_complianceBase_frontend_container'
+        Command = 'docker run -d -p 80:80/udp 80:80/tcp --name cb-app --rm complianceBaseContainerRegistry.azurecr.io/cb-app/stand-alone/windows:demo_2021.0.1'
     }
-    [pscustomobject]@{
-        Description = 'Test http request. (This should return status StatusCode 200)'
-        Command = 'Invoke-WebRequest http://localhost'
-    }1
 )
 
 Interactive-Steps $steps -TaskName "Install and Launch complianceBase app on this machine"
