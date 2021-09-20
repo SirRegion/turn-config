@@ -70,6 +70,7 @@ $KEY_6 = 54
 $KEY_7 = 55
 $KEY_8 = 56
 $KEY_9 = 57
+$KEY_C = 67
 $KEY_F5 = 116
 
 function HandleMenuKey
@@ -140,6 +141,16 @@ function HandleMenuKey
             else
             {
                 Write-Warning "No $n'th menu item!"
+            }
+        }
+        $KEY_C{
+            $ci = GetCurrentItem
+            if ($ci.Type -eq 'Script')
+            {
+                Set-Clipboard -Value "$( Get-Content $ci.Source )"
+                DrawLine "Copied selected command to clipboard." -Foreground 'Green'
+            }else{
+                Write-Warning "Not a 'Script' Item!"
             }
         }
         $KEY_HELP {
