@@ -14,7 +14,7 @@ setup:
 artifacts: powershell-modules.zip
 
 powershell-modules.zip: powershell-modules.zip.files
-	Get-ChildItem $@.tmp -Force | Compress-Archive -Force -DestinationPath ./$@
+	Get-ChildItem $@.files -Force | Compress-Archive -Force -DestinationPath ./$@
 
 ZIP_DEPS:=$(call rfindx, MdctecMaintenanceMenu,$(file < MdctecMaintenanceMenu/exclude.lst)) setup.ps1
 
