@@ -1,1 +1,1 @@
-docker pull complianceBaseContainerRegistry.azurecr.io/cb-app/stand-alone/windows:demo_2021.0.1
+docker pull complianceBaseContainerRegistry.azurecr.io/main/cb-app/mondi:0.0.1-rc
