@@ -19,7 +19,7 @@ finally
 }
 
 ############################################################
-# Verify that an update is required
+# TODO: Verify that an update is required
 
 # (for now just assume yes)
 
@@ -35,8 +35,8 @@ try
         {
             Remove-Item -Recurse $Env:MMM_HOME
             Copy-Item -Recurse .pending-migrations/powershell-modules $Env:MMM_HOME
-
             "Done!"
+            MMM -r
         }
         elseif ($allow -eq 't')
         {

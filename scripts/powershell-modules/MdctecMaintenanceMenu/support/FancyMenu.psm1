@@ -183,18 +183,20 @@ function ExecItem
             Write-Verbose "Invoke `"$( $Item.Source )`" in separate shell"
 
             $Script=@"
-Write-Host "Executing script for $($Item.Label)..." -Foreground 'Green';
+Write-Host "Executing script for: $($Item.Label)..." -Foreground 'Green';
 Write-Host;
 $($Item.Source);
 Write-Host;
-Write-Host "Done with task $($Item.Label). You can now close this window." -Foreground 'Green';
+Write-Host "Done with task: $($Item.Label). Press any key to close this window." -Foreground 'Green';
+`$null = `$Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
+exit 0;
 "@
 
             start-process powershell -ArgumentList "-noexit -command `"$Script`""
             return $true
         }
         'Submenu'{
-            Write-Error "Executing a submenu item is not supported yet!"
+            Write-Warning "Executing a submenu item is not supported yet! If you meant to enter the submenu use the 'right' key."
             return $true
         }
         Default {
@@ -214,21 +216,29 @@ function DrawHeader
     DrawLine
     DrawLine " Welcome to the MDCTec Maintenance Menu! (alias: MMM) " -BackgroundColor White -ForegroundColor Black
 
+    function DrawInfoLine{
+        DrawLine "  $($Args[0])" -NoNewLine -Foreground 'DarkGray'
+        DrawLine "  $($Args[1])" -Foreground 'Gray'
+    }
     $VersionPath = Join-Path $state.RootPath 'meta/version'
     if (Test-Path "$VersionPath")
     {
-        DrawLine "  Version: $( Get-Content $VersionPath )" -Foreground Gray
+        DrawInfoLine "Version:          " "$( Get-Content $VersionPath)"
     }
 
     $TimestampPath = Join-Path $state.RootPath 'meta/timestamp'
     if (Test-Path "$TimestampPath")
     {
-        DrawLine "  Last_modified: $( Get-Content $TimestampPath )" -Foreground Gray
+        DrawInfoLine "Last_modified:    " "$( Get-Content $TimestampPath )"
     }
 
-    DrawLine "  SourcePath: $( $state.RootPath )" -Foreground Gray
+    DrawInfoLine "SourcePath:       " "$( $state.RootPath )"
+
+    DrawInfoLine "Working Directory:" "$PWD"
+
     DrawLine
 }
+
 function DrawMenu
 {
     # Reset the cursor position to the start of the menu
@@ -301,13 +311,22 @@ function DrawItem
 }
 function DrawLine
 {
-    Write-Host @Args -NoNewLine
-    $SPACE = $( $Host.UI.RawUI.BufferSize.Width - $host.UI.RawUI.CursorPosition.X )
-    if ($SPACE -lt 0)
-    {
-        Write-Error "SPACE $SPACE; ConsoleWidth $ConsoleWidth; current $( $host.UI.RawUI.CursorPosition.X )"
+    param(
+    [switch]$NoNewLine
+    )
+
+    if ($NoNewLine){
+        Write-Host @Args -NoNewLine
     }
-    Write-Host $( "{0,-$SPACE}"  -f " " )
+    else {
+        Write-Host @Args -NoNewLine
+        $SPACE = $( $Host.UI.RawUI.BufferSize.Width - $host.UI.RawUI.CursorPosition.X )
+        if ($SPACE -lt 0)
+        {
+            Write-Error "SPACE $SPACE; ConsoleWidth $ConsoleWidth; current $( $host.UI.RawUI.CursorPosition.X )"
+        }
+        Write-Host $( "{0,-$SPACE}"  -f " " )
+    }
 }
 function DrawEnd
 {
@@ -325,16 +344,16 @@ function PrintKeyboardShortcuts
     DrawLine
 
     @(
-    @{ Keys = "       [enter] : "; Desc = "Execute the selected menu item"; }
-    @{ Keys = "     [up/down] : "; Desc = "Change the selected menu item"; }
-    @{ Keys = " [numbers 1-9] : "; Desc = "Select the nth menu item"; }
-    @{ Keys = "       [right] : "; Desc = "Enter the selected submenu, if available"; }
+    @{ Keys = "       [enter] : "; Desc = "Execute the selected menu item, if available."; }
+    @{ Keys = "     [up/down] : "; Desc = "Change the selected menu item."; }
+    @{ Keys = " [numbers 1-9] : "; Desc = "Select the nth menu item."; }
+    @{ Keys = "       [right] : "; Desc = "Enter the selected submenu, if available."; }
     @{ Keys = "                 "; Desc = "(A submenu is decorated with a trailing '>')"; }
-    @{ Keys = "        [left] : "; Desc = "Go back to the parent menu, if available"; }
-    @{ Keys = "           [c] : "; Desc = "Copy the command of the selected menu item to the clipboard"; }
-    @{ Keys = "           [h] : "; Desc = "Toggle this 'Available Keyboard Shortcuts' information"; }
-    @{ Keys = "          [F5] : "; Desc = "Reload the Menu"; }
-    @{ Keys = "           [q] : "; Desc = "Quit"; }
+    @{ Keys = "        [left] : "; Desc = "Go back to the parent menu, if available."; }
+    @{ Keys = "           [c] : "; Desc = "Copy the command of the selected menu item to the clipboard."; }
+    @{ Keys = "           [h] : "; Desc = "Toggle this 'Available Keyboard Shortcuts' information."; }
+    @{ Keys = "          [F5] : "; Desc = "Reload the Menu."; }
+    @{ Keys = "           [q] : "; Desc = "Save the current state of the menu and Quit."; }
     ) | % {
         Write-Host $_.Keys  -Foreground 'Cyan' -NoNewLine
         DrawLine $_.Desc  -Foreground 'Magenta'

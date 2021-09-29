@@ -3,6 +3,7 @@ include ../../.make/configure-pwsh.mk
 IMAGE_NAME := infrastructure/mdctec-maintenance
 PROD_IMAGE_REF := $(PROD_IMAGE_REGISTRY)/$(IMAGE_NAME):latest
 
+.DEFAULT_GOAL := build
 #.RECIPEPREFIX:=../../scripts/powershell-modules/
 #include ../../scripts/powershell-modules/Makefile
 
