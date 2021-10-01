@@ -1,0 +1,4 @@
+exclude.lst
+Makefile
+.*
+assets

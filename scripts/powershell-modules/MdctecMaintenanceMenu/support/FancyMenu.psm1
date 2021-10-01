@@ -187,8 +187,8 @@ Write-Host "Executing script for: $($Item.Label)..." -Foreground 'Green';
 Write-Host;
 $($Item.Source);
 Write-Host;
-Write-Host "Done with task: $($Item.Label). Press any key to close this window." -Foreground 'Green';
-`$null = `$Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
+Write-Host "Done with task: $($Item.Label)." -Foreground 'Green';
+Read-Host 'press ENTER to close this window'
 exit 0;
 "@
 
