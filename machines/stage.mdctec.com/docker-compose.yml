@@ -1,0 +1,14 @@
+version: "3.8"
+
+# Our Internal Docker Registry:
+# see http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/blob/master/machines/stage.mdctec.com/README.md
+services:
+  registry:
+    image: registry:2
+    container_name: registry
+    restart: always
+    environment:
+      REGISTRY_HTTP_ADDR: 0.0.0.0:5000
+      REGISTRY_VALIDATION_DISABLED: "true"
+    ports:
+      - 5000:5000
