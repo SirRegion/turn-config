@@ -2,10 +2,29 @@
 
 <img style="float: left; width: 30%" src="./avatar.png" alt="[avatar.png]">
 
-Here are some utilities or scripts that have to do with our internal infrastructure.
+This repository collects all Documentation and utility scripts related to our internal infrastructure.
 We should seriously consider the ["Infrastructure as Code"][1] convention and therefore write code that can at best 'generate' all of our dev infrastructure.
 
+Most directories have nested README.md files with detailed documentation.
+
 [1]: https://en.wikipedia.org/wiki/Infrastructure_as_code
+## Repository Contents:
+<!---
+Symbole zum copy&pasten
+│
+├─
+└─
+--->
+See the nested README.md files for further documentation
+
+| Path | Description |
+|--- |--- | 
+| <pre style="padding:0"> machines/</pre> | Contains content specific to a certain internal machine. |    
+| <pre style="padding:0"> scripts/</pre> | Contains utility scripts that can be used and shared across the infrastructure.  |
+| <pre style="padding:0"> scripts/powershell/</pre> | Utility scripts for MS Powershell |
+| <pre style="padding:0"> scripts/powershell/MdctecMaintenanceMenu</pre> | See this nested [README](scripts/powershell-modules/MdctecMaintenanceMenu/README.md) |
+
+
 ## Artifacts available to download:
 
 | Artifact File | Description | Details |
@@ -27,20 +46,4 @@ To execute a script directly with bash use the following commands:
 # replace $url with one of the links above
 source <(curl -s "$url")
 ```
-
-## Repository Contents:
-<!---
-Symbole zum copy&pasten
-│
-├─
-└─
---->
-See the nested README.md files for further documentation
-
-| Path | Description |
-|--- |--- | 
-| <pre style="padding:0"> machines/</pre> | Contains content specific to a certain internal machine. |    
-| <pre style="padding:0"> scripts/</pre> | Contains utility scripts that can be used and shared across the infrastructure.  |
-| <pre style="padding:0"> ├─ powershell/</pre> | Utility scripts for Microsoft powershell |
-| <pre style="padding:0"> │  └─ MdctecMaintenanceMenu</pre> | See this nested [README](scripts/powershell-modules/MdctecMaintenanceMenu/README.md) |
 
