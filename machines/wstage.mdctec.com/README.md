@@ -3,3 +3,10 @@ The `WStage` machine is a Windows Server Machine whose main purpose is to provid
 
 > *DNS Name*: `wstage.mdctec.com`  
 > *Hostname*: `wstage.mdctec.com`
+
+## Applications & Services:
+The `Stage` Machine hosts the following application & services:
+
+| URL | BESCHREIBUNG | DETAILS |
+|--- |--- |--- |
+| TODO: List all services here |
