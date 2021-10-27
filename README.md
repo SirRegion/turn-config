@@ -1,6 +1,6 @@
 # MDCTec Infrastructure
 
-<img style="float: left; width: 30%" src="./avatar.png" alt="[avatar.png]">
+<img style="float: left; height: 100px" src="./avatar.png" alt="[avatar.png]">
 
 This repository collects all Documentation and utility scripts related to our internal infrastructure.
 We should seriously consider the ["Infrastructure as Code"][1] convention and therefore write code that can at best 'generate' all of our dev infrastructure.
