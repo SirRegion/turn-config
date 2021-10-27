@@ -20,6 +20,7 @@ See the nested README.md files for further documentation
 | Path | Description |
 |--- |--- | 
 | <pre style="padding:0"> machines/</pre> | Contains content specific to a certain internal machine. |    
+| <pre style="padding:0"> machines/dev.mdctec.com | Contains content related to our internal DEV server. |
 | <pre style="padding:0"> scripts/</pre> | Contains utility scripts that can be used and shared across the infrastructure.  |
 | <pre style="padding:0"> scripts/powershell/</pre> | Utility scripts for MS Powershell |
 | <pre style="padding:0"> scripts/powershell/MdctecMaintenanceMenu</pre> | See this nested [README](scripts/powershell-modules/MdctecMaintenanceMenu/README.md) |
