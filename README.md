@@ -29,21 +29,9 @@ See the nested README.md files for further documentation
 
 | Artifact File | Description | Details |
 |---    |---  |--- 
-| [MdctecMaintenanceMenu.zip](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/scripts/powershell-modules/powershell-modules.zip?job=artifacts) | Powershell module providing the MdctecMaintenanceMenu helping to deploy the ComplianceBase application | [README](scripts/powershell-modules/MdctecMaintenanceMenu/README.md)
-| [dev.mdctec.com/full-install.sh](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/machines/dev.mdctec.com/full-install.sh?job=artifacts) | dev.mdctec.com |
+| [powershell-modules.zip][2] | Contains the MdctecMaintenanceMenu. | [README](scripts/powershell-modules/MdctecMaintenanceMenu/README.md)
+
+[2]: http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/scripts/powershell-modules/powershell-modules.zip?job=artifacts
 
 Go [here](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/browse?job=artifacts) to browse and see all available artifacts on Gitlab.
-
-### MdctecMaintenanceMenu powershell Module
-A PowerShell module providing a console-based menu to execute several maintenance tasks related to the ComplianceBase™ setup and deployment.
-
-> Download latest version: [link](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/scripts/MdctecMaintenanceMenu/MdctecMaintenanceMenu.zip?job=zip_MdctecMaintenanceMenu_module)
-
-### Bash scripts for a full machine setup:
-
-To execute a script directly with bash use the following commands:  
-```bash
-# replace $url with one of the links above
-source <(curl -s "$url")
-```
 
