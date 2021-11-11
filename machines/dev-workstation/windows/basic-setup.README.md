@@ -50,3 +50,15 @@ Therefore:
 1) log into http://gitlab.mdctec.com
 2) Go to `User Settings` > `SSH Keys`
 3) Copy & paste the contents of the file at `~/.ssh/git/id_rsa.pub` into the Gitlab UI
+
+## Enhance powershell with autocomplete
+```powershell
+# enable git autocompletion for powershell
+PowerShellGet\Install-Module posh-git -Scope CurrentUser -Force
+Add-PoshGitToProfile
+```
+```powershell
+# enable docker autocompletion for powershell
+Install-Module DockerCompletion -Scope CurrentUser -Force
+Add-Content $PROFILE "`nImport-Module DockerCompletion"
+```
