@@ -6,8 +6,8 @@ ssh-keygen
 ```
 > :warning: Make sure to protected your key with a passphrase! Otherwise you would enable unprotected server access!
 
-## Setup ssh agent to authenticate with your personal ssh key
-To be able to use the `ssh-copy-id` command on Windows you can use either WSL or the Git Bash
+## Setup ssh agent to authenticate with your protected ssh key
+To be able to use the `ssh-copy-id` command on Windows you can use either a WSL terminla or the Git Bash
 ```shell
 USERNAME=qbuec
 IDENTITY_FILE=~/.ssh/id_rsa # Use the same identity file you just generated.
