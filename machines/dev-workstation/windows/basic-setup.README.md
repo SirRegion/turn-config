@@ -1,7 +1,7 @@
 # Setup a developer workstation
 > Here are some basic tipps & tricks to set up a windows based developer workstation.
 
-## Install Chocolatey Package Manager
+## 1. Install Chocolatey Package Manager
 See https://chocolatey.org/install
 
 Why prefer `choco` over `winget`?
@@ -13,9 +13,9 @@ Why prefer `choco` over `winget`?
 **Con:**
  * extra installation of choco required. (winget is built-in by default) 
 
-## 1. Setup git
+## 2. Setup git
     
-### 1.1 Install Git Executable
+### 2.1 Install Git Executable
 #### using choco:
 ```powershell
 choco install git.install --params "/NoShellIntegration"
@@ -27,14 +27,14 @@ winget install --id Git.Git
 ```
 Use the `--override` parameter to customize your setup
 
-### 1.2 Setup you personal ssh key 
+### 2.2 Setup you personal ssh key 
 Generate a ssh key with no passphrase
 ```powershell
 cd ~/.ssh # (You might have to create this directory first)
 mkdir git
 ssh-keygen -f git/id_rsa -N '""'
 ```
-### 1.3 Configure your ssh agent how to authenticate with Gitlab
+### 2.3 Configure your ssh agent how to authenticate with Gitlab
 This will tell git to use the new identity-file when accessing our internal Gitlab
 ```powershell
 cd ~/.ssh;
