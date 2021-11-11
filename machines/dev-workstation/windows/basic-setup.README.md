@@ -51,7 +51,7 @@ Therefore:
 2) Go to `User Settings` > `SSH Keys`
 3) Copy & paste the contents of the file at `~/.ssh/git/id_rsa.pub` into the Gitlab UI
 
-## 3. Enhance powershell with autocomplete
+## 3. Enhance powershell with autocomplete features
 ```powershell
 # enable git autocompletion for powershell
 PowerShellGet\Install-Module posh-git -Scope CurrentUser -Force
