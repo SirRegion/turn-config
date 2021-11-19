@@ -27,6 +27,12 @@ preinstalled packages, it is recommended to do so before upgrading. Below you ca
 sudo dnf -y upgrade
 ```
 
+### Install MS core fonts for support of MS (web-)apps
+```shell
+wget https://sourceforge.net/projects/mscorefonts2/files/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm/download -O msttcore-fonts-installer-2.6-1.noarch.rpm
+sudo dnf -y install msttcore-fonts-installer-2.6-1.noarch.rpm
+```
+
 ### Docker-Compose / Podman
 Execute the following commands to install `docker-compose`, `podman` and ensure docker endpoints
 are handled by podman.
@@ -137,6 +143,7 @@ sudo dnf -y install NetExtender.rpm
 Finally, add a handy alias for connecting to the vpn to your shell configuration.
 
 ```shell
+# NOTE: You may want to remove the background operator, in case the certificate is unknown and needs to be confirmed manually.
 alias connectVPN="netExtender -u YOURUSERNAME -p YOURPASSWORD -d mdctec.local extern.mdctec.com:4433 &"
 ```
 
