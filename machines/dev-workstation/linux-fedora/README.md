@@ -8,6 +8,17 @@ You can find your current kernel version by executing `uname -r`.
 Usually fedora comes preinstalled with various packages. Therefore, this is just a precaution
 you don't miss out on the fun. :D
 
+### Enhance `dnf` installation times
+Update / installation times can be tremendously fastened up by configuring `dnf` to use fast mirrors.
+In order to do this, you need to edit `/etc/dnf/dnf.conf`.
+
+```shell
+cat << EOF >> /etc/dnf/dnf.conf
+fastestmirror=true
+deltarpm=true
+EOF
+```
+
 ### Basics
 ```shell
 dnf check-update                                                                                              
