@@ -67,11 +67,11 @@ sudo systemctl --user enable podman.service
 ```
 
 ### Microsoft related apps / tools
-MS Teams can be installed using `flatpak`.
-
-```shell
-flatpak install -y com.microsoft.teams
-```
+MS Teams has to be downloaded from the
+[official Microsoft website](https://www.microsoft.com/de-de/microsoft-teams/download-app).
+It can be installed using *dnf* as well. Therefore, you need to navigate into the directory where you have
+downloaded the rpm package and execute `sudo dnf install <Teams rpm package name>.rpm`.  
+*NOTE:* Since this is a Electron app, it might be sufficient to stick to the web app.
 
 Installing *Powershell* needs you to import a new *dnf* repository.
 
