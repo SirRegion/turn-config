@@ -201,3 +201,13 @@ in case you're using your computer with *Secure Boot* enabled.
    ```
 4. Download the latest displaylink driver rpm package from https://github.com/displaylink-rpm/displaylink-rpm.
 5. Install it by executing `sudo dnf -y install <downloaded diplaylink driver package name>.rpm`.
+
+### Resolve mouse flickering when using *GNOME on XORG* with Intel Graphics
+* Create `/etc/X11/xorg.conf.d/20-intel.conf`.                                                                
+* Enter the following:                                                                                        
+  ```                                                                                                         
+  Section "Device"                                                                                            
+    Identifier  "Intel Graphics"                                                                               
+    Driver      "intel"                                                                                        
+  EndSection                                                                                                  
+  ``` 
