@@ -19,6 +19,19 @@ deltarpm=true
 EOF
 ```
 
+### Enable *rpmfusion* repository for third party packages
+```shell
+# Free repository
+sudo dnf install \
+  https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+
+# Nonfree repository
+sudo dnf install \
+  https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+```
+
+You most likely need both repositories to be able to install all relevant packages.
+
 ### Basics
 ```shell
 dnf check-update                                                                                              
@@ -67,12 +80,38 @@ sudo systemctl --user enable podman.service
 ```
 
 ### Microsoft related apps / tools
+#### MS Teams
 MS Teams has to be downloaded from the
 [official Microsoft website](https://www.microsoft.com/de-de/microsoft-teams/download-app).
 It can be installed using *dnf* as well. Therefore, you need to navigate into the directory where you have
 downloaded the rpm package and execute `sudo dnf install <Teams rpm package name>.rpm`.  
 *NOTE:* Since this is a Electron app, it might be sufficient to stick to the web app.
 
+Using the browser version of Teams is recommended if you would like to stick to *Wayland* as window server and
+*Pipewire* as audio server. The following steps enable you to do so:
+
+```shell
+# Check if Pipewire is enabled and running
+systemctl --user status pipewire.service
+# if not
+systemctl --user start pipewire.service
+systemctl --user enable pipewire.service
+
+# Make sure xdg-desktop-portal is installed
+sudo dnf list installed | grep xdg-desktop-portal
+# if not
+sudo dnf -y install xdg-desktop-portal
+
+# Install chromium-freeworld as it is built with all freeworld codecs and is, therefore, most suitable to run Teams without compatibility issues
+sudo dnf -y install chromium-freeworld
+```
+
+After executing the proper shell commands, open *Chromium* and navigate to [chrome://flags](chrome://flags), search
+for *WebRTC PipeWire support* and enable it. Restart the browser to apply the changes.
+Now you can start using teams by simply navigating to [https://teams.microsoft.com](https://teams.microsoft.com) in
+*Chromium (Freeworld)*.
+
+#### Powershell
 Installing *Powershell* needs you to import a new *dnf* repository.
 
 ```shell
@@ -82,6 +121,7 @@ dnf check-update
 sudo dnf -y install powershell
 ```
 
+#### MS Edge Browser / VSCode
 If you would like to install *MS Edge* Browser or *VSCode*, you need to execute similar commands compared to *Powershell*.
 
 ```shell
@@ -116,9 +156,9 @@ To fix it, follow the steps below:
     ```
 4. Restart the NetworkManager: `sudo systemctl restart NetworkManager`.
 5. Check if the issue is resolved by executing the `ping` command above.
-6. If you still have issues accessing the VPN server, populate a temporary `/etc/reolv.conf` by executing
+6. If you still have issues accessing the VPN server, populate a temporary `/etc/resolv.conf` by executing
 `sudo systemctl restart systemd-resolved && sudo systemctl stop systemd-resolved`.
-7. If the issue still persists, create a new `/etc/reolv.conf` or overwrite the current temporary one with the following
+7. If the issue still persists, create a new `/etc/resolv.conf` or overwrite the current temporary one with the following
 contents:
     ```shell
     search domain.name
@@ -188,16 +228,16 @@ in case you're using your computer with *Secure Boot* enabled.
    ```shell
    git clone https://github.com/DisplayLink/evdi.git
    cd evdi
-   make
+   sudo make
    cd modules
    sudo make install_dkms
    ```
 3. Sign the `evdi` package. (This is only necessary if you have *Secure Boot* enabled.)
    ```shell
    cd ../..
-   unxz $(modinfo -n evdi)
-   /usr/src/kernels/$(uname -r)/scripts/sign-file sha256 ./MOK.priv ./MOK.der /lib/modules/$(uname -r)/extra/evdi.ko
-   xz -f /lib/modules/$(uname -r)/extra/evdi.ko
+   sudo unxz $(modinfo -n evdi)
+   sudo /usr/src/kernels/$(uname -r)/scripts/sign-file sha256 ./MOK.priv ./MOK.der /lib/modules/$(uname -r)/extra/evdi.ko
+   sudo xz -f /lib/modules/$(uname -r)/extra/evdi.ko
    ```
 4. Download the latest displaylink driver rpm package from https://github.com/displaylink-rpm/displaylink-rpm.
 5. Install it by executing `sudo dnf -y install <downloaded diplaylink driver package name>.rpm`.
