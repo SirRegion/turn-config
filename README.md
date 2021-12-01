@@ -17,21 +17,25 @@ Symbole zum copy&pasten
 --->
 See the nested README.md files for further documentation
 
-| Path | Description |
-|--- |--- | 
-| <pre style="padding:0"> machines/</pre> | Contains content specific to a certain internal machine. For example `machines/dev.mdctec.com/` is for our internal DEV server|
-| <pre style="padding:0"> scripts/</pre> | Contains common utility scripts that can be used and shared across the infrastructure.  |
+| Path | Description | Readme |
+|--- |--- |--- |
+| `machines/`| Directory with content specific to a certain machine setup. For example `machines/dev.mdctec.com/` is for our internal DEV server||
+| [machines/dev-workstation/windows] | Utility scripts related to a developer workstation |<ul> <li>[Basic Setup][21]</li><li>[Access to stage & dev servers][22]</li> </ul>|
+| `scripts` | Directory with common utility scripts that can be used and shared across the infrastructure.  |  |
 | <pre style="padding:0"> scripts/powershell/</pre> | Utility scripts for MS Powershell |
 | <pre style="padding:0"> scripts/powershell-modules/MdctecMaintenanceMenu</pre> | See this nested [README](scripts/powershell-modules/MdctecMaintenanceMenu/README.md) |
 
+[machines/dev-workstation/windows]: machines/dev-workstation/windows
+[21]: machines/dev-workstation/windows/basic-setup.README.md
+[22]: machines/dev-workstation/windows/enable-server-access.README.md
 
 ## Artifacts available to download:
 
 | Artifact File | Description | Details |
 |---    |---  |--- 
-| [powershell-modules.zip][2] | Contains the MdctecMaintenanceMenu. | [README](scripts/powershell-modules/MdctecMaintenanceMenu/README.md)
+| [powershell-modules.zip][3] | Contains the MdctecMaintenanceMenu. | [README](scripts/powershell-modules/MdctecMaintenanceMenu/README.md)
 
-[2]: http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/scripts/powershell-modules/powershell-modules.zip?job=artifacts
+[3]: http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/scripts/powershell-modules/powershell-modules.zip?job=artifacts
 
 Go [here](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/browse?job=artifacts) to browse and see all available artifacts on Gitlab.
 
