@@ -30,6 +30,11 @@ sudo dnf install \
   https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 ```
 
+### Enable *flathub* base repository
+```shell
+sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+```
+
 You most likely need both repositories to be able to install all relevant packages.
 
 ### Basics
@@ -138,6 +143,27 @@ dnf check-update
 sudo dnf -y install code
 sudo xdg-mime default code.desktop text/plain    # <- set vscode as default editor for text files
 ```
+
+#### MS OneDrive
+OneDrive is only available as cli tool, but it monitors your files just like you are using it with the Windows OS.
+This tool is available through the fedora *updates* repository.
+
+```shell
+# Install onedrive
+sudo dnf -y install onedrive
+
+# Configure for the first time
+# NOTE: This prompts you to open a url where you will be asked to sign in, do so and you'll be redirected to a blank screen. Copy the blank screen's uri and paste it into your terminal.
+onedrive
+
+# Start syncing / monitoring your files
+onedrive --monitor
+
+# Get help / print all available commands
+onedrive --help
+```
+
+All config files for `onedrive` will be placed under `~/.config/onedrive` and can be edited at will.
 
 ### Install VPN
 Setting up the VPN tool might become hacky. This depends heavily on whether your current DNS config is functioning.
