@@ -39,7 +39,7 @@ properties: # Properties of container group
           - name: string
             mountPath: string
             readOnly: boolean
-  restartPolicy: onerror
+  restartPolicy: onFailure
   ipAddress: # IP address configuration of container group
     ports:
       - protocol: TCP
