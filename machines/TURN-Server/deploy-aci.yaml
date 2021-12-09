@@ -1,0 +1,70 @@
+#Config file for the TURN Server running in the Azure Cloud.
+#This file has to be in the root directory of the repo, due to limitations from Azure.
+name: turngroup  # Name of the container group
+apiVersion: '2019-12-01'
+location: germanywestcentral
+properties: # Properties of container group
+  containers: # Array of container instances in the group
+    - name: turnserver # Name of an instance
+      properties: # Properties of an instance
+        image: coturn/coturn # Container image used to create the instance
+        ports: # External-facing ports exposed on the instance, must also be set in group ipAddress property
+          - protocol: tcp
+            port: 3478
+          - protocol: udp
+            port: 49152
+          - protocol: udp
+            port: 49153
+          - protocol: udp
+            port: 49154
+          - protocol: udp
+            port: 49155
+          - protocol: udp
+            port: 49156
+          - protocol: udp
+            port: 49157
+          - protocol: udp
+            port: 49158
+          - protocol: udp
+            port: 49159
+          - protocol: udp
+            port: 49160
+        resources: # Resource requirements of the instance
+          requests:
+            memoryInGB: 1.5
+              cpu: 1
+        volumeMounts: # Array of volume mounts for the instance
+          - name: configvolume
+            mountPath: string
+            readOnly: no
+  restartPolicy: onFailure
+  ipAddress: # IP address configuration of container group
+    ports:
+      - protocol: tcp
+        port: 3478
+      - protocol: udp
+        port: 49152
+      - protocol: udp
+        port: 49153
+      - protocol: udp
+        port: 49154
+      - protocol: udp
+        port: 49155
+      - protocol: udp
+        port: 49156
+      - protocol: udp
+        port: 49157
+      - protocol: udp
+        port: 49158
+      - protocol: udp
+        port: 49159
+      - protocol: udp
+        port: 49160
+    type: public
+    dnsNameLabel: turnServer
+  osType: linux
+  volumes: # Array of volumes available to the instances
+    - name: configvolume
+      gitRepo:
+        directory: /etc/coturn/
+        repository: https://SirRegion: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@github.com/SirRegion/turn-config.git
