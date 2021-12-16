@@ -35,7 +35,7 @@ properties: # Properties of container group
               cpu: 1
         volumeMounts: # Array of volume mounts for the instance
           - name: configvolume
-            mountPath: string
+            mountPath: /etc/coturn
             readOnly: no
   restartPolicy: onFailure
   ipAddress: # IP address configuration of container group
