@@ -16,8 +16,23 @@ artifacts:
     key: $CI_COMMIT_REF_SLUG
     paths:
       - scripts/powershell-modules/powershell-modules.zip.files
+      -
+#build_turnserver_image:
+#  stage: build
+#  tags:
+#    - dev
+#    - shell #maybe use crane?
+#  script:
+#    - echo "TODO" #TODO
+#  only:
+#    changes:
+#      - machines/TURN-Server/turnserver.conf
 
-#mdctec-maintenance:
+
+
+
+
+        #mdctec-maintenance:
 #  stage: build
 #  tags: [ shell, dev ]
 #  script:
