@@ -241,8 +241,8 @@ shall create startup commands. (Toolbox Settings -> Tools -> Generate shell scri
 For example, your screen stays blank and is not noticed by the OS.
 This can be fixed by installing the official drivers.
 
-1. Execute the following commands to satisfy dependencies and generate and import self-signing key to sign the driver,
-in case you're using your computer with *Secure Boot* enabled.
+1. Execute the following commands to satisfy dependencies and generate and import self-signing key to sign the driver.
+   This is only mandatory, in case you're using your computer with *Secure Boot* enabled.
     ```shell
     cd ~/Downloads/
     sudo dnf -y install libdrm-devel.x86_64 libdrm.x86_64 kernel-devel-$(uname -r)
@@ -255,7 +255,7 @@ in case you're using your computer with *Secure Boot* enabled.
    git clone https://github.com/DisplayLink/evdi.git
    cd evdi
    sudo make
-   cd modules
+   cd module
    sudo make install_dkms
    ```
 3. Sign the `evdi` package. (This is only necessary if you have *Secure Boot* enabled.)
