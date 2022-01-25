@@ -277,3 +277,12 @@ This can be fixed by installing the official drivers.
     Driver      "intel"                                                                                        
   EndSection                                                                                                  
   ``` 
+  
+### Resolve missing kernel in grub2 config
+This might be caused due to missing kernel dependencies and can be resolved using `dnf`.
+
+1. Check which kernel grubby has detected so far: `sudo grubby --info=ALL`
+2. Check if dnf finds any issues regarding installed packages, e.g. duplicates, etc.: `sudo dnf check`
+3. If there are problems detected, ensure to resolve them, e.g. remove duplicates: `sudo dnf remove --duplicates`
+4. Install missing kernel dependencies: `sudo dnf install "kernel*"`
+5. Use the grubby command from the first step to evaluate if all required kernel packages have been recognized.
