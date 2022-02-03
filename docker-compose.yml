@@ -8,4 +8,4 @@ services:
     image: infrastructure/mdctec-maintenance:latest
     build:
       context: .
-      dockerfile: docker/mdctec-maintenance/Dockerfile
+      dockerfile: powershell-modules/.docker/Dockerfile

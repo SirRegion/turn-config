@@ -1,4 +1,4 @@
-include ../../../../.make/configure-pwsh.mk
+include ../../../.make/configure-pwsh.mk
 
 #.PHONY: timestamp version
 

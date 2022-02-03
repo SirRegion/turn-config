@@ -1,0 +1,16 @@
+- label: Setup Local Dev Workstation
+  items:
+    - label: Docker Utilities
+      items:
+        - Install Docker Service
+    - label: User Configuration
+      items:
+        - label: Setup SSH
+          items:
+            - label: ssh-copy-id
+- label: Linux Server Utilities
+  items:
+    - label: User Management
+      items:
+        - label: Create User
+          script: ${Env:MMM_HOME}/scripts/add-user.ps1

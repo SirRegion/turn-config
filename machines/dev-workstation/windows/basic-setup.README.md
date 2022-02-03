@@ -1,5 +1,5 @@
-# Setup a developer workstation
-> Here are some basic tipps & tricks to set up a windows based developer workstation.
+# Windows setup 
+> Here are some basic tips & tricks for setting up a windows based developer workstation.
 
 ## 1. Install Chocolatey Package Manager
 See https://chocolatey.org/install
@@ -27,16 +27,19 @@ winget install --id Git.Git
 ```
 Use the `--override` parameter to customize your setup
 
-### 2.2 Setup you personal ssh key 
+### 2.2 Setup your personal ssh key 
 Generate a ssh key with no passphrase
 ```powershell
-cd ~/.ssh # (You might have to create this directory first)
+cd ~/.ssh
 mkdir git
-ssh-keygen -f git/id_rsa -N '""'
+ssh-keygen -f git/id_rsa -N ''
 ```
-### 2.3 Configure your ssh agent how to authenticate with Gitlab
+Now you have to add the just generated public key to your GitLab account.
+
+### 2.3 Configure your ssh agent to authenticate with the correct ssh key
 This will tell git to use the new identity-file when accessing our internal Gitlab
 ```powershell
+# With powershell:
 cd ~/.ssh;
 @"
 Host gitlab.mdctec.com
@@ -45,11 +48,6 @@ Host gitlab.mdctec.com
     IdentityFile $((Get-Item ./git/id_rsa).FullName.Replace('C:','/C').Replace('\','/'))
 "@ > config;
 ```
-Now you have to add your public SSH key to your GitLab account.
-Therefore:
-1) log into http://gitlab.mdctec.com
-2) Go to `User Settings` > `SSH Keys`
-3) Copy & paste the contents of the file at `~/.ssh/git/id_rsa.pub` into the Gitlab UI
 
 ## 3. Enhance powershell with autocomplete features
 ```powershell

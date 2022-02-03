@@ -1,19 +1,9 @@
 include .make/configure-pwsh.mk
 
-all: meta artifacts
+all: artifacts
 
 artifacts:
-	$(MAKE) -C scripts/powershell-modules/ artifacts
-
-meta:
-	$(MAKE) -C scripts/powershell-modules/MdctecMaintenanceMenu/meta -B
-
-release:
-	$(MAKE) -C scripts/powershell-modules/ artifacts
-	$(MAKE) -C docker/mdctec-maintenance build
-
-push:
-	$(MAKE) -C docker/mdctec-maintenance push
+	$(MAKE) -C powershell-modules/ artifacts
 
 clean:
-	$(MAKE) -C scripts/powershell-modules/ clean
+	$(MAKE) -C powershell-modules/ clean

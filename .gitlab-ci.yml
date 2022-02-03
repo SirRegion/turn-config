@@ -11,12 +11,12 @@ artifacts:
   artifacts:
     public: true
     paths:
-      - scripts/powershell-modules/powershell-modules.zip
+      - powershell-modules/powershell-modules.zip
   cache:
     key: $CI_COMMIT_REF_SLUG
     paths:
-      - scripts/powershell-modules/powershell-modules.zip.files
-      -
+      - powershell-modules/powershell-modules.zip.files
+
 #build_turnserver_image:
 #  stage: build
 #  tags:
@@ -29,23 +29,3 @@ artifacts:
 #      - machines/TURN-Server/turnserver.conf
 
 
-
-
-
-        #mdctec-maintenance:
-#  stage: build
-#  tags: [ shell, dev ]
-#  script:
-#    - make -C docker/mdctec-maintenance build
-#  artifacts:
-#    paths:
-#      - docker/mdctec-maintenance/build
-#  cache:
-#    key: $CI_COMMIT_REF_SLUG
-#    paths:
-#      - scripts/powershell-modules/powershell-modules.zip.files
-#push:
-#  stage: post
-#  tags: [ shell, dev ]
-#  script:
-#    - make -C docker/mdctec-maintenance push

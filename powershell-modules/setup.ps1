@@ -13,7 +13,7 @@ if ($MMM_HOME)
     "Current PSModulePath:"
     $PSModulePath -Split ';'
     Write-Host "Removing old path"
-    $PSModulePath = $($env:PSModulePath -Split ';' | Where { ($_ -ne $MMM_HOME) -and ($_ -ne [String]::Empty) }) -Join ';'
+    $PSModulePath = $($env:PSModulePath -Split ';' | Where { ($_ -ne $MMM_HOME) -and ($_ -ne [String]::Empty) } | Sort-Object -Unique) -Join ';'
 }
 Write-Host "Set MMM_HOME = $DEST"
 $MMM_HOME = "$DEST"
@@ -28,4 +28,4 @@ $env:PSModulePath = $PSModulePath
 
 [Environment]::SetEnvironmentVariable("PSModulePath", "$PSModulePath", "User")
 
-
+New-Alias -Name MMM -Value MdctecMaintenanceMenu -Force

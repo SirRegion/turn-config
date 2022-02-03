@@ -1,6 +1,6 @@
 # Code based on https://github.com/DarkLite1/Toolbox.General/blob/master/Toolbox.General.psm1
 
-Import-Module MdctecMaintenanceMenu\support\SimpleMenu.psm1 -DisableNameChecking
+Import-Module MdctecMaintenanceMenu\support\deprecated\SimpleMenu.psm1 -DisableNameChecking
 
 Function Interactive-Steps
 {
@@ -44,17 +44,17 @@ Function Interactive-Steps
         Write-Host "`nThe step is described with:"
 
         Write-Host `
-            -Object ("`"{0}`"" -f $currentStep.Description) `
+            -Object ("`"{0}`"" -f $currentStep.Label) `
             -ForegroundColor 'Green'
 
         Write-Host "`nThe command to be executed is:"
 
         Write-Host `
-            -Object ($currentStep.Command) `
+            -Object ($currentStep.Script) `
             -ForegroundColor 'Magenta'
 
         $selected = & SimpleMenu `
-            -Items @('execute this step', 'skip this step') `
+            -Items @( @{ Label = 'execute this step' }, @{ Label = 'skip this step' } ) `
             -Question ("`nYour options are:")
 
         switch ($selected)
@@ -71,8 +71,13 @@ Function Interactive-Steps
                 "skipping..."
                 $currentI++
             }
+            'q' {
+                exit
+            }
             Default {
+                "Returned: '$selected'"
                 "Sorry! I do not know what to do here :("
+                ""
             }
         }
     } until ( ($selected -eq $null) )
@@ -90,17 +95,17 @@ Function Execute-Step
         $currentI
     )
     Write-Host "________________________________________________________________________________________"
-    Write-Host ("> executing step {0}) `"{1}`". Watch what happens ..." -f ($currentI + 1), $currentStep.Description)
+    Write-Host ("> executing step {0}) `"{1}`". Watch what happens ..." -f ($currentI + 1), $currentStep.Label)
 
     do
     {
-        Write-Host $currentStep.Command -ForegroundColor 'Red'
-        invoke-expression -Command $currentStep.Command
+        Write-Host $currentStep.Script -ForegroundColor 'Red'
+        invoke-expression -Command $currentStep.Script
 
-        Write-Host ("`n> done with step {0}) `"{1}`"" -f ($currentI + 1), $currentStep.Description)
+        Write-Host ("`n> done with step {0}) `"{1}`"" -f ($currentI + 1), $currentStep.Label)
 
         $selected = & SimpleMenu `
-                    -Items @('yes, looks allright, continue with the next step', 'no, something is wrong here, retry this step') `
+                    -Items @(@{ Label = 'yes, looks allright, continue with the next step' }, @{ Label = 'no, something is wrong here, retry this step' }) `
                     -Question "  Check the log messages above for errors and tell me whether to continue."
 
         if ($selected -eq '1')

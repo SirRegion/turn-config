@@ -1,6 +1,0 @@
-version: "3.8"
-services:
-  cb-app:
-    container_name: ${CB_CONTAINER_NAME}
-    image: ${CB_IMAGE_REF}
-

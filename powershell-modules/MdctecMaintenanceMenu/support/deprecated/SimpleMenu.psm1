@@ -11,28 +11,30 @@ Function SimpleMenu
 {
     [CmdLetBinding()]
     Param (
-        [Parameter(Mandatory, Position=0)]
+        [Parameter(Mandatory, Position = 0)]
         [Array]
         $Items,
-        $QuitSelector = @{ 'q' = 'Quit' },
+        $QuitItem = @{ Key = 'q'; Label = 'Quit' },
         $displayTemplate = '{0}) {1}',
         $Question = "Your options are:",
         $SelectionPrompt = "Select an option"
     )
     Write-Verbose "SimpleMenu:"
-    $($Items | Format-List)
+
     #region Build hash table with selector and value
     $hash = [Ordered]@{ }
 
     for ($i = 0; $i -lt $Items.Count; $i++) {
         $key = "$( $i + 1 )";
-        $value = $Items[$i]
-        $hash[$key] = $value
+        $item = $Items[$i]
+        $item.Key = $key
+        $hash[$key] = $item
     }
+    $hash[$QuitItem.Key] = $QuitItem
     #endregion
 
     #region Get the quit selector key if there is one
-    $quitSelectorKey = $null
+    $quitSelectorKey = $QuitItem.Key
 
     if ($QuitSelector)
     {
@@ -61,7 +63,7 @@ Function SimpleMenu
         Write-Host $Question
         foreach ($item in $hash.getEnumerator())
         {
-            RenderItem $item.Key $item.Value
+            RenderOption $item.Key $item.Value
         }
         if ($QuitSelector)
         {
@@ -74,20 +76,16 @@ Function SimpleMenu
         }
 
         $selected = Read-Host -Prompt $SelectionPrompt
-
         if ($selected -eq $quitSelectorKey)
         {
-            return
+            return $quitSelectorKey
         }
     } until (
     ($hash.Keys -contains $selected) -or
             ($selected -eq $quitSelectorKey)
     )
-    #endregion
 
-    #region Execute selected item
-    ExecItem $hash[$selected]
-    #endregion
+    return $selected
 }
 
 
@@ -97,7 +95,7 @@ $defaults = @{
 }
 
 
-Function RenderItem
+Function RenderOption
 {
     $Key = $Args[0]
     $Type = $Args[1].Type
