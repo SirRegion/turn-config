@@ -51,7 +51,8 @@ make\
 wget\
 curl\
 keepassxc\
-util-linux-user
+util-linux-user\
+remmina
 ```
 
 Afterwards upgrade all preinstalled packages. If you feel like cleaning up and removing some of the
@@ -251,10 +252,13 @@ alias connectVPN="netExtender -u YOURUSERNAME -p YOURPASSWORD -d mdctec.local ex
 4. Copy the binary file into a directory included in `PATH`. For example,
    `sudo /bin/cp -f jetbrains-toolbox /usr/local/bin`
 5. The previous steps enable you to run *Jetbrains Toolbox* from your terminal by simply
-   typing `jetbrains-toolbox`.
-6. After starting toolbox, sign in to your Jetbrains account and downloaded the latest your preferred IDE.
-7. If you want to be able to start your IDEs from the terminal as well, you have to specify a path where the
+   typing `sudo jetbrains-toolbox`.
+6. After starting toolbox, sign in to your Jetbrains account and downloaded the latest preferred IDE.
+7. If you want to be able to start your IDEs from the terminal as well, you have to specify a path where
    toolbox shall create startup commands. (Toolbox Settings -> Tools -> Generate shell scripts)
+    1. Create a `bin` folder in your user's `home` directory and symlink it
+       to `/usr/local/bin`: `mkdir /home/YOURUSERNAME/bin; sudo ln -s /home/YOURUSERNAME/bin /usr/local/bin`
+    2. The folder where toolbox generates your start scripts need to be `/home/YOURUSERNAME/bin`.
 
 ## Help
 
