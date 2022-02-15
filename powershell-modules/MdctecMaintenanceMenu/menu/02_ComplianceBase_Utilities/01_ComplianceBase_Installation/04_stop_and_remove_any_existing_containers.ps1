@@ -6,7 +6,7 @@ if ((docker container inspect cb-app) -eq "[]"){
 Import-Module MdctecMaintenanceMenu/support/SimplePrompt -DisableNameChecking -Force;
 
 Write-Warning "You're about to stop and remove the existing cb-app container."
-Write-Warning "You should be sure that no client data will be lost!"
+Write-Warning "You should be sure that no customer data will be lost!"
 Write-Warning "If the data was mounted with a docker volume (which is the default behaviour) it should be safe to continue."
 Write-Host
 

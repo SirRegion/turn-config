@@ -82,9 +82,25 @@ function HandleMenuKey
     switch ($key)
     {
         $KEY_ENTER {
-            # return the menu item at the current position
             $ci = GetCurrentItem
-            return ExecItem @ci
+
+            if ($ci.Type -eq 'Submenu')
+            {
+                $itemPath = $ci.Source
+
+                # return the menu item at the current position
+                $indexPath = Join-Path $itemPath 'index.ps1'
+                if (Test-Path $indexPath)
+                {
+                    return ExecIndex $indexPath
+                }else{
+                    EnterSubmenu
+                }
+            }
+            else
+            {
+                return ExecItem @ci
+            }
         }
         $KEY_UP {
             if ($state.CurrentItem -gt 0)
@@ -101,19 +117,7 @@ function HandleMenuKey
             }
         }
         $KEY_RIGHT {
-            $newpath = Get-Item $( GetCurrentItem ).Source
-
-            if (Test-Path $newpath -Type Container)
-            {
-                $state.CurrentRoute = Join-Path $state.CurrentRoute $newpath.Basename
-                LoadLocalState $state
-                DrawMenu
-
-            }
-            else
-            {
-                Write-Warning "Not a valid submenu!"
-            }
+            EnterSubmenu
         }
         $KEY_LEFT {
 
@@ -149,7 +153,9 @@ function HandleMenuKey
             {
                 Set-Clipboard -Value "$( Get-Content $ci.Source )"
                 DrawLine "Copied selected command to clipboard." -Foreground 'Green'
-            }else{
+            }
+            else
+            {
                 Write-Warning "Not a 'Script' Item!"
             }
         }
@@ -170,7 +176,30 @@ function HandleMenuKey
     }
     return $true
 }
+function EnterSubmenu
+{
+    $itemPath = Get-Item $( GetCurrentItem ).Source
 
+    if (Test-Path $itemPath -Type Container)
+    {
+        $indexPath = Join-Path $itemPath 'index.ps1'
+        Write-Host "testing $indexPath"
+        if (Test-Path $indexPath)
+        {
+            ExecIndex $indexPath
+        }
+        else
+        {
+            $state.CurrentRoute = Join-Path $state.CurrentRoute $itemPath.Basename
+            LoadLocalState $state
+            DrawMenu
+        }
+    }
+    else
+    {
+        Write-Warning "Path '$itemPath' is not a directory!"
+    }
+}
 function ExecItem
 {
     param (
@@ -180,23 +209,29 @@ function ExecItem
     switch ($Item.Type)
     {
         'Script' {
-            Write-Verbose "Invoke `"$( $Item.Source )`" in separate shell"
+            if ($Item.Source.EndsWith('x.ps1')){
+                . $Item.Source
+                return $true
+            }else{
 
-            $Script=@"
-Write-Host "Executing script for: $($Item.Label)..." -Foreground 'Green';
+                Write-Verbose "Invoke `"$( $Item.Source )`" in separate shell"
+                $Script = @"
+Write-Host "Executing script for: $( $Item.Label )..." -Foreground 'Green';
 Write-Host;
-$($Item.Source);
+$( $Item.Source );
 Write-Host;
-Write-Host "Done with task: $($Item.Label)." -Foreground 'Green';
+Write-Host "Done with task: $( $Item.Label )." -Foreground 'Green';
 Read-Host 'press ENTER to close this window'
 exit 0;
 "@
 
-            start-process powershell -ArgumentList "-noexit -command `"$Script`""
-            return $true
+                start-process powershell -ArgumentList "-noexit -command `"$Script`""
+                return $true
+            }
+
         }
         'Submenu'{
-            Write-Warning "Executing a submenu item is not supported yet! If you meant to enter the submenu use the 'right' key."
+            Write-Warning "Cannot execute this! If you meant to enter this submenu use the 'right-arrow' key."
             return $true
         }
         Default {
@@ -204,6 +239,12 @@ exit 0;
             return $true
         }
     }
+}
+function ExecIndex
+{
+    . $Args[0]
+
+    return $true
 }
 
 function GetCurrentItem
@@ -216,14 +257,15 @@ function DrawHeader
     DrawLine
     DrawLine " Welcome to the MDCTec Maintenance Menu! (alias: MMM) " -BackgroundColor White -ForegroundColor Black
 
-    function DrawInfoLine{
-        DrawLine "  $($Args[0])" -NoNewLine -Foreground 'DarkGray'
-        DrawLine "  $($Args[1])" -Foreground 'Gray'
+    function DrawInfoLine
+    {
+        DrawLine "  $( $Args[0] )" -NoNewLine -Foreground 'DarkGray'
+        DrawLine "  $( $Args[1] )" -Foreground 'Gray'
     }
     $VersionPath = Join-Path $state.RootPath 'meta/version'
     if (Test-Path "$VersionPath")
     {
-        DrawInfoLine "Version:          " "$( Get-Content $VersionPath)"
+        DrawInfoLine "Version:          " "$( Get-Content $VersionPath )"
     }
 
     $TimestampPath = Join-Path $state.RootPath 'meta/timestamp'
@@ -312,13 +354,15 @@ function DrawItem
 function DrawLine
 {
     param(
-    [switch]$NoNewLine
+        [switch]$NoNewLine
     )
 
-    if ($NoNewLine){
+    if ($NoNewLine)
+    {
         Write-Host @Args -NoNewLine
     }
-    else {
+    else
+    {
         Write-Host @Args -NoNewLine
         $SPACE = $( $Host.UI.RawUI.BufferSize.Width - $host.UI.RawUI.CursorPosition.X )
         if ($SPACE -lt 0)

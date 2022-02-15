@@ -1,0 +1,1 @@
+docker run --rm --mount 'type=volume,src=cb-app_data,dst=C:/app/data' --mount "type=bind,src=$pwd,dst=C:/backup" mcr.microsoft.com/windows/servercore:ltsc2019 powershell tar cvf C:/backup/backup.tar C:/app/data

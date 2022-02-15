@@ -13,10 +13,10 @@ setup:
 
 release: meta powershell-modules.zip.files
 
-docker: powershell-modules.zip.files
+build-docker: powershell-modules.zip.files
 	$(MAKE) -C .docker/ build
 
-push-docker:
+push-prod:
 	$(MAKE) -C .docker/ push
 
 zip: powershell-modules.zip

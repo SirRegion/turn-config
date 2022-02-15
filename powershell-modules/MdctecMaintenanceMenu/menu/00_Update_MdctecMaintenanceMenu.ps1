@@ -49,12 +49,12 @@ $NewHash = Get-FolderHash "$PENDING_UPDATE_PATH/powershell-modules/MdctecMainten
 ""
 "Currently installed:"
 "{ version: $CurrentVersion, timestamp: $CurrentTimestamp, hash: $CurrentHash }"
-ls "$Env:MMM_HOME/MdctecMaintenanceMenu" -Recurse -Name
+#ls "$Env:MMM_HOME/MdctecMaintenanceMenu" -Recurse -Name
 ""
 
 "Latest version:"
 "{ version: $NewVersion, timestamp: $NewTimestamp, hash: $NewHash }"
-ls "$PENDING_UPDATE_PATH/powershell-modules/MdctecMaintenanceMenu" -Recurse -Name
+#ls "$PENDING_UPDATE_PATH/powershell-modules/MdctecMaintenanceMenu" -Recurse -Name
 ""
 
 ############################################################
