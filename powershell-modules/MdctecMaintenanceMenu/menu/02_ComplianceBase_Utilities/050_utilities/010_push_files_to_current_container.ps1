@@ -1,3 +1,9 @@
+Param(
+    [Parameter(Mandatory = $true)]
+    [string]
+    $ContainerPath
+)
+
 . "$Env:MMM_HOME/MdctecMaintenanceMenu/assets/environment/docker/default.env.ps1"
 
 $ErrorActionPreference = "Stop"
@@ -28,22 +34,20 @@ if ($ContainerStatusOK -And $CbHomeOK)
 
 
     # The path to the files to pull from the container relative to the C:/ directory
-    $ContainerPath = "etc"
+    $ContainerPath="etc"
 
     # The path on the host where files are copied to
-    $HostPathPrefix = "$Env:CB_HOME/environment/docker/cb-app/files"
+    $HostPathPrefix="$Env:CB_HOME/environment/docker/cb-app/files"
 
-    #    make sure it exists
-    mkdir $HostPathPrefix -Force
+    # make sure that the target files exist on the host
+    if (-Not (Test-Path "$HostPathPrefix/$ContainerPath/*")){
+        Write-Host "$HostPathPrefix/$ContainerPath is empty or does not exist" -Fore Red
+        return
+    }
 
-    # clear destination so that files from container dont mix with existing files
-    rm -ErrorAction:Ignore -Force -Recurse "$HostPathPrefix/$ContainerPath" | Out-Null
-
-    # now copy files from container to host
-    docker cp "${Env:CB_DOCKER_CONTAINER}:/$ContainerPath" "$HostPathPrefix/$ContainerPath"
-
-    ls "$HostPathPrefix/$ContainerPath"
+    # now copy files from host to container
+    docker cp "$HostPathPrefix/$ContainerPath/." "${Env:CB_DOCKER_CONTAINER}:/$ContainerPath"
 }
-else {
+else{
     Write-Warning "Aborted!"
 }
