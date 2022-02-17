@@ -216,11 +216,11 @@ function ExecItem
 
                 Write-Verbose "Invoke `"$( $Item.Source )`" in separate shell"
                 $Script = @"
-Write-Host "Executing script for: $( $Item.Label )..." -Foreground 'Green';
+Write-Host "Executing script for item [$( $Item.Label )]" -Foreground 'Green';
 Write-Host;
 $( $Item.Source );
 Write-Host;
-Write-Host "Done with task: $( $Item.Label )." -Foreground 'Green';
+Write-Host "Done with item [$( $Item.Label )]." -Foreground 'Green';
 Read-Host 'press ENTER to close this window'
 exit 0;
 "@

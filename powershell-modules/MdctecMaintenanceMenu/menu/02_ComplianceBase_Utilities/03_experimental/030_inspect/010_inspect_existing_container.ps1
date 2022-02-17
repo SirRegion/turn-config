@@ -1,1 +1,0 @@
-docker inspect cb-app
