@@ -54,8 +54,13 @@ Write-Host
 Write-Host "Testing for existing containers..."
 Write-Host
 $ContainerStatus = docker inspect --format '{{ .State.Status }}' $ENV:CB_DOCKER_CONTAINER 2> $null
-$ContainerStatusOK = $LastExitCode -gt 0 -OR $ContainerStatus -eq 'exited'
-Write-Host "ContainerStatus='$ContainerStatus', OK:${ContainerStatusOK}"
+if ($LastExitCode -gt 0){
+    Write-Host "Could not find container named like '$Env:CB_DOCKER_CONTAINER'"
+}else{
+    $ContainerStatusOK = $LastExitCode -gt 0 -OR $ContainerStatus -eq 'exited'
+    Write-Host "ContainerStatus='$ContainerStatus', OK:${ContainerStatusOK}"
+}
+
 Write-Host
 
 if (-Not"$ContainerStatusOK") { return }

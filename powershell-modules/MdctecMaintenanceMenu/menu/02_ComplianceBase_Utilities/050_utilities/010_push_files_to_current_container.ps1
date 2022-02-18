@@ -22,7 +22,7 @@ $ContainerStatusOK = -Not$LastExitCode -And ($ContainerStatus -eq 'running' -OR 
 
 
 Write-Host
-Write-Host "OK:${ContainerStatusOK}`tContainerStatus = '$ContainerStatus'"
+Write-Host "ContainerStatus = '$ContainerStatus', OK:${ContainerStatusOK}"
 Write-Host
 
 if ($ContainerStatusOK)
