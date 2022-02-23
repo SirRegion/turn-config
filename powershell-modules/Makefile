@@ -19,6 +19,8 @@ build: build-docker
 build-docker: powershell-modules.zip.files
 	$(MAKE) -C .docker/ build
 
+push: push-all
+
 push-stage push-prod push-all:
 	$(MAKE) -C .docker $@
 

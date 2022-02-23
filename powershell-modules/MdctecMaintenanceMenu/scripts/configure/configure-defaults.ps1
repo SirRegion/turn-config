@@ -48,7 +48,6 @@ function SetupCbHomePath()
         }
     }
 
-
     Write-Host "using CB_HOME=$CB_HOME"
     $Env:CB_HOME = $CB_HOME
     [Environment]::SetEnvironmentVariable("CB_HOME", $CB_HOME, 'Machine')
