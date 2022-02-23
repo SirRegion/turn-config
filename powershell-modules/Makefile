@@ -1,5 +1,6 @@
 include ../.make/configure-pwsh.mk
 
+.PHONY: push push-stage push-prod push-all
 ###############################################
 
 all: artifacts
@@ -13,11 +14,13 @@ setup:
 
 release: meta powershell-modules.zip.files
 
+build: build-docker
+
 build-docker: powershell-modules.zip.files
 	$(MAKE) -C .docker/ build
 
-push-prod:
-	$(MAKE) -C .docker/ push
+push-stage push-prod push-all:
+	$(MAKE) -C .docker $@
 
 zip: powershell-modules.zip
 

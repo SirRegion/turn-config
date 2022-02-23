@@ -1,20 +1,34 @@
 include ../../.make/configure-pwsh.mk
 
-IMAGE_NAME := infrastructure/mdctec-maintenance
-PROD_IMAGE_REF := $(PROD_IMAGE_REGISTRY)/$(IMAGE_NAME):latest
+.PHONY: push push-stage push-prod push-all
+
+
+DOCKER_IMAGE_NAME := infrastructure/mdctec-maintenance
+DOCKER_IMAGE_REF := $(DOCKER_IMAGE_NAME):latest
+DOCKER_REGISTRY ?= := ${MTEC_STAGE_REGISTRY}
 
 .DEFAULT_GOAL := build
 
-
 build:
-	docker build -f ./Dockerfile -t $(IMAGE_NAME):latest ../
+	docker build -f ./Dockerfile -t ${DOCKER_IMAGE_NAME}:latest ../
 
-push: build
-	docker tag  $(IMAGE_NAME):latest $(PROD_IMAGE_REF)
-	docker push $(PROD_IMAGE_REF)
+push:
+	docker tag  ${DOCKER_IMAGE_REF} ${DOCKER_REGISTRY}/${DOCKER_IMAGE_REF}
+	docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_REF}
+
+push-prod: DOCKER_REGISTRY=${MTEC_PROD_REGISTRY}
+push-prod: push
+
+push-stage: DOCKER_REGISTRY=${MTEC_STAGE_REGISTRY}
+push-stage: push
+
+push-all:
+	$(MAKE) push-stage
+	$(MAKE) push-prod
+
 
 run:
-	docker run ${IMAGE_NAME} --name mdctec-maintenance
+	docker run ${DOCKER_IMAGE_NAME} --name mdctec-maintenance
 
 shell: run
 	docker exec -it mdctec-maintenance powershell
