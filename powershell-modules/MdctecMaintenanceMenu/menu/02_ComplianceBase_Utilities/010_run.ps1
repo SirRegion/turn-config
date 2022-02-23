@@ -19,7 +19,7 @@ if (-Not"$Env:CB_VERSION")
     Write-Warning "CB_VERSION variable was not specified!`nYou need to configure the release version of the ComplianceBase Docker container"
     return
 }
-else {
+else {q
     Write-Host "Using CB_VERSION $Env:CB_VERSION"
 }
 if (-Not"$Env:CB_DOCKER_PORT")

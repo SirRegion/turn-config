@@ -70,7 +70,6 @@ function LoadGlobalState
     {
         if (Test-Path $( Join-Path $state.RootPath $loaded.CurrentRoute ) -PathType Container)
         {
-            Write-Host "set CurrentRoute $($loaded.CurrentRoute)"
             $state.CurrentRoute = $loaded.CurrentRoute
         }
     }
@@ -120,7 +119,7 @@ function ResetState
     param(
         $RootPath
     )
-    Write-Host "ResetState $RootPath"
+
     if (Test-Path $RootPath)
     {
         Get-ChildItem $RootPath -Recurse -Include ".mmm-state.*" | %{ Remove-Item $_ }

@@ -9,7 +9,7 @@ Function MdctecMaintenanceMenu
         $ResetState = $False
     )
     $RootPath = "$PSScriptRoot"
-    Write-Host "PSScriptRoot $PSScriptRoot"
+
     if ($ResetState)
     {
         Import-Module MdctecMaintenanceMenu/support/FancyMenu -DisableNameChecking -Force;
@@ -18,6 +18,11 @@ Function MdctecMaintenanceMenu
     {
         Import-Module MdctecMaintenanceMenu/support/FancyMenu -DisableNameChecking;
     }
+
+    Import-Module MdctecMaintenanceMenu/scripts/env/utils -DisableNameChecking;
+
+    CoerceDefaults
+
     FancyMenu "$RootPath" $ResetState
 }
 

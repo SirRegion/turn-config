@@ -1,5 +1,7 @@
 $inspect = $( docker volume inspect cb-app_data );
 
+Import-Module MdctecMaintenanceMenu/scripts/env/utils -DisableNameChecking;
+
 Function PrepareDockerVolumes()
 {
     if ("$inspect" -eq "[]")
@@ -53,29 +55,13 @@ function SetupCbHomePath()
     [Environment]::SetEnvironmentVariable("CB_HOME", $CB_HOME, 'Machine')
 }
 
-function SetupDefaults
-{
-    # Load values from file
-    . "$Env:MMM_HOME/MdctecMaintenanceMenu/assets/environment/default.env.ps1"
 
-    SetPersistentVariable "MTEC_DOCKER_REGISTRY" "$MTEC_DOCKER_REGISTRY"
-    SetPersistentVariable "CB_DOCKER_CONTAINER" "$CB_DOCKER_CONTAINER"
-    SetPersistentVariable "CB_VARIANT" "$CB_VARIANT"
-    SetPersistentVariable "CB_VERSION" "$CB_VERSION"
-    SetPersistentVariable "CB_DOCKER_PORT" "$CB_DOCKER_PORT"
-    SetPersistentVariable "CB_DOCKER_DATA_VOLUME" "$CB_DOCKER_DATA_VOLUME"
-}
-
-function SetPersistentVariable{
-    [Environment]::SetEnvironmentVariable($args[0], $args[1], 'Machine')
-    [Environment]::SetEnvironmentVariable($args[0], $args[1], 'Process')
-}
 
 
 ######################
 
 SetupCbHomePath
-SetupDefaults
+ApplyDefaults
 PrepareDockerVolumes
 Write-Host
 . "$Env:MMM_HOME/MdctecMaintenanceMenu/scripts/configure/dump.ps1"
