@@ -40,7 +40,7 @@ function StartNew
         -p "${Env:CB_DOCKER_PORT}:443/tcp" `
         --mount 'type=volume,src=cb-app_data,dst=C:/app/data/mysql' `
         --name "$ENV:CB_DOCKER_CONTAINER" `
-        "${Env:MTEC_PROD_REGISTRY}/main/${Env:CB_DOCKER_CONTAINER}/${Env:CB_VARIANT}:${Env:CB_VERSION}"
+        "${Env:CB_DOCKER_REGISTRY}/main/${Env:CB_DOCKER_CONTAINER}/${Env:CB_VARIANT}:${Env:CB_VERSION}"
 
     Write-Host "Container was launched with id $CB_DOCKER_CONTAINER_ID"
 }
