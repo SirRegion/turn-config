@@ -5,8 +5,8 @@ function SaveState
     param(
         $state
     )
-    SaveLocalState $state
     SaveGlobalState $state
+    SaveLocalState $state
 }
 
 function LoadState
@@ -17,25 +17,22 @@ function LoadState
     )
     $RootDirectory = Get-Item $RootPath
 
-    $state = [pscustomobject]@{
-        RootPath = $RootDirectory.parent.FullName
 
-        CurrentRoute = $RootDirectory.Basename
-
-        HideShortcuts = $true
-
-        Items = $null
-
-        CurrentItem = 0
-    }
 
     if ($ResetState)
     {
-        $state = ResetState $state
+        $state = ResetState $RootDirectory.FullName
         $state = LoadLocalState $state
     }
     else
     {
+        $state = [pscustomobject]@{
+            RootPath = $RootPath
+            CurrentRoute = "menu"
+            HideShortcuts = $true
+            Items = $null
+            CurrentItem = 0
+        }
         $state = LoadGlobalState $state
         $state = LoadLocalState $state
     }
@@ -69,10 +66,11 @@ function LoadGlobalState
         $loaded = $( Get-Content $mmmpath | ConvertFrom-Json )
     }
 
-    if ($state | Get-Member 'CurrentRoute' )
+    if ($state | Get-Member 'CurrentRoute')
     {
-        if (Test-Path $(Join-Path $state.RootPath $loaded.CurrentRoute) -PathType Container )
+        if (Test-Path $( Join-Path $state.RootPath $loaded.CurrentRoute ) -PathType Container)
         {
+            Write-Host "set CurrentRoute $($loaded.CurrentRoute)"
             $state.CurrentRoute = $loaded.CurrentRoute
         }
     }
@@ -103,7 +101,7 @@ function LoadLocalState
         }
     }
 
-    if ($state | Get-Member 'CurrentItem' )
+    if ($state | Get-Member 'CurrentItem')
     {
         $state.CurrentItem = $loaded.CurrentItem
     }
@@ -120,15 +118,21 @@ function LoadLocalState
 function ResetState
 {
     param(
-        $state
+        $RootPath
     )
-    Write-Host "ResetState $($state.RootPath)"
-    if ($state.RootPath)
+    Write-Host "ResetState $RootPath"
+    if (Test-Path $RootPath)
     {
-        Get-ChildItem $state.RootPath -Recurse -Include ".mmm-state.*" | %{ Remove-Item $_ }
+        Get-ChildItem $RootPath -Recurse -Include ".mmm-state.*" | %{ Remove-Item $_ }
     }
 
-    return $state
+    return [pscustomobject]@{
+        RootPath = $RootPath
+        CurrentRoute = "menu"
+        HideShortcuts = $true
+        Items = $null
+        CurrentItem = 0
+    }
 }
 
-Export-ModuleMember ResetState,LoadState,LoadLocalState,SaveState
+Export-ModuleMember ResetState, LoadState, LoadLocalState, SaveState

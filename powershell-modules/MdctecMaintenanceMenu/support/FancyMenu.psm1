@@ -13,6 +13,9 @@ function FancyMenu
         [boolean]
         $ResetState = $false
     )
+    Write-Host "FancyMenu $RootPath $ResetState"
+
+
     $schedule = @{
         Reload = $null
     }

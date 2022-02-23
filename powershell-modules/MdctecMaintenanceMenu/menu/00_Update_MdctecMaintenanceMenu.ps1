@@ -10,7 +10,7 @@ $ErrorActionPreference = "Stop"
 
 # 0) Cleanup & Prepare
 Import-Module MdctecMaintenanceMenu/support/StateManagement -DisableNameChecking
-ResetState @{ RootPath="$ENV:MMM_HOME/MdctecMaintenanceMenu"}
+ResetState "$ENV:MMM_HOME/MdctecMaintenanceMenu"
 
 # 1) Fetch latest image
 . "$ENV:MMM_HOME/MdctecMaintenanceMenu/assets/environment/default.env.ps1"

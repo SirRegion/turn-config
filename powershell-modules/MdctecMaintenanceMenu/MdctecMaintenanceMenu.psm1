@@ -8,8 +8,8 @@ Function MdctecMaintenanceMenu
         [switch]
         $ResetState = $False
     )
-    $RootPath = $( Join-Path "$PSScriptRoot" "menu" )
-
+    $RootPath = "$PSScriptRoot"
+    Write-Host "PSScriptRoot $PSScriptRoot"
     if ($ResetState)
     {
         Import-Module MdctecMaintenanceMenu/support/FancyMenu -DisableNameChecking -Force;
@@ -18,7 +18,7 @@ Function MdctecMaintenanceMenu
     {
         Import-Module MdctecMaintenanceMenu/support/FancyMenu -DisableNameChecking;
     }
-    FancyMenu $RootPath $ResetState
+    FancyMenu "$RootPath" $ResetState
 }
 
 New-Alias -Name MMM -Value MdctecMaintenanceMenu
