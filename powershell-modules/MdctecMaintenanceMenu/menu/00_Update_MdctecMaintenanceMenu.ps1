@@ -69,8 +69,8 @@ try
         {
             Remove-Item -Recurse $Env:MMM_HOME
             Copy-Item -Recurse "$PENDING_UPDATE_PATH/powershell-modules" "$Env:MMM_HOME"
+            ResetState "$Env:MMM_HOME"
             "Done!"
-            MMM -r
         }
         elseif ($allow -eq 't')
         {

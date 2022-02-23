@@ -2,7 +2,8 @@ include ../../.make/configure-pwsh.mk
 
 .PHONY: push push-stage push-prod push-all
 
-DOCKER_IMAGE_NAME := internal/mdctec-maintenance
+DOCKER_IMAGE_NAME := infrastructure/mdctec-maintenance
+#DOCKER_IMAGE_NAME := internal/mdctec-maintenance
 DOCKER_IMAGE_REF := $(DOCKER_IMAGE_NAME):latest
 DOCKER_REGISTRY ?= := ${MTEC_STAGE_REGISTRY}
 
