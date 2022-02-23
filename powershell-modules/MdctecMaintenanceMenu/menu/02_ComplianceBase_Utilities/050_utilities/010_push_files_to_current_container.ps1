@@ -5,7 +5,7 @@ Param(
     $ContainerDirectoryPath
 )
 
-. "$Env:MMM_HOME/MdctecMaintenanceMenu/assets/environment/docker/default.env.ps1"
+. "$Env:MMM_HOME/MdctecMaintenanceMenu/assets/environment/default.env.ps1"
 
 $ErrorActionPreference = "Stop"
 $Env:CB_DOCKER_EXTRACT_PATH = [System.Environment]::GetEnvironmentVariable("CB_DOCKER_EXTRACT_PATH", "User")

@@ -58,9 +58,9 @@ function CreateCbEnvironment()
 {
     $CB_HOME = $Env:CB_HOME
 
-    if (-Not(Test-Path "$CB_HOME/environment/docker/.env"))
+    if (-Not(Test-Path "$CB_HOME/environment/.env"))
     {
-        Copy-Item "$MMM_HOME/MdctecMaintenanceMenu/assets/environment/docker/.env.ps1" "$CB_HOME/environment/docker/.env.ps1"
+        Copy-Item "$MMM_HOME/MdctecMaintenanceMenu/assets/environment/.env.ps1" "$CB_HOME/environment/.env.ps1"
     }
 }
 

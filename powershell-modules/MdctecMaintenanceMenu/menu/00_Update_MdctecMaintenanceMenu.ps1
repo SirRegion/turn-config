@@ -6,14 +6,15 @@
 #    2) Extract desired files from the image and store them
 #       in the temporary `.pending-migrations` directory
 #    3)
+$ErrorActionPreference = "Stop"
 
 # 0) Cleanup & Prepare
 Import-Module MdctecMaintenanceMenu/support/StateManagement -DisableNameChecking
 ResetState @{ RootPath="$ENV:MMM_HOME/MdctecMaintenanceMenu"}
 
 # 1) Fetch latest image
-
-$PROD_IMAGE_REF = "complianceBaseContainerRegistry.azurecr.io/infrastructure/mdctec-maintenance:latest"
+. "$ENV:MMM_HOME/MdctecMaintenanceMenu/assets/environment/default.env.ps1"
+$PROD_IMAGE_REF = "$MTEC_DOCKER_REGISTRY/internal/mdctec-maintenance:latest"
 "docker pull $PROD_IMAGE_REF"
 docker pull $PROD_IMAGE_REF
 

@@ -11,7 +11,7 @@ $Env:CB_DOCKER_EXTRACT_PATH = [System.Environment]::GetEnvironmentVariable("CB_D
 
 if (-Not $Env:CB_DOCKER_EXTRACT_PATH) {
     if ($Env:CB_HOME) {
-        $CB_DOCKER_EXTRACT_PATH = Join-Path "$Env:CB_HOME" '/environment/docker/cb-app/extracted'
+        $CB_DOCKER_EXTRACT_PATH = Join-Path "$Env:CB_HOME" '/environment/cb-app/extracted'
     }
     else {
         $CB_DOCKER_EXTRACT_PATH = "$PWD"

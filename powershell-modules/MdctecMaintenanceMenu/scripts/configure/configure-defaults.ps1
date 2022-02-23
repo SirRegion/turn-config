@@ -56,9 +56,9 @@ function SetupCbHomePath()
 function SetupDefaults
 {
     # Load values from file
-    . "$Env:MMM_HOME/MdctecMaintenanceMenu/assets/environment/docker/default.env.ps1"
+    . "$Env:MMM_HOME/MdctecMaintenanceMenu/assets/environment/default.env.ps1"
 
-    SetPersistentVariable "CB_DOCKER_REGISTRY" "$CB_DOCKER_REGISTRY"
+    SetPersistentVariable "MTEC_DOCKER_REGISTRY" "$MTEC_DOCKER_REGISTRY"
     SetPersistentVariable "CB_DOCKER_CONTAINER" "$CB_DOCKER_CONTAINER"
     SetPersistentVariable "CB_VARIANT" "$CB_VARIANT"
     SetPersistentVariable "CB_VERSION" "$CB_VERSION"

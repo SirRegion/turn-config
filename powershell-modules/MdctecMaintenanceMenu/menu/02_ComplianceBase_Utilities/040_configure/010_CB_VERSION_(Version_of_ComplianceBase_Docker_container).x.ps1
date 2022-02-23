@@ -1,5 +1,5 @@
 ## TODO: allow to choose from avalable versions
-#. "$Env:MMM_HOME/MdctecMaintenanceMenu/assets/environment/docker/default.env.ps1"
+#. "$Env:MMM_HOME/MdctecMaintenanceMenu/assets/environment/default.env.ps1"
 
 
 Param

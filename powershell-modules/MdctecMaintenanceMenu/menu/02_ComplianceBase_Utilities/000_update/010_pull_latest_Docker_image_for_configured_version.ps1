@@ -1,9 +1,9 @@
-if (-Not "$Env:CB_DOCKER_REGISTRY")
+if (-Not "$Env:MTEC_DOCKER_REGISTRY")
 {
-    Write-Warning "CB_DOCKER_REGISTRY variable was not specified!"
+    Write-Warning "MTEC_DOCKER_REGISTRY variable was not specified!"
     return
 }else{
-    Write-Host "Using CB_DOCKER_REGISTRY $Env:CB_DOCKER_REGISTRY"
+    Write-Host "Using MTEC_DOCKER_REGISTRY $Env:MTEC_DOCKER_REGISTRY"
 }
 if (-Not "$Env:CB_DOCKER_CONTAINER")
 {
@@ -27,5 +27,5 @@ if (-Not "$Env:CB_VERSION")
     Write-Host "Using CB_VERSION $Env:CB_VERSION"
 }
 Write-Host ""
-Write-Host "docker pull ${Env:CB_DOCKER_REGISTRY}/main/${Env:CB_DOCKER_CONTAINER}/${Env:CB_VARIANT}:${Env:CB_VERSION}"
-docker pull "${Env:CB_DOCKER_REGISTRY}/main/${Env:CB_DOCKER_CONTAINER}/${Env:CB_VARIANT}:${Env:CB_VERSION}"
+Write-Host "docker pull ${Env:MTEC_DOCKER_REGISTRY}/main/${Env:CB_DOCKER_CONTAINER}/${Env:CB_VARIANT}:${Env:CB_VERSION}"
+docker pull "${Env:MTEC_DOCKER_REGISTRY}/main/${Env:CB_DOCKER_CONTAINER}/${Env:CB_VARIANT}:${Env:CB_VERSION}"
