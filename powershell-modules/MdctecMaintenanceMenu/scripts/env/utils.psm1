@@ -1,7 +1,7 @@
 function ApplyDefaults
 {
     # Load values directly from file
-    $ENV_PATH = "$Env:MMM_HOME/MdctecMaintenanceMenu/assets/env"
+    $ENV_PATH = "$Env:MMM_HOME/assets/env"
 
     Get-ChildItem "$ENV_PATH" | ForEach-Object {
         $Name = $_.BaseName
@@ -12,8 +12,21 @@ function ApplyDefaults
 
 function CoerceDefaults
 {
+    param(
+        [Parameter(Mandatory, Position = 0)]
+        [string]
+        $RootPath
+    )
+
+    if (-Not($Env:MMM_HOME -And "$Env:MMM_HOME".EndsWith('MdctecMaintenanceMenu'))) {
+        $Env:MMM_HOME = "$RootPath"
+        Write-Warning "Updated MMM_HOME=$Env:MMM_HOME"
+        [Environment]::SetEnvironmentVariable("MMM_HOME", "$RootPath", "User")
+    }
+
+
     # Load values directly from file
-    $ENV_PATH = "$Env:MMM_HOME/MdctecMaintenanceMenu/assets/env"
+    $ENV_PATH = "$Env:MMM_HOME/assets/env"
 
     Get-ChildItem "$ENV_PATH" | ForEach-Object {
         $Name = $_.BaseName

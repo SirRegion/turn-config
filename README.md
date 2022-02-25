@@ -13,7 +13,7 @@ Most directories have nested README.md files with detailed documentation.
 
 | Artifact File | Description | Details |
 |---    |---  |--- 
-| [powershell-modules.zip][3] | Contains the MdctecMaintenanceMenu. | [README](powershell-modules/README.txt)
+| [powershell-modules.zip][3] | Contains the MdctecMaintenanceMenu. | [README](powershell-modules/MdctecMaintenanceMenu/README.txt)
 
 [3]: http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/jobs/artifacts/master/raw/powershell-modules/powershell-modules.zip?job=artifacts
 
@@ -32,7 +32,7 @@ See the nested README.md files for further documentation
 | [machines/dev-workstation/windows] | Utility scripts related to a developer workstation |<ul> <li>[Basic Setup][21]</li><li>[Access to stage & dev servers][22]</li> </ul>|
 | `scripts` | Directory with common utility scripts that can be used and shared across the infrastructure.  |  |
 | <pre style="padding:0"> scripts/powershell/</pre> | Utility scripts for MS Powershell |
-| <pre style="padding:0"> powershell-modules/MdctecMaintenanceMenu</pre> | See this nested [README](powershell-modules/README.txt) |
+| <pre style="padding:0"> powershell-modules/MdctecMaintenanceMenu</pre> | See this nested [README](powershell-modules/MdctecMaintenanceMenu/README.txt) |
 
 [machines/dev-workstation/windows]: machines/dev-workstation/windows
 [21]: machines/dev-workstation/windows/basic-setup.README.md

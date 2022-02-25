@@ -18,13 +18,7 @@ Import-Module MdctecMaintenanceMenu/support/StateManagement -DisableNameChecking
 ResetState "$Env:MMM_HOME"
 
 # 1) Fetch latest image
-if (-Not $Env:MTEC_DOCKER_REGISTRY){
-    . "$Env:MMM_HOME/assets/environment/default.env.ps1"
-}else {
-    $MTEC_DOCKER_REGISTRY = $Env:MTEC_DOCKER_REGISTRY
-}
-
-
+. "$Env:MMM_HOME/assets/environment/default.env.ps1"
 $PROD_IMAGE_REF = "$MTEC_DOCKER_REGISTRY/internal/mdctec-maintenance:latest"
 "docker pull $PROD_IMAGE_REF"
 docker pull $PROD_IMAGE_REF

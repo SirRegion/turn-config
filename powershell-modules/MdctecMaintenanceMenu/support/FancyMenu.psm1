@@ -275,7 +275,7 @@ function DrawHeader
         DrawInfoLine "Last_modified:    " "$( Get-Content $TimestampPath )"
     }
 
-    DrawInfoLine "SourcePath:       " "$( $state.RootPath )"
+    DrawInfoLine "RootPath:       " "$( $state.RootPath )"
 
     DrawInfoLine "Working Directory:" "$PWD"
 

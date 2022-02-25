@@ -1,14 +1,12 @@
 $inspect = $( docker volume inspect cb-app_data );
 
-Import-Module MdctecMaintenanceMenu/scripts/env/utils -DisableNameChecking;
-
 Function PrepareDockerVolumes()
 {
     if ("$inspect" -eq "[]")
     {
         Write-Host "docker volume 'cb-app_data' does not exist!";
         Write-Host "Creating a new one...";
-        docker volume create $ENV:CB_DOCKER_DATA_VOLUME;
+        docker volume create cb-app_data;
     }
     else
     {
@@ -50,22 +48,29 @@ function SetupCbHomePath()
         }
     }
 
+
     Write-Host "using CB_HOME=$CB_HOME"
     $Env:CB_HOME = $CB_HOME
     [Environment]::SetEnvironmentVariable("CB_HOME", $CB_HOME, 'Machine')
 }
 
+function CreateCbEnvironment()
+{
+    $CB_HOME = $Env:CB_HOME
 
+    if (-Not(Test-Path "$CB_HOME/environment/.env"))
+    {
+        Copy-Item "$MMM_HOME/MdctecMaintenanceMenu/assets/environment/.env.ps1" "$CB_HOME/environment/.env.ps1"
+    }
+}
 
 
 ######################
 
-SetupCbHomePath
-ApplyDefaults
 PrepareDockerVolumes
-Write-Host
-. "$Env:MMM_HOME/scripts/configure/dump.ps1"
-Write-Host
+SetupCbHomePath
+CreateCbEnvironment
+
 Write-Host "Sucessfully prepared environment.";
 Write-Host "Ready to start the container!";
 
