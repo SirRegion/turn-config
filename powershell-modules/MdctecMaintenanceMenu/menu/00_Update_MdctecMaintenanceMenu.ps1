@@ -31,17 +31,25 @@ docker pull $PROD_IMAGE_REF
 
 # 2) Extract files from docker image
 $PENDING_UPDATE_FOLDER = '.pending-updates'
-$PENDING_UPDATE_PATH = "$Env:MMM_HOME/$PENDING_UPDATE_FOLDER"
-New-Item -Type directory "$PENDING_UPDATE_PATH" -Force
+$PENDING_UPDATE_PATH = Join-Path "$Env:MMM_HOME" "$PENDING_UPDATE_FOLDER"
 
 try
 {
     # we need to 'create' a container first, so that we can access files and use `docker cp`
     $TmpId = $( docker create "$PROD_IMAGE_REF" )
 
-    # copy new files to the .pending-migrations directory
-    Remove-Item -ErrorAction:Ignore -Recurse "$PENDING_UPDATE_PATH"
-    docker cp "${TmpId}:/migrations/powershell-modules" "$PENDING_UPDATE_PATH/"
+#
+#    Remove-Item -Recurse "$PENDING_UPDATE_PATH" -Force
+#    New-Item -Type directory "$PENDING_UPDATE_PATH" -Force
+    Sleep 1;
+    Write-Host
+    Write-Host "Copying new files to '$PENDING_UPDATE_PATH'"
+
+    # copy new files to the .pending-updates directory
+    docker cp "${TmpId}:/migrations/powershell-modules/MdctecMaintenanceMenu" "$PENDING_UPDATE_PATH"
+
+    Sleep 1;
+
 }
 finally
 {
@@ -56,19 +64,19 @@ finally
 $KEEP_UPDATE_FILES = $true
 try
 {
-    if (Test-Path "$PENDING_UPDATE_PATH/MdctecMaintenanceMenu")
+    if (Test-Path "$PENDING_UPDATE_PATH")
     {
         ############################################################
         # Report available contents:
         Import-Module MdctecMaintenanceMenu\support\GetFolderHash.psm1 -DisableNameChecking
 
-        $CurrentVersion = Get-Content "$Env:MMM_HOME/meta/version"
-        $CurrentTimestamp = Get-Content "$Env:MMM_HOME/meta/timestamp"
+        $CurrentVersion = Get-Content (Join-Path "$Env:MMM_HOME" "meta/version")
+        $CurrentTimestamp = Get-Content (Join-Path "$Env:MMM_HOME" "meta/timestamp")
         $CurrentHash = Get-FolderHash "$Env:MMM_HOME"
 
-        $NewVersion = Get-Content "$PENDING_UPDATE_PATH/MdctecMaintenanceMenu/meta/version"
-        $NewTimestamp = Get-Content "$PENDING_UPDATE_PATH/MdctecMaintenanceMenu/meta/timestamp"
-        $NewHash = Get-FolderHash "$PENDING_UPDATE_PATH/MdctecMaintenanceMenu"
+        $NewVersion = Get-Content (Join-Path "$PENDING_UPDATE_PATH" "meta/version")
+        $NewTimestamp = Get-Content (Join-Path "$PENDING_UPDATE_PATH" "meta/timestamp")
+        $NewHash = Get-FolderHash "$PENDING_UPDATE_PATH"
 
         ""
         "Currently installed:"
@@ -84,8 +92,8 @@ try
 
         if ($allow -eq 'y')
         {
-            Remove-Item "$Env:MMM_HOME/*" -Recurse  -Exclude $PENDING_UPDATE_FOLDER
-            Copy-Item -Recurse "$PENDING_UPDATE_PATH/MdctecMaintenanceMenu" "$Env:MMM_HOME"
+            Get-ChildItem "$Env:MMM_HOME" -Exclude $PENDING_UPDATE_FOLDER | Remove-Item -Recurse
+            Copy-Item -Recurse "$PENDING_UPDATE_PATH/*" "$Env:MMM_HOME"
             $KEEP_UPDATE_FILES = $false
 
             "Done!"

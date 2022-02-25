@@ -24,9 +24,8 @@ push-stage push-prod:
 	docker tag  ${DOCKER_IMAGE_REF} ${DOCKER_REGISTRY}/${DOCKER_IMAGE_REF}
 	docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_REF}
 
-
 run:
-	docker run ${DOCKER_IMAGE_NAME} --name mdctec-maintenance
+	docker run ${DOCKER_IMAGE_REF} --name mdctec-maintenance
 
 shell: run
 	docker exec -it mdctec-maintenance powershell
