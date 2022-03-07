@@ -317,6 +317,9 @@ This might be caused due to missing kernel dependencies and can be resolved usin
 5. Use the grubby command from the first step to evaluate if all required kernel packages have been
    recognized.
 
+NOTE: `kernel-debug-*` can be removed again, if everything works as expected and there is no further need for
+them.
+
 ### Prevent laptop from entering airplane mode when opening the lid
 
 1. Open *GNOME Tweaks*. In the *General* tab, disable *Suspend when laptop lid is closed*.
@@ -352,3 +355,13 @@ This might be caused due to missing kernel dependencies and can be resolved usin
     4. Start and enable the service to make it being executed automatically after rebooting / power-off:
        `sudo systemctl start lid-closed && sudo systemctl enable lid-closed`
 9. Reboot again and verify that the issue is resolved now.
+
+### Wifi disconnects randomly when using a Realtek RTL8822BE/CE
+1. Check if you're really using a Realtek card: `lspci | grep -i wireless`
+2. Clone lwfinger/rtw88 repo: `git clone https://github.com/lwfinger/rtw88`
+3. Enter the repo and run:
+   1. `make`
+   2. `sudo make install`
+
+NOTE: If you are using a non Realtek wifi card, installing `akmod-wl` from the previously enabled RPMFusion
+non-free repo might resolve this issue as well. (`sudo dnf install akmod-wl`)
