@@ -13,4 +13,4 @@ Param
 )
 
 
-. "${Env:MMM_HOME}/MdctecMaintenanceMenu/scripts/configure/set.ps1" "CB_VERSION" "${CB_VERSION}"
+. "${Env:MMM_HOME}/scripts/configure/set.ps1" "CB_VERSION" "${CB_VERSION}"

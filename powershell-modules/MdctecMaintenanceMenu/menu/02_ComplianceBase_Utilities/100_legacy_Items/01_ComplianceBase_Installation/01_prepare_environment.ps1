@@ -60,7 +60,7 @@ function CreateCbEnvironment()
 
     if (-Not(Test-Path "$CB_HOME/environment/.env"))
     {
-        Copy-Item "$MMM_HOME/MdctecMaintenanceMenu/assets/environment/.env.ps1" "$CB_HOME/environment/.env.ps1"
+        Copy-Item "$MMM_HOME/assets/environment/.env.ps1" "$CB_HOME/environment/.env.ps1"
     }
 }
 
