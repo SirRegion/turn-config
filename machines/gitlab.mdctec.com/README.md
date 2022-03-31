@@ -1,9 +1,17 @@
-# Dokumentation für `gitlab.mdctec.com` 
-> Diese Maschine hosted Tools und Software die im Zusammenhang mit Gitlab stehen
+# Documentation for `gitlab.mdctec.com`
+This machine is a linux Ubuntu server that provides software related to our main Gitlab instance.
 
-## Software Dienste auf `gitlab.mdctec.com`
+> *OS*:         `Ubuntu 20.04.3 LTS`  
+> *DNS Name*:   `gitlab.mdctec.com`  
+> *Hostname*:   `ubuntu`
 
-| Beschreibung               | Web Zugriff                   | Dokumentation |
+## Hosted Applications & Services:
+
+| Description                | URL                           | Details       |
 |----------------------------|-------------------------------|---------------|
-| Haupt Gitlab Instanz       | http://gitlab.mdctec.com:80   | TODO          |
+| Main Gitlab instance       | http://gitlab.mdctec.com:80   | TODO          |
 | Prometheus Monitoring Tool | http://gitlab.mdctec.com:9090 | TODO          |
+
+
+
+

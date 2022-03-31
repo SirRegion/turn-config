@@ -5,11 +5,13 @@ The `Stage` machine is a Ubuntu Server whose main purpose is to provide a Gitlab
 > *DNS Name*:   `stage.mdctec.com`  
 > *Hostname*:   `gitlabrunnerstage`
 
-## Software services hosted on `stage.mdctec.com`
-The `Stage` Machine hosts the following application & services:  
+## Hosted Applications & Services:
 
-| Beschreibung | URL | Details |
-|--- |--- |--- |
-| Interne Docker Registry. | [`http://stage.mdctec.com:5000`](http://stage.mdctec.com:5000) | [README.md](./docker-registry.README.md) | 
-| TODO: List all services here |
+| Description              | URL                                                             | Details                           |
+|--------------------------|-----------------------------------------------------------------|-----------------------------------|
+| Interne Docker Registry  | [`http://stage.mdctec.com:5000`](http://stage.mdctec.com:5000)  | [README.md](./registry/README.md) | 
+| Gitlab Runner 'stage'    | N.A                                                             | [README.md](./registry/README.md) |
 
+## How to connect:
+
+use ssh from a terminal like `ssh <USER>@stage.mdctec.com`

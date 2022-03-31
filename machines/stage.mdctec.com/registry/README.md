@@ -1,4 +1,4 @@
-# Internal Docker Registry  (stage.mdctec.com:5000)
+# Internal Docker Registry  (http://stage.mdctec.com:5000)
 
 * Central location for internal Docker images
 * also used by stage & dev pipelines to pull/push images
