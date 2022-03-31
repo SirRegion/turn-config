@@ -1,1 +1,11 @@
-# TODO: Declare software hosted on gitlab.mdctec.com here as docker services
+services:
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      #- prometheus_data:/prometheus
+      - ./prometheus:/etc/prometheus
+    ports:
+      - "9090:9090"
+
+volumes:
+  prometheus_data:
