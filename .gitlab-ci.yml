@@ -5,7 +5,7 @@ stages:
 
 artifacts:
   stage: build
-  tags: [ shell, dev ]
+  tags: [ shell, stage ]
   script:
     - make artifacts
   artifacts:
