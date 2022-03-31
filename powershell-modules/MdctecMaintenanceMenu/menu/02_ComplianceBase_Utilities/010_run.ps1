@@ -41,6 +41,7 @@ else {
 
 function StartNew
 {
+    mkdir "$Env:CB_HOME/docker/mnt" -Force
 
     Write-Host "starting new container '$Env:CB_DOCKER_CONTAINER'"
 
@@ -48,6 +49,7 @@ function StartNew
         -p "${Env:CB_DOCKER_PORT}:443/tcp" `
         --env "CB_DOMAIN=$Env:CB_DOMAIN" `
         --mount 'type=volume,src=cb-app_data,dst=C:/app/data/mysql' `
+        --mount "type=bind,src=$Env:CB_HOME/docker/mnt,dst=C:/mnt" `
         --name "$ENV:CB_DOCKER_CONTAINER" `
         "${Env:MTEC_DOCKER_REGISTRY}/main/${Env:CB_DOCKER_CONTAINER}/${Env:CB_VARIANT}:${Env:CB_VERSION}"
 
