@@ -14,6 +14,8 @@ services:
     ports:
       - 5000:5000
 
+# Maintenance Tool to cleanup registry 
+# see https://github.com/andrey-pohilko/registry-cli
   registry-prune:
     image: anoxis/registry-cli
     links:
