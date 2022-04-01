@@ -24,7 +24,7 @@ Dazu sind die Server `stage.mdctec.com` und `gitlab.mdctec.com` folgendermaßen 
     /machines/stage.mdctec.com
     /scripts/
     ```
- -  Es gibt einen Link `/root/stage-infrastructure` bzw `/root/gitlab-infrastructure` auf das entsprechende Unterverzeichnis in `machines/*`
+ -  Es gibt einen Link `/root/stage-infrastructure` bzw `/root/gitlab-infrastructure` auf das entsprechende Unterverzeichnis in [`machines/*`](./machines)
 
     ```sh
     root@gitlabrunnerstage:~# ls -l stage-infrastructure
