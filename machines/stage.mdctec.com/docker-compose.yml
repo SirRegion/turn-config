@@ -10,5 +10,12 @@ services:
     environment:
       REGISTRY_HTTP_ADDR: 0.0.0.0:5000
       REGISTRY_VALIDATION_DISABLED: "true"
+      REGISTRY_STORAGE_DELETE_ENABLED: "true"
     ports:
       - 5000:5000
+
+  registry-prune:
+    image: anoxis/registry-cli
+    links:
+      - registry
+    command: -r http://registry:5000 --delete --num 3
