@@ -3,12 +3,14 @@ groups:
     rules:
 
     #Alert if any server goes down for more than 5 minutes
-    - alert: upcheck
+    - alert: up_check_ok
       expr: up == 0
       for: 5m
       annotations:
         summary: "{{$labels.job}} is down!"
         description: "{{$labels.job}} could not be reached, please investigate."
+      labels:
+        severity: critical
 
       # Alert if any server does not respond with 200 as a status code
     - alert: http_status_ok
@@ -17,6 +19,8 @@ groups:
       annotations:
         summary: "{{$labels.instance}} is not healthy!"
         description: "{{$labels.instance}} responded with status code {{$value}} multiple times in the last 2 minutes."
+      labels:
+        severity: critical
 
       # Alert if any server has a higher response time than 2 seconds
     - alert: http_response_time
@@ -25,3 +29,5 @@ groups:
       annotations:
         summary: "${{$labels.instance}} has abnormal response time!"
         description: "{{$labels.instance}} responded after {{$value}} seconds. The response time should be below 2 seconds!"
+      labels:
+        severity: medium
