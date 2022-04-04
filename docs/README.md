@@ -4,10 +4,10 @@
 
 Wir versuchen das Konzept "Infrastruktur as Code" ansatzweise umzusetzen. (Bitte! :wink:)
 
-Dazu sind die Server `stage.mdctec.com` und `gitlab.mdctec.com` folgendermaßen strukturiert:
+Dazu sind die Server `dev.mdctec.local` und `gitlab.mdctec.com` folgendermaßen strukturiert:
 
  -  Das MDCTec Infrastructure Gitlab Repository liegt geklont unter `/root/mtec-repos/infrastructure`
-    Für den `Stage` Server (`stage.mdctec.com`) sieht das z.B. so aus:
+    Für den DEV Server (`dev.mdctec.local`) sieht das z.B. so aus:
     ```sh
     root@gitlabrunnerstage:~# ls -la mtec-repos/infrastructure/
     total 20
@@ -21,21 +21,21 @@ Dazu sind die Server `stage.mdctec.com` und `gitlab.mdctec.com` folgendermaßen 
     Achtung: Es wird das [sparse-checkout](https://git-scm.com/docs/git-sparse-checkout) feature von Git verwendet!
     ```sh
     root@gitlabrunnerstage:~/mtec-repos/infrastructure# cat .git/info/sparse-checkout
-    /machines/stage.mdctec.com
+    /machines/dev.mdctec.local
     /scripts/
     ```
- -  Es gibt einen Link `/root/stage-infrastructure` bzw `/root/gitlab-infrastructure` auf das entsprechende Unterverzeichnis in [`machines/*`](./machines)
+ -  Es gibt einen Link `/root/dev-infrastructure` bzw `/root/gitlab-infrastructure` auf das entsprechende Unterverzeichnis in [`machines/*`](./machines)
 
     ```sh
-    root@gitlabrunnerstage:~# ls -l stage-infrastructure
-    lrwxrwxrwx 1 root root 58 Apr  1 07:09 stage-infrastructure -> /root/mtec-repos/infrastructure/machines/stage.mdctec.com/
+    root@gitlabrunnerstage:~# ls -l dev-infrastructure
+    lrwxrwxrwx 1 root root 58 Apr  1 07:09 dev-infrastructure -> /root/mtec-repos/infrastructure/machines/dev.mdctec.local/
     ```
 
 ## Typischer Workflow zur Wartung der Infrastruktur
 
  1. Verbindung herstellen
     ```sh
-    ssh <USER>@stage.mdctec.com
+    ssh <USER>@dev.mdctec.local
     ```
 
  2. Gott-Modus einschalten (wenn du würdig bist)

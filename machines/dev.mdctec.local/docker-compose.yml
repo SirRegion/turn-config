@@ -1,7 +1,7 @@
 version: "3.8"
 
 # Our Internal Docker Registry:
-# see http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/blob/master/machines/stage.mdctec.com/registry/README.md
+# see http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/blob/master/machines/dev.mdctec.local/registry/README.md
 services:
   registry:
     image: registry:2
@@ -14,7 +14,8 @@ services:
     ports:
       - 5000:5000
 
-# Maintenance Tool to cleanup registry 
+# Maintenance Tool to cleanup registry
+# Running this service will delete all but the latest 3 images
 # see https://github.com/andrey-pohilko/registry-cli
   registry-prune:
     image: anoxis/registry-cli
