@@ -19,7 +19,7 @@ groups:
         summary: "{{$labels.job}} is running full!"
         description: "$${labels.job} has less than 30% of disk storage space remaining! Please clean up. Current value: {{ $value}}%"
       labels:
-        severity: medium
+        severity: high
     # Alert if the server has less than 5% disk space remaining
     - alert: disk_full
       expr: node_filesystem_free_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"} < 0.05
@@ -28,7 +28,7 @@ groups:
         summary: "{{$labels.job}} is nearly full!"
         description: "$${labels.job} has less than 5% of disk storage space remaining! Please clean up. Current value: {{$value}}%"
       labels:
-        severity: medium
+        severity: critical
 
   # All alerts related to data collected by the blackbox exporter
   - name: blackbox
