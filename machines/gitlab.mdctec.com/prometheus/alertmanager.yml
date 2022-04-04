@@ -1,0 +1,14 @@
+receivers:
+  - name: gitlab
+    webhook_configs:
+      - http_config:
+          authorization:
+            type: Bearer
+            credentials: a071a053d19cf17f7d085d89d0727273
+        send_resolved: true
+        url: http://gitlab.mdctec.com/mdctec-developers/internal/Chemprofiler/prometheus/alerts/notify.json
+
+route:
+  group_by: ['alertname']
+  receiver: gitlab
+
