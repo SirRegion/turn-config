@@ -1,7 +1,7 @@
 groups:
-  - name: alerts
+  # All alerts related to the server itself
+  - name: machines
     rules:
-
     #Alert if any server goes down for more than 5 minutes
     - alert: up_check_ok
       expr: up == 0
@@ -12,6 +12,9 @@ groups:
       labels:
         severity: critical
 
+  # All alerts related to data collected by the blackbox exporter
+  - name: blackbox
+    rules:
       # Alert if any server does not respond with 200 as a status code
     - alert: http_status_ok
       expr: probe_http_status_code != 200

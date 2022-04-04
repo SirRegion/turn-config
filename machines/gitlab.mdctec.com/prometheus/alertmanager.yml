@@ -1,5 +1,5 @@
 receivers:
-  - name: gitlab
+  - name: chemprofiler
     webhook_configs:
       - http_config:
           authorization:
@@ -7,8 +7,43 @@ receivers:
             credentials: a071a053d19cf17f7d085d89d0727273
         send_resolved: true
         url: http://gitlab.mdctec.com/mdctec-developers/internal/Chemprofiler/prometheus/alerts/notify.json
+  - name: infrastructure
+    webhook_configs:
+      - http_config:
+          authorization:
+            type: Bearer
+            credentials: 4b0f4f98488b556304df9886f866ec0a
+        send_resolved: true
+        url: http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/prometheus/alerts/notify.json
+  - name: monorepo
+    webhook_configs:
+      - http_config:
+          authorization:
+            type: Bearer
+            credentials: 18841a2e9ac33b7f78dce024264fc6eb
+        send_resolved: true
+        url: http://gitlab.mdctec.com/mdctec-developers/main/mdctec-mono-repo/prometheus/alerts/notify.json
+
 
 route:
   group_by: ['alertname']
-  receiver: gitlab
+  receiver: infrastructure
+  routes:
+    - matchers:
+        - job="blackbox"
+      routes:
+        - matchers:
+            - instance=~".+chemprofiler.+"
+          receiver: chemprofiler
+        - matchers:
+            - instance=~".+wstage.+"
+          receiver: monorepo
+
+
+
+
+
+
+
+
 
