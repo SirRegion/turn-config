@@ -16,6 +16,12 @@ services:
     volumes:
       - ./prometheus:/etc/alertmanager
 
+  blackbox_exporter:
+    image: prom/blackbox-exporter:master
+    restart: always
+    volumes:
+      - ./prometheus:/config
+    command: ["--config.file=/config/blackbox.yml"]
 
 volumes:
   prometheus_data:
