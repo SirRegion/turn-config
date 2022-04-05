@@ -45,3 +45,6 @@ Dazu sind die Server `dev.mdctec.local` und `gitlab.mdctec.com` folgendermaßen 
 
 3. Hier sollten jetzt alle Konfigurationsdateien liegen, die die aktuelle Maschine betreffen.
    Anpassungen sind lokal auf dem Server möglich und können mit Git verwaltet und auch gepusht werden
+
+## Setup der Infrastruktur
+[Details wie die infrastruktur neu installiert werden kann](./setup-infrastructure.README.md)
