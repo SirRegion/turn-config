@@ -6,7 +6,7 @@ Wir versuchen das Konzept "Infrastruktur as Code" ansatzweise umzusetzen. (Bitte
 
 Dazu sind die Server `dev.mdctec.local` und `gitlab.mdctec.com` folgendermaßen strukturiert:
 
- -  Das MDCTec Infrastructure Gitlab Repository liegt geklont unter `/root/mtec-repos/infrastructure`
+ -  Das MDCTec Infrastructure Gitlab Repository liegt geklont unter `/var/local/mdctec-repos/infrastructure`
     Für den DEV Server (`dev.mdctec.local`) sieht das z.B. so aus:
     ```sh
     root@gitlabrunnerstage:~# ls -la mtec-repos/infrastructure/
@@ -24,29 +24,24 @@ Dazu sind die Server `dev.mdctec.local` und `gitlab.mdctec.com` folgendermaßen 
     /machines/dev.mdctec.local
     /scripts/
     ```
- -  Es gibt einen Link `/root/dev-infrastructure` bzw `/root/gitlab-infrastructure` auf das entsprechende Unterverzeichnis in [`machines/*`](./machines)
+ -  Es gibt einen Link `/var/local/dev-infrastructure` bzw `/var/local/gitlab-infrastructure` auf das entsprechende Unterverzeichnis in [`machines/*`](./machines)
 
     ```sh
     root@gitlabrunnerstage:~# ls -l dev-infrastructure
-    lrwxrwxrwx 1 root root 58 Apr  1 07:09 dev-infrastructure -> /root/mtec-repos/infrastructure/machines/dev.mdctec.local/
+    lrwxrwxrwx 1 root root 58 Apr  1 07:09 dev-infrastructure -> /var/local/mdctec-repos/infrastructure/machines/dev.mdctec.local/
     ```
 
 ## Typischer Workflow zur Wartung der Infrastruktur
 
- 1. Verbindung herstellen
-    ```sh
-    ssh <USER>@dev.mdctec.local
-    ```
-
- 2. Gott-Modus einschalten (wenn du würdig bist)
-    ```sh
-    sudo -i
-    ```
-
- 3. Zu den Konfigurationsdateien wechseln.
+1. Verbindung herstellen
+   ```sh
+   ssh <USER>@dev.mdctec.local
+   ```
+ 
+2. Zu den Konfigurationsdateien wechseln.
     ```sh
     cd stage-infrastructure
     ```
 
- 4. Hier sollten jetzt alle Konfigurationsdateien liegen, die die aktuelle Maschine betreffen.
-    Anpassungen sind lokal auf dem Server möglich und können mit Git verwaltet und auch gepusht werden
+3. Hier sollten jetzt alle Konfigurationsdateien liegen, die die aktuelle Maschine betreffen.
+   Anpassungen sind lokal auf dem Server möglich und können mit Git verwaltet und auch gepusht werden
