@@ -8,7 +8,7 @@ The `DEV` machine is a Ubuntu Server whose main purpose is to provide a Gitlab R
 
 ## Hosted Applications & Services:
 
-### Accessible from MDCTec Intranet (mdctec.local)
+### With Access from MDCTec Intranet (mdctec.local)
 | Description              | URL                                                            | Details                                                                                          |
 |--------------------------|----------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
 | Internal Docker Registry | [`http://dev.mdctec.local:5000`](http://dev.mdctec.local:5000) | [README.md](./registry/README.md)                                                                | 
@@ -30,3 +30,4 @@ use ssh from a terminal like `ssh <USER>@dev.mdctec.local`
 
 Login with `root` user is enabled but not advisable.  
 See [this Entry on our PW Server](https://mdctecapps.mdctec.local:10001/WebClient/Main?itemId=44967dbd-e3e3-4ef1-b4bb-f031b69813fe)
+exit
