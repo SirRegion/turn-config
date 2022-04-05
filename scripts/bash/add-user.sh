@@ -15,7 +15,7 @@ do
   usermod -aG $GROUP "$NEW_USER_NAME"
 done
 
-su -c "$NEW_USER_NAME"
+su "$NEW_USER_NAME"
 
 # Create a password
 DEFAULT_PW="xWdNeQRv8R9Wp5b7"
