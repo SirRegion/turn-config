@@ -1,8 +1,8 @@
 # Common setup of an Ubuntu server machine
 
 - [Common setup of an Ubuntu server machine](#common-setup-of-an-ubuntu-server-machine)
-  - [Install latest Git from ppa](#install-latest-git-from-ppa)
-  - [Setup the infrastructure repository](#setup-the-infrastructure-repository)
+  - [Install latest Git from PPA repository](#install-latest-git-from-ppa-repository)
+  - [Set up the Mdctec infrastructure repository](#set-up-the-mdctec-infrastructure-repository)
 
 ## Install latest Git from PPA repository
 
