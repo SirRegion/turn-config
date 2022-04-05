@@ -12,12 +12,10 @@ GITLAB_RUNNER_NAME="$(cat /etc/hostname).mdctec.local/${GITLAB_RUNNER_EXECUTOR}"
 #DOCKER_IMAGE=alpine:latest
 
 sudo gitlab-runner register \
-  --non-interactive \
   --run-untagged="false" \
   --locked="false" \
   --access-level="not_protected" \
   --name "$GITLAB_RUNNER_NAME" \
   --url "http://gitlab.mdctec.com/" \
   --registration-token "c586aRxqEUxsGKB3GUDy" \
-  --executor "${GITLAB_RUNNER_EXECUTOR}" \
-
+  --executor "${GITLAB_RUNNER_EXECUTOR}"
