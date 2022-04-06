@@ -1,7 +1,11 @@
 #!/bin/bash
 
 read -p "NEW_USER_EMAIL:" NEW_USER_EMAIL
-NEW_USER_NAME=${$NEW_USER_EMAIL::6}
+FULL_NAME=${NEW_USER_EMAIL/@*/}
+FIRST_NAME=${FULL_NAME/.*/}
+LAST_NAME=${FULL_NAME/*./}
+
+NEW_USER_NAME="${FIRST_NAME::1}${LAST_NAME::5}"
 echo "Your name on this machine will be: $NEW_USER_NAME"
 
 read -p "Press enter to continue:"
