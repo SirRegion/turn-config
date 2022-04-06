@@ -1,5 +1,7 @@
 # Allgemeine Doku zur internen Infrastruktur
 
+> Betrifft die beiden Ubuntu Maschinen `gitlab.mdctec.com` und `dev.mdctec.local`
+
 - [Allgemeine Doku zur internen Infrastruktur](#allgemeine-doku-zur-internen-infrastruktur)
     - [Typischer Workflow zur Wartung eines Servers](#typischer-workflow-zur-wartung-eines-servers)
     - ["Infrastruktur as Code"](#infrastruktur-as-code)
