@@ -1,5 +1,10 @@
 # Allgemeine Doku zur internen Infrastruktur
 
+- [Allgemeine Doku zur internen Infrastruktur](#allgemeine-doku-zur-internen-infrastruktur)
+  - ["Infrastruktur as Code"](#infrastruktur-as-code)
+  - [Typischer Workflow zur Wartung der Infrastruktur](#typischer-workflow-zur-wartung-der-infrastruktur)
+  - [Setup der Infrastruktur](#setup-der-infrastruktur)
+
 ## "Infrastruktur as Code"
 
 Wir versuchen das Konzept "Infrastruktur as Code" ansatzweise umzusetzen. (Bitte! :wink:)
