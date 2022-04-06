@@ -6,45 +6,53 @@ Wir versuchen das Konzept "Infrastruktur as Code" ansatzweise umzusetzen. (Bitte
 
 Dazu sind die Server `dev.mdctec.local` und `gitlab.mdctec.com` folgendermaßen strukturiert:
 
- -  Das MDCTec Infrastructure Gitlab Repository liegt geklont unter `/var/local/mdctec-repos/infrastructure`
-    Für den DEV Server (`dev.mdctec.local`) sieht das z.B. so aus:
-    ```sh
-    root@gitlabrunnerstage:~# ls -la mtec-repos/infrastructure/
-    total 20
-    drwxr-xr-x 5 root root 4096 Apr  1 07:21 .
-    drwxr-xr-x 3 root root 4096 Apr  1 07:00 ..
-    drwxr-xr-x 8 root root 4096 Apr  1 09:00 .git
-    drwxr-xr-x 3 root root 4096 Apr  1 06:58 machines
-    drwxr-xr-x 4 root root 4096 Apr  1 07:24 scripts
-    ```
+- Das MDCTec Infrastructure Gitlab Repository liegt geklont unter `/etc/mtec/infrastructure`
+  Für den DEV Server (`dev.mdctec.local`) sieht das z.B. so aus:
+  ```shell
+  root@dev:~# ls -la /etc/mtec/infrastructure
+  total 20
+  drwxr-xr-x 5 root root 4096 Apr  1 07:21 .
+  drwxr-xr-x 3 root root 4096 Apr  1 07:00 ..
+  drwxr-xr-x 8 root root 4096 Apr  1 09:00 .git
+  drwxr-xr-x 3 root root 4096 Apr  1 06:58 machines
+  drwxr-xr-x 4 root root 4096 Apr  1 07:24 scripts
+  ```
 
-    Achtung: Es wird das [sparse-checkout](https://git-scm.com/docs/git-sparse-checkout) feature von Git verwendet!
-    ```sh
-    root@gitlabrunnerstage:~/mtec-repos/infrastructure# cat .git/info/sparse-checkout
-    /machines/dev.mdctec.local
-    /scripts/
-    ```
- -  Es gibt einen Link `/var/local/dev-infrastructure` bzw `/var/local/gitlab-infrastructure` auf das entsprechende Unterverzeichnis in [`machines/*`](./machines)
+  Achtung: Es wird das [sparse-checkout](https://git-scm.com/docs/git-sparse-checkout) feature von Git verwendet!
+  ```shell
+  root@dev:/etc/mtec/infrastructure# cat .git/info/sparse-checkout
+  /machines/dev.mdctec.local
+  /scripts/
+  ```
+- Es gibt einen Link `/etc/mtec/dev-infrastructure` bzw `/etc/mtec/gitlab-infrastructure` auf das entsprechende
+  Unterverzeichnis in [`machines/*`](./machines)
 
-    ```sh
-    root@gitlabrunnerstage:~# ls -l dev-infrastructure
-    lrwxrwxrwx 1 root root 58 Apr  1 07:09 dev-infrastructure -> /var/local/mdctec-repos/infrastructure/machines/dev.mdctec.local/
-    ```
+  ```shell
+  root@dev:/etc/mtec# ls -l dev-infrastructure
+  lrwxrwxrwx 1 root mtec 58 Apr  1 07:09 dev-infrastructure -> ./infrastructure/machines/dev.mdctec.local/
+  ```
 
 ## Typischer Workflow zur Wartung der Infrastruktur
 
 1. Verbindung herstellen
-   ```sh
+   ```shell
    ssh <USER>@dev.mdctec.local
    ```
- 
-2. Zu den Konfigurationsdateien wechseln.
-    ```sh
-    cd stage-infrastructure
+
+   :information_source: `<USER>` besteht aus `"<1. Buchstabe Vorname><5 Buchstaben Nachname>"`  
+   also z.B.: `qbuech`, `marndt`
+
+   :information_source: Jeder Benutzer hat initial [dieses Standart Passwort](https://mdctecapps.mdctec.local:10001/WebClient/Main?itemId=1f1c47e6-71d5-4c2a-b42a-b8cd52f078be) welches beim ersten Login geändert werden muss. 
+
+
+3. Zu den Konfigurationsdateien wechseln.
+    ```shell
+    cd /etc/mtec/dev-infrastructure
     ```
 
-3. Hier sollten jetzt alle Konfigurationsdateien liegen, die die aktuelle Maschine betreffen.
-   Anpassungen sind lokal auf dem Server möglich und können mit Git verwaltet und auch gepusht werden
+4. Hier sollten jetzt alle Konfigurationsdateien liegen, die die aktuelle Maschine betreffen. Anpassungen sind lokal auf
+   dem Server möglich und können mit Git verwaltet und auch gepusht werden
 
 ## Setup der Infrastruktur
-[Details wie die infrastruktur neu installiert werden kann](./setup-infrastructure.README.md)
+
+[Details wie ein Server neu installiert werden kann](./setup-infrastructure.README.md)
