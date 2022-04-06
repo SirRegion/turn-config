@@ -1,9 +1,44 @@
 # Allgemeine Doku zur internen Infrastruktur
 
 - [Allgemeine Doku zur internen Infrastruktur](#allgemeine-doku-zur-internen-infrastruktur)
-  - ["Infrastruktur as Code"](#infrastruktur-as-code)
-  - [Typischer Workflow zur Wartung der Infrastruktur](#typischer-workflow-zur-wartung-der-infrastruktur)
-  - [Setup der Infrastruktur](#setup-der-infrastruktur)
+    - [Typischer Workflow zur Wartung eines Servers](#typischer-workflow-zur-wartung-eines-servers)
+    - ["Infrastruktur as Code"](#infrastruktur-as-code)
+    - [Setup der Infrastruktur](#setup-der-infrastruktur)
+
+## Typischer Workflow zur Wartung eines Servers
+
+1. Verbindung herstellen
+   ```shell
+   ssh <USER>@dev.mdctec.local
+   ```
+
+   :information_source: `<USER>` besteht aus `"<1. Buchstabe Vorname><5 Buchstaben Nachname>"`  
+   also z.B.: `qbuech`, `marndt`
+
+   :information_source: Jeder Benutzer hat
+   initial [dieses Standart Passwort](https://mdctecapps.mdctec.local:10001/WebClient/Main?itemId=1f1c47e6-71d5-4c2a-b42a-b8cd52f078be)
+   welches beim ersten Login geändert werden muss.
+
+
+3. Zu den Konfigurationsdateien wechseln.
+    ```shell
+    cd /etc/mtec/dev-infrastructure
+    ```
+
+4. Hier sollten jetzt alle Konfigurationsdateien liegen, die die aktuelle Maschine betreffen.
+
+    ```shell
+    root@dev:/etc/mtec/dev-infrastructure# ll
+    total 24
+    drwxrwsr-x 4 root mtec 4096 Apr  5 15:37 ./
+    drwxrwsr-x 3 root mtec 4096 Apr  5 13:29 ../
+    -rw-rwxr-- 1 root mtec 1935 Apr  5 15:37 README.md*
+    -rw-rwxr-- 1 root mtec  734 Apr  5 13:29 docker-compose.yml*
+    drwxrwsr-x 2 root mtec 4096 Apr  5 13:44 gitlab-runner/
+    drwxrwsr-x 2 root mtec 4096 Apr  5 13:29 registry/
+    ```
+
+    :information_source: Anpassungen sind lokal auf dem Server möglich und können mit Git verwaltet und auch gepusht werden
 
 ## "Infrastruktur as Code"
 
@@ -37,27 +72,7 @@ Dazu sind die Server `dev.mdctec.local` und `gitlab.mdctec.com` folgendermaßen 
   lrwxrwxrwx 1 root mtec 58 Apr  1 07:09 dev-infrastructure -> ./infrastructure/machines/dev.mdctec.local/
   ```
 
-## Typischer Workflow zur Wartung der Infrastruktur
-
-1. Verbindung herstellen
-   ```shell
-   ssh <USER>@dev.mdctec.local
-   ```
-
-   :information_source: `<USER>` besteht aus `"<1. Buchstabe Vorname><5 Buchstaben Nachname>"`  
-   also z.B.: `qbuech`, `marndt`
-
-   :information_source: Jeder Benutzer hat initial [dieses Standart Passwort](https://mdctecapps.mdctec.local:10001/WebClient/Main?itemId=1f1c47e6-71d5-4c2a-b42a-b8cd52f078be) welches beim ersten Login geändert werden muss. 
-
-
-3. Zu den Konfigurationsdateien wechseln.
-    ```shell
-    cd /etc/mtec/dev-infrastructure
-    ```
-
-4. Hier sollten jetzt alle Konfigurationsdateien liegen, die die aktuelle Maschine betreffen. Anpassungen sind lokal auf
-   dem Server möglich und können mit Git verwaltet und auch gepusht werden
-
 ## Setup der Infrastruktur
 
 [Details wie ein Server neu installiert werden kann](./setup-infrastructure.README.md)
+

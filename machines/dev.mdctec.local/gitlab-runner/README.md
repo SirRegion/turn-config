@@ -1,4 +1,4 @@
-# Gitlab Runner on DEV Server
+# "Gitlab Runner" on dev.mdctec.local
 
 ## Installation
 Gitlab Runner is installed using the 'Official Linux packages' approach. (See [here](https://docs.gitlab.com/runner/install/linux-repository.html))

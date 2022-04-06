@@ -1,4 +1,4 @@
-# Internal Docker Registry  (http://dev.mdctec.local:5000)
+# Docker Registry on dev.mdctec.local
 
 * Central location for internal Docker images
 * also used by DEV Server and Gitlab pipelines to pull/push images

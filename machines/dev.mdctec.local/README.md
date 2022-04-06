@@ -8,17 +8,18 @@ The `DEV` machine is a Ubuntu Server whose main purpose is to provide a Gitlab R
 
 ## Hosted Applications & Services:
 
-### With Access from MDCTec Intranet (mdctec.local)
-| Description              | URL                                                            | Details                                                                                          |
-|--------------------------|----------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
-| Internal Docker Registry | [`http://dev.mdctec.local:5000`](http://dev.mdctec.local:5000) | [README.md](./registry/README.md)                                                                | 
-| Gitlab Runner            | N.A                                                            | [README.md](./gitlab-runner/README.md)                                                           |
+### Software accessible via http
+| Description              | URL                                                               | Details                                                                                          |
+|--------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
+| Internal Docker Registry | [`http://dev.mdctec.local:5000`](http://dev.mdctec.local:5000/v2) | [README.md](./registry/README.md)                                                                | 
 
-### Additional software installed
-| Description              | Details                                                                                          |
-|--------------------------|--------------------------------------------------------------------------------------------------|
-| Docker Engine            | was installed using this script: [install-docker.apt.sh](../../scripts/sh/install-docker.apt.sh) |
 
+### Additional software installed as a background service
+| Description         | Details                                                                                          |
+|---------------------|--------------------------------------------------------------------------------------------------|
+| Docker Engine       | was installed using this script: [install-docker.apt.sh](../../scripts/sh/install-docker.apt.sh) |
+| Gitlab Runner       | [README.md](./gitlab-runner/README.md)                                                           | 
+| Prometheus Exporter | [README.md](./prometheus-node-exporter/README.md)                                                | 
 
 ## How to connect:
 
