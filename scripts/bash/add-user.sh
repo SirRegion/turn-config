@@ -26,16 +26,16 @@ for GROUP in sudo mtec docker; do
 done
 
 # Configure Git
-su "$NEW_USER_NAME" -c git config --global user.name "${NEW_USER_NAME}@${HOSTNAME}.${DOMAIN_SUFFIX}"
+su "$NEW_USER_NAME" -c "git config --global user.name ${NEW_USER_NAME}@${HOSTNAME}.${DOMAIN_SUFFIX}"
 
-su "$NEW_USER_NAME" -c git config --global user.email "${NEW_USER_EMAIL}"
+su "$NEW_USER_NAME" -c "git config --global user.email ${NEW_USER_EMAIL}"
 
 # Create a password
 DEFAULT_PW="xWdNeQRv8R9Wp5b7"
 echo -e "${DEFAULT_PW}\n${DEFAULT_PW}" | passwd "${NEW_USER_NAME}"
 
 # Force to reset the password at first login
-passwd --expire ${NEW_USER_NAME}
+passwd --expire "${NEW_USER_NAME}"
 
 echo "Created new User '${NEW_USER_NAME}'"
 echo "You can now login using 'ssh ${NEW_USER_NAME}@${HOSTNAME}.${DOMAIN_SUFFIX}"
