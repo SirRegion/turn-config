@@ -7,7 +7,7 @@
     - ["Infrastruktur as Code"](#infrastruktur-as-code)
     - [Setup der Infrastruktur](#setup-der-infrastruktur)
 
-## Typischer Workflow zur Wartung eines Servers
+## Typischer Workflow zur Wartung des Servers
 
 1. Verbindung herstellen
    ```shell
