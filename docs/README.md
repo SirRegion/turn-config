@@ -86,5 +86,5 @@ Dazu sind die Server `dev.mdctec.local` und `gitlab.mdctec.com` folgendermaßen 
 
 ## Setup der Infrastruktur
 
-[Details wie ein Server neu installiert werden kann](./setup-infrastructure.README.md)
+[Details wie ein Server neu installiert werden kann](./setup-infrastructure-machine.README.md)
 
