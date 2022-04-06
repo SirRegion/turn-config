@@ -30,7 +30,7 @@
 
     
 
-4. Hier sollten jetzt alle Konfigurationsdateien liegen, die die aktuelle Maschine betreffen.
+   Hier sollten jetzt alle Konfigurationsdateien liegen, die die aktuelle Maschine betreffen.
 
     ```shell
     root@dev:/etc/mtec/dev-infrastructure# ll
