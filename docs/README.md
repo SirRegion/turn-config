@@ -15,7 +15,7 @@
    ```
 
    :information_source: `<USER>` besteht aus `"<1. Buchstabe Vorname><5 Buchstaben Nachname>"`  
-   also z.B.: `qbuech`, `marndt`
+   also z.B.: `sguert`, `qbuech`, `marndt`, `jgerst`
 
    :information_source: Jeder Benutzer hat
    initial [dieses Standart Passwort](https://mdctecapps.mdctec.local:10001/WebClient/Main?itemId=1f1c47e6-71d5-4c2a-b42a-b8cd52f078be)
