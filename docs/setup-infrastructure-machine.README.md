@@ -12,7 +12,7 @@ apt-get update
 apt-get install git
 ```
 
-## Set up the Mdctec infrastructure repository
+## Set up the Mdctec Infrastructure Repository
 
 1. Create an empty git repository
 

@@ -20,10 +20,15 @@
    welches beim ersten Login geändert werden muss.
 
 
-3. Zu den Konfigurationsdateien wechseln.
+2. Zu den Konfigurationsdateien wechseln.
     ```shell
     cd /etc/mtec/dev-infrastructure
     ```
+
+   :information_source: Der Ordnername - hier `dev-infrastructure` - heißt auf jeder Maschine anders, entsprechend dem Hostnamen.
+   Andere Beispiele: `gitlab-infrastructure`
+
+    
 
 4. Hier sollten jetzt alle Konfigurationsdateien liegen, die die aktuelle Maschine betreffen.
 
@@ -38,15 +43,22 @@
     drwxrwsr-x 2 root mtec 4096 Apr  5 13:29 registry/
     ```
 
-    :information_source: Anpassungen sind lokal auf dem Server möglich und können mit Git verwaltet und auch gepusht werden
+   :information_source: Anpassungen sind lokal auf dem Server möglich und können mit Git verwaltet und auch gepusht
+   werden
 
-## "Infrastruktur as Code"
+## Infrastruktur as Code
 
 Wir versuchen das Konzept "Infrastruktur as Code" ansatzweise umzusetzen. (Bitte! :wink:)
 
+### :scroll: Regeln
+ - Alles, was auf einer Servermaschine manuell installiert/konfiguriert soll in das [Mdctec Infrastructure Repository](http://gitlab.mdctec.com/mdctec-developers/internal/infrastructure/-/tree/master)
+   aufgenommen werden
+
+
+### :bulb: Konzept
 Dazu sind die Server `dev.mdctec.local` und `gitlab.mdctec.com` folgendermaßen strukturiert:
 
-- Das MDCTec Infrastructure Gitlab Repository liegt geklont unter `/etc/mtec/infrastructure`
+- Das MDCTec Infrastructure Gitlab Repository liegt geklont unter `/etc/mtec/infrastructure`  
   Für den DEV Server (`dev.mdctec.local`) sieht das z.B. so aus:
   ```shell
   root@dev:~# ls -la /etc/mtec/infrastructure
