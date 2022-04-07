@@ -48,6 +48,7 @@ function StartNew
     $CB_DOCKER_CONTAINER_ID = docker run -d `
         -p "${Env:CB_DOCKER_PORT}:443/tcp" `
         --env "CB_DOMAIN=$Env:CB_DOMAIN" `
+        --restart 'unless-stopped' `
         --mount 'type=volume,src=cb-app_data,dst=C:/app/data/mysql' `
         --mount "type=bind,src=$Env:CB_HOME/docker/mnt,dst=C:/mnt" `
         --name "$ENV:CB_DOCKER_CONTAINER" `
