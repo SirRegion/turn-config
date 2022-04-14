@@ -13,7 +13,7 @@ groups:
         severity: critical
     # Warn if the server has less than 30% disk space remaining
     - alert: disk_nearly_full
-      expr: node_filesystem_free_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"} < 0.3
+      expr: ((node_filesystem_free_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"}) or (node_filesystem_free{mountpoint="/"} / node_filesystem_size{mountpoint="/"})) < 0.3
       for: 5m
       annotations:
         summary: "{{$labels.job}} is running full!"
@@ -22,7 +22,7 @@ groups:
         severity: high
     # Alert if the server has less than 5% disk space remaining
     - alert: disk_full
-      expr: node_filesystem_free_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"} < 0.05
+      expr: ((node_filesystem_free_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"}) or (node_filesystem_free{mountpoint="/"} / node_filesystem_size{mountpoint="/"})) < 0.05
       for: 5m
       annotations:
         summary: "{{$labels.job}} is nearly full!"
