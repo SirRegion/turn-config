@@ -13,7 +13,7 @@ groups:
         severity: critical
     # Warn if the server has less than 30% disk space remaining
     - alert: disk_nearly_full
-      expr: ((node_filesystem_free_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"}) or (node_filesystem_free{mountpoint="/"} / node_filesystem_size{mountpoint="/"})) < 0.3
+      expr: 0.05 < ((node_filesystem_free_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"}) or (node_filesystem_free{mountpoint="/"} / node_filesystem_size{mountpoint="/"})) < 0.3
       for: 30m
       annotations:
         summary: "{{$labels.job}} is running full!"
@@ -30,7 +30,7 @@ groups:
       labels:
         severity: critical
     - alert: swap_to_high
-      expr: (((node_memory_SwapTotal_bytes - node_memory_SwapFree_bytes) / node_memory_SwapTotal_bytes) or ((node_memory_SwapTotal - node_memory_SwapFree) / node_memory_SwapTotal)) > 0.15
+      expr: 0.15 < (((node_memory_SwapTotal_bytes - node_memory_SwapFree_bytes) / node_memory_SwapTotal_bytes) or ((node_memory_SwapTotal - node_memory_SwapFree) / node_memory_SwapTotal)) < 0.7
       for: 5m
       annotations:
         summary: "{{$labels.job}} is using a lot of RAM!"
