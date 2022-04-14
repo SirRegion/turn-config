@@ -14,21 +14,37 @@ groups:
     # Warn if the server has less than 30% disk space remaining
     - alert: disk_nearly_full
       expr: ((node_filesystem_free_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"}) or (node_filesystem_free{mountpoint="/"} / node_filesystem_size{mountpoint="/"})) < 0.3
-      for: 5m
+      for: 1h
       annotations:
         summary: "{{$labels.job}} is running full!"
-        description: "$${labels.job} has less than 30% of disk storage space remaining! Please clean up. Current value: {{ $value}}%"
+        description: "$${labels.job} has less than 30% of disk storage space remaining! Please clean up. Current value: {{ $value}}"
       labels:
-        severity: high
+        severity: medium
     # Alert if the server has less than 5% disk space remaining
     - alert: disk_full
       expr: ((node_filesystem_free_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"}) or (node_filesystem_free{mountpoint="/"} / node_filesystem_size{mountpoint="/"})) < 0.05
-      for: 5m
+      for: 1h
       annotations:
         summary: "{{$labels.job}} is nearly full!"
-        description: "$${labels.job} has less than 5% of disk storage space remaining! Please clean up. Current value: {{$value}}%"
+        description: "$${labels.job} has less than 5% of disk storage space remaining! Please clean up. Current value: {{$value}}"
       labels:
         severity: critical
+    - alert: swap_to_high
+      expr: (((node_memory_SwapTotal_bytes - node_memory_SwapFree_bytes) / node_memory_SwapTotal_bytes) or ((node_memory_SwapTotal - node_memory_SwapFree) / node_memory_SwapTotal)) > 0.15
+      for: 5m
+      annotations:
+        summary: "{{$labels.job}} is using a lot of RAM!"
+        description: "$${labels.job} is using more than 15% of its currently available swap. Increasing RAM is recommended. Current value: {{$value}}"
+      labels:
+        severity: medium
+    - alert: swap_crititcaly_high
+      expr: (((node_memory_SwapTotal_bytes - node_memory_SwapFree_bytes) / node_memory_SwapTotal_bytes) or ((node_memory_SwapTotal - node_memory_SwapFree) / node_memory_SwapTotal)) > 0.7
+      for: 5m
+      annotations:
+        summary: "{{$labels.job}} is using way to much RAM!"
+        description: "$${labels.job} is using more than 70% of its currently available swap. Increasing RAM is recommended. Current value: {{$value}}"
+      labels:
+        severity: high
 
   # All alerts related to data collected by the blackbox exporter
   - name: blackbox
