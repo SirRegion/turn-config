@@ -17,6 +17,18 @@ artifacts:
     paths:
       - powershell-modules/powershell-modules.zip.files
 
+include:
+  - project: mdctec-developers/internal/maintenance-menu
+    file: 'push-to-menu.yml'
+
+Push Menu Config:
+  extends:
+    - .deploy config for menu
+  stage: pre
+  tags:
+    - dev
+    - docker
+
 #build_turnserver_image:
 #  stage: build
 #  tags:
