@@ -19,7 +19,7 @@ ResetState "$Env:MMM_HOME"
 
 # 1) Fetch latest image
 if (-Not $Env:MTEC_DOCKER_REGISTRY){
-    . "$Env:MMM_HOME/assets/environment/default.env.ps1"
+    $MTEC_DOCKER_REGISTRY = 'complianceBaseContainerRegistry.azurecr.io'
 }else {
     $MTEC_DOCKER_REGISTRY = $Env:MTEC_DOCKER_REGISTRY
 }

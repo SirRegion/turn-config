@@ -1,5 +1,3 @@
-## TODO: allow to choose from avalable versions
-#. "$Env:MMM_HOME/assets/environment/default.env.ps1"
 
 
 Param

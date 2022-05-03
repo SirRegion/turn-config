@@ -5,7 +5,6 @@ Param(
     $ContainerDirectoryPath
 )
 
-. "$Env:MMM_HOME/assets/environment/default.env.ps1"
 
 $ErrorActionPreference = "Stop"
 $Env:CB_DOCKER_EXTRACT_PATH = [System.Environment]::GetEnvironmentVariable("CB_DOCKER_EXTRACT_PATH", "User")
