@@ -1,0 +1,7 @@
+items:
+  "Dev Infrastructure":
+    items:
+      "Cleanup Docker Registry":
+        pwsh:
+          - cd /etc/mtec/dev-infrastructure; docker-compose up -d registry-prune
+          - docker exec -u root registry bin/registry garbage-collect --delete-untagged /etc/docker/registry/config.yml

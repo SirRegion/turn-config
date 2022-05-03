@@ -1,4 +1,0 @@
-items:
-  From the infrastructure repo:
-     powershell:
-       - echo "Hello from infrastructure!"
