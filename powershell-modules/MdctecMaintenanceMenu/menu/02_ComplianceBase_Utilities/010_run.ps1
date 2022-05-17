@@ -71,7 +71,7 @@ if ($LastExitCode -gt 0){
     $ContainerStatusOK = $true
 }else{
     $ContainerStatusOK = $LastExitCode -gt 0 -OR $ContainerStatus -eq 'exited'
-    Write-Host "ContainerStatus='$ContainerStatus', OK:${ContainerStatusOK}"
+    Write-Host "ContainerStatus='$ContainerStatus'"
 }
 
 Write-Host
