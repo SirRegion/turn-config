@@ -1,9 +1,20 @@
 items:
   ComplianceBase Utilities:
     items:
-      Update:
+      Pull a docker image:
+        environment:
+          MTEC_DOCKER_REGISTRY:
+            persistent: "Yes"
+          CB_DOCKER_CONTAINER:
+            persistent: "Yes"
+          CB_VARIANT:
+            persistent: "Yes"
+          CB_VERSION:
+            persistent: "Yes"
         powershell:
-          - echo "not implemented"
+          - Write-Host ""
+          - Write-Host "docker pull ${Env:MTEC_DOCKER_REGISTRY}/main/${Env:CB_DOCKER_CONTAINER}/${Env:CB_VARIANT}:${Env:CB_VERSION}"
+          - docker pull "${Env:MTEC_DOCKER_REGISTRY}/main/${Env:CB_DOCKER_CONTAINER}/${Env:CB_VARIANT}:${Env:CB_VERSION}"
       Inspect:
         powershell:
           - echo "not implemented"
