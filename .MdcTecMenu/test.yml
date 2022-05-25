@@ -1,0 +1,21 @@
+items:
+  ComplianceBase Utilities:
+    items:
+      Update:
+        powershell:
+          - echo "not implemented"
+      Inspect:
+        powershell:
+          - echo "not implemented"
+      Configure:
+        powershell:
+          - echo "not implemented"
+      Utilities:
+        powershell:
+          - echo "not implemented"
+      Run:
+        powershell:
+          - echo "not implemented"
+      Stop:
+        powershell:
+          - echo "not implemented"
