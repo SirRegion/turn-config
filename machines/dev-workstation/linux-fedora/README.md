@@ -243,7 +243,7 @@ Finally, add a handy alias for connecting to the vpn to your shell configuration
 
 ```shell
 # NOTE: You may want to remove the background operator, in case the certificate is unknown and needs to be confirmed manually.
-alias connectVPN="netExtender -u YOURUSERNAME -p YOURPASSWORD -d mdctec.local extern.mdctec.com:4433 &"
+alias connectVPN="netExtender -u YOURUSERNAME -p YOURPASSWORD -d mdctec.local --always-trust extern.mdctec.com:4433 &"
 ```
 
 ### Install Jetbrains IDE
