@@ -12,8 +12,6 @@ items:
           CB_VERSION:
             persistent: "Yes"
         powershell:
-          - Write-Host ""
-          - Write-Host "docker pull ${Env:MTEC_DOCKER_REGISTRY}/main/${Env:CB_DOCKER_CONTAINER}/${Env:CB_VARIANT}:${Env:CB_VERSION}"
           - docker pull "${Env:MTEC_DOCKER_REGISTRY}/main/${Env:CB_DOCKER_CONTAINER}/${Env:CB_VARIANT}:${Env:CB_VERSION}"
       Inspect:
         powershell:
@@ -22,8 +20,22 @@ items:
         powershell:
           - echo "not implemented"
       Utilities:
-        powershell:
-          - echo "not implemented"
+        items:
+          Push Files to the Container:
+            powershell:
+              - echo "not implemented"
+          Pull Files from Container:
+            powershell:
+              - echo "not implemented"
+          Open an interactive Shell inside the Container (broken):
+            environment:
+              CB_DOCKER_CONTAINER:
+                persistent: "Yes"
+            powershell:
+              - docker exec -it $Env:CB_DOCKER_CONTAINER powershell
+          Create Data Backup:
+            powershell:
+              - echo "not implemented"
       Run:
         powershell:
           - echo "not implemented"
