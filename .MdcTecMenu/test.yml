@@ -34,8 +34,15 @@ items:
             powershell:
               - docker exec -it $Env:CB_DOCKER_CONTAINER powershell
           Create Data Backup:
+            environment:
+              CB_BACKUP_PATH:
+                 default: /mnt/backup/cb_backend_v0_1/mysqldump.sql
+                 persistent: "No"
             powershell:
-              - echo "not implemented"
+              - docker exec "$Env:CB_DOCKER_CONTAINER" powershell -C "mkdir /mnt/backup/cb_backend_v0_1 -Force | Out-Null; mysqldump --user='root' --password='OwobEB7M' --databases cb_backend_v0_1 > '$CB_BACKUP_PATH'"
+          Show all environment variables:
+            powershell:
+              - ./dump.ps1
       Run:
         environment:
           CB_DOCKER_PORT:
@@ -51,5 +58,15 @@ items:
         powershell:
           - ./run.ps1
       Stop:
+        environment:
+          CB_DOCKER_CONTAINER:
+            persistent: "Yes"
         powershell:
-          - echo "not implemented"
+          - docker stop ${CB_DOCKER_CONTAINER}
+      Remove Container:
+        environment:
+          CB_DOCKER_CONTAINER:
+            persistent: "Yes"
+        confirm: Are you sure you want to remove the container? Data might be lost!
+        powershell:
+          - docker rm -f ${env:CB_DOCKER_CONTAINER}
