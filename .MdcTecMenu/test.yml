@@ -43,7 +43,7 @@ items:
           Show all environment variables:
             powershell:
               - ./dump.ps1
-      Run:
+      Run Container:
         environment:
           CB_DOCKER_PORT:
             persistent: "Yes"
@@ -57,7 +57,7 @@ items:
             persistent: "Yes"
         powershell:
           - ./run.ps1
-      Stop:
+      Stop Container:
         environment:
           CB_DOCKER_CONTAINER:
             persistent: "Yes"
