@@ -184,44 +184,48 @@ All config files for `onedrive` will be placed under `~/.config/onedrive` and ca
 
 Setting up the VPN tool might become hacky. This depends heavily on whether your current DNS config is
 functioning. You can test your local DNS config by connecting to your home's wifi or GUESTWLAN at the company
-site and executing
-`ping extern.mdctec.com`. If this command states something like "*Name or service not known*",
-your `/etc/resolv.conf`
-might be corrupted.  
+site and executing `ping extern.mdctec.com`. If this command states something like 
+"*Name or service not known*", your `/etc/resolv.conf` might be corrupted.  
 To fix it, follow the steps below:
 
 1. Ensure `/etc/resolv.conf` is symlink rather than a stand-alone file.
-2. If so, remove the symlink by typing `sudo /bin/rm -f /etc/resolv.conf`.
-3. Create or edit `/etc/NetworkManager/conf.d/dns.conf` and add:
-    ```
+2. Ensure `/etc/systemd/resolved.conf.d/00-custom.conf` exists and contains the config below.
+   ```text
+   [Resolve]
+   DNSoverTLS=yes
+   ```
+3. Ensure every default entry in `/etc/systemd/resolved.conf` is commented.
+4. If you had to edit one of the files in step 2 or 3, run:
+   `sudo systemctl restart systemd-resolved.service; sudo systemctl restart NetworkManager.service`
+5. Check `resolvctl --no-pager status`. If it states something like below, you should be good to go.
+   ```text
+   Link 3 (enp0s20f0u2u3i5)
+      Current Scopes: DNS LLMNR/IPv4 LLMNR/IPv6
+         Protocols: +DefaultRoute +LLMNR +mDNS -DNSOverTLS DNSSEC=no/unsupported
+   Current DNS Server: 192.168.8.102
+       DNS Servers: 192.168.8.102 192.168.8.100
+        DNS Domain: mdctec.local
+   ```
+   If not, the issue most likely lies within `NetworkManager`.
+6. Ensure there is **no** `/etc/NetworkManager/conf.d/dns.conf` or it does **not** contain:
+    ```text
     [main]
     dns=none
     main.systemd-resolved=false
     ```
-4. Restart the NetworkManager: `sudo systemctl restart NetworkManager`.
-5. Check if the issue is resolved by executing the `ping` command above.
-6. If you still have issues accessing the VPN server, populate a temporary `/etc/resolv.conf` by executing
-   `sudo systemctl restart systemd-resolved && sudo systemctl stop systemd-resolved`.
-7. If the issue still persists, create a new `/etc/resolv.conf` or overwrite the current temporary one with
-   the following contents:
-    ```shell
-    search domain.name
-    nameserver 192.168.8.102
-    nameserver 192.168.8.100
-    nameserver 8.8.8.8
-    nameserver 1.1.1.1
-    nameserver 1.0.0.1
-    ```
-8. Ensure NetworkManager does not overwrite your config after restarting by adding th following to
-   `/etc/NetworkManager/NetworkManager.conf`:
-    ```
-    [main]
-    dns=none
-    systemd-resolved=false
-    ```
-9. Reboot.
+7. Ensure NetworkManager does not overwrite your config after restarting by adding the following to
+    `/etc/NetworkManager/NetworkManager.conf`:
+     ```
+     [main]
+     dns=none
+     #systemd-resolved=false
+     #plugins=keyfile,ifcfg-rh
+     ```
+8. Reboot.
+9. *Optionally* migrate ifcfg network files to keyfiles to help keep your system ready for future updates:
+   `sudo nmcli conn migrate`
 
-This should work in most cases, and you can continue afterwards with installing *NetExtender*.
+This should work in most cases and lets you continue to install *NetExtender*.
 
 1. Download the latest installer form the
    [Sonicwall website](https://www.sonicwall.com/products/remote-access/vpn-clients/).
@@ -291,7 +295,7 @@ official drivers.
    sudo /usr/src/kernels/$(uname -r)/scripts/sign-file sha256 ./MOK.priv ./MOK.der /lib/modules/$(uname -r)/extra/evdi.ko
    sudo xz -f /lib/modules/$(uname -r)/extra/evdi.ko
    ```
-4. Download the latest displaylink driver rpm package from https://github.com/displaylink-rpm/displaylink-rpm.
+4. Download the latest displaylink driver rpm package from https://github.com/displaylink-rpm/displaylink-rpm
 5. Install it by executing `sudo dnf -y install <downloaded diplaylink driver package name>.rpm`.
 
 ### Resolve mouse flickering when using *GNOME on XORG* with Intel Graphics
