@@ -37,8 +37,19 @@ items:
             powershell:
               - echo "not implemented"
       Run:
+        environment:
+          CB_DOCKER_PORT:
+            persistent: "Yes"
+          CB_DOCKER_CONTAINER:
+            persistent: "Yes"
+          CB_VARIANT:
+            persistent: "Yes"
+          CB_VERSION:
+            persistent: "Yes"
+          CB_DOMAIN:
+            persistent: "Yes"
         powershell:
-          - echo "not implemented"
+          - ./run.ps1
       Stop:
         powershell:
           - echo "not implemented"
