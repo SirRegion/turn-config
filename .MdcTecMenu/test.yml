@@ -39,7 +39,7 @@ items:
                  default: /mnt/backup/cb_backend_v0_1/mysqldump.sql
                  persistent: "No"
             powershell:
-              - docker exec "$Env:CB_DOCKER_CONTAINER" powershell -C "mkdir /mnt/backup/cb_backend_v0_1 -Force | Out-Null; mysqldump --user='root' --password='OwobEB7M' --databases cb_backend_v0_1 > '$CB_BACKUP_PATH'"
+              - docker exec "$Env:CB_DOCKER_CONTAINER" powershell -C "mkdir /mnt/backup/cb_backend_v0_1 -Force | Out-Null; mysqldump --user='root' --password='OwobEB7M' --databases cb_backend_v0_1 > '$env:CB_BACKUP_PATH'"
           Show all environment variables:
             powershell:
               - ./dump.ps1
