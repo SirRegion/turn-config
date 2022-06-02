@@ -36,7 +36,7 @@ items:
           Create Data Backup:
             powershell:
               - $CB_BACKUP_PATH="/mnt/backup/cb_backend_v0_1/mysqldump_$(get-date -f yyyy-MM-dd_HHmm).sql"
-              - docker exec "$Env:CB_DOCKER_CONTAINER" powershell -C "mkdir /mnt/backup/cb_backend_v0_1 -Force | Out-Null; mysqldump --user='root' --password='OwobEB7M' --databases cb_backend_v0_1 > '$CB_BACKUP_PATH'"
+              - docker exec "$Env:CB_DOCKER_CONTAINER" powershell -C "mkdir /mnt/backup/cb_backend_v0_1 -Force | Out-Null; mysqldump --user='root' --password='OwobEB7M' --databases cb_backend_v0_1 > '$env:CB_BACKUP_PATH'"
           Show all environment variables:
             powershell:
               - ./dump.ps1
@@ -59,7 +59,7 @@ items:
           CB_DOCKER_CONTAINER:
             persistent: "Yes"
         powershell:
-          - docker stop ${env:CB_DOCKER_CONTAINER}
+          - docker stop ${CB_DOCKER_CONTAINER}
       Remove Container:
         environment:
           CB_DOCKER_CONTAINER:
@@ -67,3 +67,23 @@ items:
         confirm: Are you sure you want to remove the container? Data might be lost!
         powershell:
           - docker rm -f ${env:CB_DOCKER_CONTAINER}
+      Pull new image and restart Container:
+        environment:
+          CB_DOCKER_PORT:
+            persistent: "Yes"
+          CB_DOCKER_CONTAINER:
+            persistent: "Yes"
+          CB_VARIANT:
+            persistent: "Yes"
+          CB_VERSION:
+            persistent: "Yes"
+          CB_DOMAIN:
+            persistent: "Yes"
+          MTEC_DOCKER_REGISTRY:
+            persistent: "Yes"
+        powershell:
+          - docker pull "${Env:MTEC_DOCKER_REGISTRY}/main/${Env:CB_DOCKER_CONTAINER}/${Env:CB_VARIANT}:${Env:CB_VERSION}"
+          - $CB_BACKUP_PATH="/mnt/backup/cb_backend_v0_1/mysqldump_$(get-date -f yyyy-MM-dd_HHmm).sql"
+          - docker exec "$Env:CB_DOCKER_CONTAINER" powershell -C "mkdir /mnt/backup/cb_backend_v0_1 -Force | Out-Null; mysqldump --user='root' --password='OwobEB7M' --databases cb_backend_v0_1 > '$env:CB_BACKUP_PATH'"
+          - docker rm -f ${env:CB_DOCKER_CONTAINER}
+          - ./run.ps1
