@@ -59,7 +59,7 @@ items:
           CB_DOCKER_CONTAINER:
             persistent: "Yes"
         powershell:
-          - docker stop ${CB_DOCKER_CONTAINER}
+          - docker stop ${env:CB_DOCKER_CONTAINER}
       Remove Container:
         environment:
           CB_DOCKER_CONTAINER:
