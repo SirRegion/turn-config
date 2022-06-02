@@ -27,19 +27,16 @@ items:
           Pull Files from Container:
             powershell:
               - echo "not implemented"
-          Open an interactive Shell inside the Container (broken):
+          Open an interactive Shell inside the Container:
             environment:
               CB_DOCKER_CONTAINER:
                 persistent: "Yes"
             powershell:
-              - docker exec -it $Env:CB_DOCKER_CONTAINER powershell
+              - Start-Process PowerShell -ArgumentList "docker exec -it $Env:CB_DOCKER_CONTAINER powershell; Read-Host 'Press Enter'"
           Create Data Backup:
-            environment:
-              CB_BACKUP_PATH:
-                 default: /mnt/backup/cb_backend_v0_1/mysqldump.sql
-                 persistent: "No"
             powershell:
-              - docker exec "$Env:CB_DOCKER_CONTAINER" powershell -C "mkdir /mnt/backup/cb_backend_v0_1 -Force | Out-Null; mysqldump --user='root' --password='OwobEB7M' --databases cb_backend_v0_1 > '$env:CB_BACKUP_PATH'"
+              - $CB_BACKUP_PATH="/mnt/backup/cb_backend_v0_1/mysqldump_$(get-date -f yyyy-MM-dd_HHmm).sql"
+              - docker exec "$Env:CB_DOCKER_CONTAINER" powershell -C "mkdir /mnt/backup/cb_backend_v0_1 -Force | Out-Null; mysqldump --user='root' --password='OwobEB7M' --databases cb_backend_v0_1 > '$CB_BACKUP_PATH'"
           Show all environment variables:
             powershell:
               - ./dump.ps1
@@ -62,7 +59,7 @@ items:
           CB_DOCKER_CONTAINER:
             persistent: "Yes"
         powershell:
-          - docker stop ${env:CB_DOCKER_CONTAINER}
+          - docker stop ${CB_DOCKER_CONTAINER}
       Remove Container:
         environment:
           CB_DOCKER_CONTAINER:
