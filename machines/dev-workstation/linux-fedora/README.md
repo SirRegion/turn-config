@@ -34,6 +34,12 @@ sudo dnf install \
   https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 ```
 
+### Enable *fedora-repo-archives* for rollbacks
+
+```shell
+sudo dnf install fedora-repos-archive
+```
+
 ### Enable *flathub* base repository
 
 ```shell
@@ -45,14 +51,7 @@ You most likely need both repositories to be able to install all relevant packag
 ### Basics
 
 ```shell
-dnf check-update                                                                                              
-sudo dnf -y install git-core\
-make\
-wget\
-curl\
-keepassxc\
-util-linux-user\
-remmina
+sudo dnf install util-linux-user
 ```
 
 Afterwards upgrade all preinstalled packages. If you feel like cleaning up and removing some of the
@@ -172,7 +171,7 @@ sudo dnf -y install onedrive
 onedrive
 
 # Start syncing / monitoring your files
-onedrive --monitor
+onedrive --synchronize
 
 # Get help / print all available commands
 onedrive --help
@@ -275,7 +274,7 @@ official drivers.
    driver. This is only mandatory, in case you're using your computer with *Secure Boot* enabled.
     ```shell
     cd ~/Downloads/
-    sudo dnf -y install libdrm-devel.x86_64 libdrm.x86_64 kernel-devel-$(uname -r)
+    sudo dnf -y install libdrm-devel.x86_64 libdrm.x86_64 kernel-devel-$(uname -r) dkms
     openssl req -new -x509 -newkey rsa:2048 -keyout MOK.priv -outform DER -out MOK.der -nodes -days 36500 -subj "/CN=Displaylink/"
     sudo mokutil --import MOK.der
     reboot
