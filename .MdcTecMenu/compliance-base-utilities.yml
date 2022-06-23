@@ -14,8 +14,47 @@ items:
         powershell:
           - docker pull "${Env:MTEC_DOCKER_REGISTRY}/main/${Env:CB_DOCKER_CONTAINER}/${Env:CB_VARIANT}:${Env:CB_VERSION}"
       Inspect:
-        powershell:
-          - echo "not implemented"
+        items:
+          Open an interactive Shell inside the Container:
+            environment:
+              CB_DOCKER_CONTAINER:
+                persistent: "Yes"
+            powershell:
+              - Start-Process PowerShell -ArgumentList "docker exec -it $Env:CB_DOCKER_CONTAINER powershell; Read-Host 'Press Enter'"
+          Run docker inspect with the current container:
+            environment:
+              CB_DOCKER_CONTAINER:
+                persistent: "Yes"
+            powershell:
+              - docker inspect $CB_DOCKER_CONTAINER
+          Show logs of the current container:
+            items:
+              Docker logs:
+                environment:
+                  CB_DOCKER_CONTAINER:
+                    persistent: "Yes"
+                powershell:
+                  - docker logs $CB_DOCKER_CONTAINER -f
+              Show MySQL logs:
+                environment:
+                  CB_DOCKER_CONTAINER:
+                    persistent: "Yes"
+                powershell:
+                  - docker exec $Env:CB_DOCKER_CONTAINER powershell -c 'Get-Content C:/log/mysql/mysql-error.log -Wait'
+              Nginx Logs:
+                items:
+                  Error Log:
+                    environment:
+                      CB_DOCKER_CONTAINER:
+                        persistent: "Yes"
+                    powershell:
+                      - docker exec $Env:CB_DOCKER_CONTAINER powershell -c 'Get-Content C:/log/nginx/error.log -Wait'
+                  Access Log:
+                    environment:
+                      CB_DOCKER_CONTAINER:
+                        persistent: "Yes"
+                    powershell:
+                      - docker exec $Env:CB_DOCKER_CONTAINER powershell -c 'Get-Content C:/log/nginx/access.log -Wait'
       Configure:
         powershell:
           - echo "not implemented"
