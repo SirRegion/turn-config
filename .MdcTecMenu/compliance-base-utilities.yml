@@ -132,6 +132,6 @@ items:
       Download test:
         download:
           container: 00-hidden-test
-          target: C:\Users\jakob.gerstmayer\Desktop\test
+          targetfolder: C:\Users\jakob.gerstmayer\Desktop\test\
         powershell:
           - ls C:\Users\jakob.gerstmayer\Desktop\test\00-hidden-test
