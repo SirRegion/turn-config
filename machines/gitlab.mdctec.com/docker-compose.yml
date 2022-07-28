@@ -2,7 +2,7 @@ services:
   prometheus:
     image: prom/prometheus
     restart: always
-    command: ["--storage.tsdb.retention.size=1GB", "--config.file=/etc/prometheus/prometheus.yml", "--storage.tsdb.path=/prometheus", "--web.console.libraries=/usr/share/prometheus/console_libraries", "--web.console.templates=/usr/share/prometheus/consoles"]
+    command: ["--storage.tsdb.retention.size=300MB", "--config.file=/etc/prometheus/prometheus.yml", "--storage.tsdb.path=/prometheus", "--web.console.libraries=/usr/share/prometheus/console_libraries", "--web.console.templates=/usr/share/prometheus/consoles"]
     volumes:
       - prometheus_data:/prometheus
       - ./prometheus:/etc/prometheus
