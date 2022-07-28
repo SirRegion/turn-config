@@ -81,9 +81,7 @@ items:
               - ./dump.ps1
           Install docker-compose v1.29.2:
             powershell:
-              - [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-              - Invoke-WebRequest "https://github.com/docker/compose/releases/download/v2.7.0/docker-compose-Windows-x86_64.exe" -UseBasicParsing -OutFile $Env:ProgramFiles\Docker\docker-compose.exe
-
+              - Invoke-WebRequest "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Windows-x86_64.exe" -UseBasicParsing -OutFile 'C:\Program Files\Docker\docker-compose.exe'
       Run Container:
         environment:
           CB_DOCKER_PORT:
