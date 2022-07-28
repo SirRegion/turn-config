@@ -129,3 +129,9 @@ items:
           - docker exec "$Env:CB_DOCKER_CONTAINER" powershell -C "mkdir /mnt/backup/cb_backend_v0_1 -Force | Out-Null; mysqldump --user='root' --password='OwobEB7M' --databases cb_backend_v0_1 > '$env:CB_BACKUP_PATH'"
           - docker rm -f ${env:CB_DOCKER_CONTAINER}
           - ./run.ps1
+      Download test:
+        download:
+          container: 00-hidden-test
+          target: C:\Users\jakob.gerstmayer\Desktop\test
+        powershell:
+          - ls C:\Users\jakob.gerstmayer\Desktop\test\00-hidden-test
