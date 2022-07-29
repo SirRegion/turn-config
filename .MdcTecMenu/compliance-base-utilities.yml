@@ -138,4 +138,4 @@ items:
           - az acr login -n compliancebasecontainerregistry
           - cd C:\Windows\Temp\compliancebase\00-compliancebase
           - docker-compose -f .\docker-compose.production.yml pull
-          - docker-compose -f docker-compose.production.yml up --no-build -d
+          - docker-compose -f docker-compose.production.yml -p "prod" up --no-build -d
