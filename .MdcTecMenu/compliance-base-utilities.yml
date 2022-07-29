@@ -129,9 +129,13 @@ items:
           - docker exec "$Env:CB_DOCKER_CONTAINER" powershell -C "mkdir /mnt/backup/cb_backend_v0_1 -Force | Out-Null; mysqldump --user='root' --password='OwobEB7M' --databases cb_backend_v0_1 > '$env:CB_BACKUP_PATH'"
           - docker rm -f ${env:CB_DOCKER_CONTAINER}
           - ./run.ps1
-      Download test:
+      Run Compliancebase with docker-compose:
         download:
-          container: 00-hidden-test
-          targetfolder: C:\Users\jakob.gerstmayer\Desktop\test\
+          container: 00-compliancebase
+          targetfolder: C:\Windows\Temp\compliancebase\
         powershell:
-          - ls C:\Users\jakob.gerstmayer\Desktop\test\00-hidden-test
+          - az login
+          - az acr login -n compliancebasecontainerregistry
+          - cd C:\Windows\Temp\compliancebase\00-compliancebase
+          - docker-compose -f .\docker-compose.production.yml pull
+          - docker-compose -f docker-compose.production.yml up --no-build -d
