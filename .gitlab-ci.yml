@@ -24,7 +24,7 @@ wstage cleanup:
   stage: cleanup
   extends: .wstage
   script:
-    - docker image prune -f
+    - docker image prune -af
     - docker volume prune -f
     - docker system prune -af
 
