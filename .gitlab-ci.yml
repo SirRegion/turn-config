@@ -1,6 +1,6 @@
 .default:
   when: manual
-
+  allow_failure: true
 
 .wstage:
   extends: .default
