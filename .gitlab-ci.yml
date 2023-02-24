@@ -43,7 +43,7 @@ dev cleanup:
   stage: cleanup
   extends: .dev
   script:
-    - docker exec registry registry garbage-collect /path/to/your/registry/config.yml --delete-untagged=true
+    - docker exec registry registry garbage-collect /etc/docker/registry/config.yml --delete-untagged=true
     - docker image prune -f
     - docker volume prune -f
     - docker system prune -af
