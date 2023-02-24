@@ -26,7 +26,7 @@ dev scan:
   extends: .dev
   script: 
     - docker system df
-    - du -h / 2>/dev/nul | sort -h
+    - du -h / 2>/dev/null | sort -h
 
 dev cleanup:
   extends: .dev
