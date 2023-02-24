@@ -1,7 +1,9 @@
-default:
+.default:
   when: manual
 
+
 .wstage:
+  extends: .default
   tags: [wstage, shell]
 
 wstage scan:
@@ -17,6 +19,7 @@ wstage cleanup:
     - docker system prune -af
 
 .dev:
+  extends: .default
   tags: [dev, shell]
 
 dev scan:
@@ -26,8 +29,7 @@ dev scan:
     - du -h / | sort -h
 
 dev cleanup:
-  extends: 
-    -.dev
+  extends: .dev
   script:
     - docker exec registry registry garbage-collect /path/to/your/registry/config.yml --delete-untagged=true
     - docker volume prune -f
