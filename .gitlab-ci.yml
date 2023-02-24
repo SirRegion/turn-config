@@ -1,43 +1,34 @@
-stages:
-  - pre
-  - build
-  - post
+default:
+  when: manual
 
-artifacts:
-  stage: build
-  tags: [ shell, dev ]
+.wstage:
+  tags: [wstage, shell]
+
+wstage scan:
+  extends: .wstage
   script:
-    - make artifacts
-  artifacts:
-    public: true
-    paths:
-      - powershell-modules/powershell-modules.zip
-  cache:
-    key: $CI_COMMIT_REF_SLUG
-    paths:
-      - powershell-modules/powershell-modules.zip.files
+    - docker system df
+    - Get-PSDrive
 
-include:
-  - project: mdctec-developers/internal/maintenance-menu
-    file: 'push-to-menu.yml'
+wstage cleanup:
+  extends: .wstage
+  script:
+    - docker volume prune -f
+    - docker system prune -af
 
-Push Menu Config:
-  extends:
-    - .deploy config for menu
-  stage: pre
-  tags:
-    - dev
-    - docker
+.dev:
+  tags: [dev, shell]
 
-#build_turnserver_image:
-#  stage: build
-#  tags:
-#    - dev
-#    - shell #maybe use crane?
-#  script:
-#    - echo "TODO" #TODO
-#  only:
-#    changes:
-#      - machines/TURN-Server/turnserver.conf
+dev scan:
+  extends: .dev
+  script: 
+    - docker system df
+    - du -h / | sort -h
 
-
+dev cleanup:
+  extends: 
+    -.dev
+  script:
+    - docker exec registry registry garbage-collect /path/to/your/registry/config.yml --delete-untagged=true
+    - docker volume prune -f
+    - docker system prune -af
