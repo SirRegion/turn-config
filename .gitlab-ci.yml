@@ -1,5 +1,10 @@
 variables:
   GIT_STRATEGY: none
+
+stages:
+  - scan
+  - cleanup
+
 .default:
   when: manual
   allow_failure: true
@@ -9,14 +14,17 @@ variables:
   tags: [wstage, shell]
 
 wstage scan:
+  stage: scan
   extends: .wstage
   script:
     - docker system df
     - Get-PSDrive
 
 wstage cleanup:
+  stage: cleanup
   extends: .wstage
   script:
+    - docker image prune -f
     - docker volume prune -f
     - docker system prune -af
 
@@ -25,14 +33,17 @@ wstage cleanup:
   tags: [dev, shell]
 
 dev scan:
+  stage: scan
   extends: .dev
   script: 
     - docker system df
     - du -h / 2>/dev/null | sort -h | tail -n200
 
 dev cleanup:
+  stage: cleanup
   extends: .dev
   script:
     - docker exec registry registry garbage-collect /path/to/your/registry/config.yml --delete-untagged=true
+    - docker image prune -f
     - docker volume prune -f
     - docker system prune -af
