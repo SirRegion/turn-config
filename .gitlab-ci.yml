@@ -1,3 +1,5 @@
+variables:
+  GIT_STRATEGY: none
 .default:
   when: manual
   allow_failure: true
@@ -26,7 +28,7 @@ dev scan:
   extends: .dev
   script: 
     - docker system df
-    - du -h / 2>/dev/null | sort -h
+    - du -h / 2>/dev/null | sort -h | tail -n200
 
 dev cleanup:
   extends: .dev
